@@ -1,13 +1,16 @@
 **Project Proposal : Visualizing Modern History Armed Conflicts**
+-----------------------------
 
 **Background and Motivation**
 -----------------------------
+*Discuss your motivations and reasons for choosing this project, especially any background or research interests that may have influenced your decision.*
+
+I work as a defence scientist for the Department of National Defence in Canada, so I am interest in  military topics. I considered many project ideas, but few of them do not require the use of classified or sensitive data.  In the end, I decided to concentrate on the recent history (post-WWII) of armed conflicts in the world.
 
 
 
 
 
-Discuss your motivations and reasons for choosing this project, especially any background or research interests that may have influenced your decision.
 Project Objectives. Provide the primary questions you are trying to answer with your visualization. What would you like to learn and accomplish? List the benefits.
 Data. From where and how are you collecting your data? If appropriate, provide a link to your data sources.
 Data Processing. Do you expect to do substantial data cleanup? What quantities do you plan to derive from your data? How will data processing be implemented?
