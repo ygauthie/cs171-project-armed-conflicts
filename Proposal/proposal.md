@@ -41,7 +41,7 @@ Duration of conflicts, from start and end dates.  That being said, I am not sure
 * I will fill out missing end dates in Excel
 * I will then compute conflict durations from start and end dates
 * I will convert the CSV to JSON
-* I will proceed to some data wrangling within the visualization (e.g., counting conflict-years withing a particular period of time)
+* I will proceed to some data wrangling within the visualization (e.g., counting conflict-years withing a particular period of time) 
 
 
 **Visualization**
