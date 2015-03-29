@@ -65,7 +65,11 @@ Brushing of temporal plot, zoom in feature on map
 **Project Schedule**
 -------------------
 **By Apr 12th** : Obtain data, clean it, fill out gaps, convert to JSON.
+
 **By Apr 17th** : Write implementation code structure, page layout, basic page elements in place.
+
 **By Apr 23rd** : First implementation completed with all must-have features, ready for feedback.
+
 **By Apr 30th** : Modifications made based upon feedback received, optional features implemented.
+
 ** By May 5th**:  Complete work, make page public, record screencast, and submit project.
