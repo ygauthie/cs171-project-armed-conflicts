@@ -51,7 +51,7 @@ Duration of conflicts, from start and end dates.  That being said, I am not sure
 I want to display simultaneously the temporal and spatial aspects of conflicts.  I foresee a world map at the top of the design, and a plot of conflicts over time at the bottom.  On the left hand side would be pulldowns to filter the data according to intensity or type of conflict.  
 
 
-Design A: Circular layout and scatterplot side-by-side 
+Design A
 <p align="center"><img src="design/designA.jpg" width="600"/></p>
 
 
