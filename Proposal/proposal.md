@@ -37,7 +37,7 @@ use [topoJSON data from Mike Bostock](https://github.com/mbostock/topojson/tree/
 -------------------
 *Do you expect to do substantial data cleanup?*
 
-At first glance, not much data cleaning will be required, but we will have to fill some gaps and combine data from multiple spreadsheets.  For instance, the end dates of conflicts do not appear in all rows, so that will need to be fixed.  We will have to match countries' IDs to countries' names, which will also need manipulation (for instance, the database typically refer to "Government of Country *x*" instead of "Country *x*" when listing opponents.  We will also have to add the latitude and the longitude of countries' centroids (or capital cities) to the country data.
+At first glance, not much data cleaning will be required, but we will have to fill some gaps and combine data from multiple spreadsheets.  For instance, the end dates of conflicts do not appear in all rows, so that will need to be fixed.  We will have to match countries' IDs to countries' names, which will also need manipulation (for instance, the database typically refer to "Government of Country *x*" instead of "Country *x*" when listing opponents).  We will also have to add the latitude and the longitude of countries' centroids (or capital cities) to the country data.
 
 *What quantities do you plan to derive from your data?*
 
@@ -45,13 +45,13 @@ Minimally, we will have to estimate the duration of conflicts, from start and en
 
 *How will data processing be implemented?*
 
-* We will fill out missing data (e.g., missing end dates) in the spreadsheets.
+1. We will fill out missing data (e.g., missing end dates) in the spreadsheets.
 
-* We will combine data from separate spreadsheets.
+2. We will combine data from separate spreadsheets.
 
-* We will convert the CSV to JSON.
+3. We will convert the CSV to JSON.
 
-* We  will proceed to some data wrangling within the visualization (e.g., counting conflict-years within a particular period of time for a specific country).
+4. We  will proceed to some data wrangling within the visualization (e.g., counting conflict-years within a particular period of time for a specific country).
 
 
 **Visualization**
