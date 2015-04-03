@@ -80,7 +80,7 @@ Additional temporal plots (cross-filtered with the other components of the visua
 
 **Project Schedule**
 -------------------
-**By Apr 10th** : Obtain data, clean it, fill out gaps, combine it, convert to JSON, settle on design of initial implementation.  
+**By Apr 10th** : Obtain data, clean it, fill out gaps, combine spreadsheets, convert to JSON, settle on design of initial implementation.  
 
 **By Apr 17th** : Milestone 1 complete with page layout, code structure in place, process book started, and partial/prototype implementation working.
 
