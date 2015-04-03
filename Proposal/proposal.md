@@ -62,17 +62,21 @@ Minimally, we want to display the temporal and spatial aspects of conflicts in a
 
 The following skecth is a first draft design we considered to display the data.
 
-Design A: Minimalistic design with a world map, temporal plot, and filters.
-<p align="center"><img src="Designs/designA.jpg" width="600"/></p>
+<p align="center">Design A: Minimalistic design with a world map, temporal plot, and filters.<br>
+<img src="Designs/designA.jpg" width="800"/></p>
 
 
+<p align="center">Timeline example sketch<br>
+<img src="Designs/timeline.jpg" width="800"/></p>
 
 
 *Must-Have Features. These are features without which you would consider your project to be a failure.*
-World map wih conflict locations, temporal plot of conflicts, filters on conflict intensity and types.
+
+World map wih conflict locations and magnitudes, temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
 
 *Optional Features. Those features which you consider would be nice to have, but not critical.*
-Brushing of temporal plot, zoom in feature on map
+
+
 
 
 **Project Schedule**
