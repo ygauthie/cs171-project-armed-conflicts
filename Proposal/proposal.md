@@ -30,7 +30,7 @@ We will design the visualization with a general, non-specialist audience in mind
 ---------
 *From where and how are you collecting your data? If appropriate, provide a link to your data sources.*
 
-Will will primarily use the [Armed Conflict Dataset](http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/) compiled by the University of Uppsala Conflict Data Program (UCDP) and the International Peace Research Institute, Oslo (PRIO).  We will also use the [Uppsala Conflict Database Categorical Variables] (http://www.pcr.uu.se/research/ucdp/datasets/uppsala_conflict_database_categorical_variables/) to make the primary data set richer.  It includes, for instance, the number of casualties to the data.  In addition, we expect to
+Will will primarily use the [Armed Conflict Dataset](http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/) compiled by the University of Uppsala Conflict Data Program (UCDP) and the International Peace Research Institute, Oslo (PRIO).  We will also use the [Uppsala Conflict Database Categorical Variables] (http://www.pcr.uu.se/research/ucdp/datasets/uppsala_conflict_database_categorical_variables/) to make the primary data set richer.  It includes, for instance, an estimate of the number of casualties for each conflict.  In addition, we expect to
 use [topoJSON data from Mike Bostock](https://github.com/mbostock/topojson/tree/master/examples) to draw a world map.  If time permits, we may use a data set on [Sexual Violence in Armed Conflict](http://www.sexualviolencedata.org/) to add more dimensions to our data.
 
 **Data Processing**
@@ -71,10 +71,10 @@ The sketch above only presents a single temporal plot.  We would ideally have mo
 <img src="Designs/timeline.jpg" width="800"/></p>
 
 
-**Must-Have Features** : 
+*Must-Have Features* : 
 World map with conflict locations and magnitudes, one temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
 
-**Optional Features** :
+*Optional Features* :
 Additional temporal plots (cross-filtered with the other components of the visualization), arcs or links between adversarial countries.
 
 
