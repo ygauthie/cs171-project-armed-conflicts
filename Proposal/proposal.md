@@ -89,4 +89,4 @@ Additional temporal plots (cross-filtered with the other components of the visua
 
 **By Apr 30th** : Modifications made based upon feedback received, optional features implemented.
 
-** By May 5th** :  Complete work, make page public, record screencast, and submit project.
+**By May 5th** :  Complete work, make page public, record screencast, and submit project.
