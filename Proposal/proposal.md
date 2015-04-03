@@ -1,4 +1,4 @@
-**Project Proposal : Visualizing Modern History Armed Conflicts**
+**Project Proposal : Modern History Armed Conflicts**
 -----------------------------
 by Yvan Gauthier and Ed Gonzalez
 
@@ -6,16 +6,16 @@ by Yvan Gauthier and Ed Gonzalez
 -----------------------------
 *Discuss your motivations and reasons for choosing this project, especially any background or research interests that may have influenced your decision.*
 
-One of us (Yvan) works as a defence scientist for the Department of National Defence in Canada, so from a professional perspective, he is interested in  military topics. The other team member (Ed) was  primarily interested in working on a rich data set with multiple spatial and temporal dimensions that could be explored through interactive visualization.
+One of us (Yvan) works as a defence scientist for the Department of National Defence in Canada, so from a professional perspective, he is interested in  military topics. The other member of the team (Ed) was  primarily interested in working on a rich data set with multiple spatial and temporal dimensions that could be explored through interactive visualization.
 
-For this project, we had to select a topic that did not require the use of classified or sensitive material.  In the end, we decided to concentrate on the recent history (post-WWII) of armed conflicts in the world, a topic that is fully unclassified and for which we were able to find appropriate data sets.  
+We had to select a topic that did not require the use of classified or sensitive material.  We decided to concentrate on the recent history (post World War II) of armed conflicts in the world, a topic that is fully unclassified and for which we were able to find some interesting data sets.  
 
 
 **Project Objectives**
 ---------------------
 *Provide the primary questions you are trying to answer with your visualization. What would you like to learn and accomplish? List the benefits.*
 
-Hundreds of armed conflicts, large and small, have occured in the world since World War II (WWII).  This is a lot of data for anybody to grasp.  We want to produce an interactive visualization that will effectively convey information on armed conflicts and allow users to answer various questions, such as:
+Hundreds of armed conflicts, large and small, have occured in the world since World War II (WWII).  This is a lot of data for anybody to grasp.  We want to produce an interactive visualization that will effectively convey information on armed conflicts and allow its users to answer various questions, such as:
 
 * Where in the world (countries and regions) have armed conflicts occurred since WWII?
 * What was the magnitude and duration of these conflicts?
@@ -24,7 +24,7 @@ Hundreds of armed conflicts, large and small, have occured in the world since Wo
 * Is there any downward/upward trend in the number of armed conflicts, either  worldwide or in specific regions of interest?
 * Do these trends, if any, differ depending on the type and intensity of the conflict?
 
-We will design the visualisation with a general, non-specialist audience in mind.  We expect it to be of interest to military historians and defence analysts as well.
+We will design the visualisation with a general, non-specialist audience in mind.  That being said, we expect it to be of interest to military historians and defence analysts as well.
 
 **Data**
 ---------
@@ -85,7 +85,7 @@ Additional temporal plots (cross-filtered with the other components of the visua
 
 **By Apr 17th** : Milestone 1 complete with page layout, code structure in place, process book started, and partial/prototype implementation working.
 
-**By Apr 23rd** : First implementation completed with all must-have features working ready for feedback by TF.
+**By Apr 23rd** : First implementation completed with all must-have features working, ready for feedback by TF.
 
 **By Apr 30th** : Modifications made based upon feedback received, optional features implemented.
 
