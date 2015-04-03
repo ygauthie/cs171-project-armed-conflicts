@@ -60,11 +60,12 @@ Minimally, we will have to estimate the duration of conflicts, from start and en
 
 Minimally, we want to display the temporal and spatial aspects of conflicts in a simulataneous fashion.  We foresee a world map at the top of the design, and one (or more) temporal plots at the bottom showing how different variables changed over time.  There would also be pulldown menus to filter the data according to specific variable (e.g, intensity, type, region of conflict).  
 
-The following skecth is a first draft design we considered to display the data.
+The following skecth is a first draft design from Yvan we considered to display the data.
 
 <p align="center">Design A: Minimalistic design with a world map, temporal plot, and filters.<br>
 <img src="Designs/designA.jpg" width="800"/></p>
 
+The sketch above only presents a single temporal plot.  We would ideally have more than one temporal plot in the overall design.  We are considering to add a timeline in the form of a Gantt chart (or similar) to show when conflicts occured over time.  Here is a sketch by Ed showing how this would be done.  
 
 <p align="center">Timeline example sketch<br>
 <img src="Designs/timeline.jpg" width="800"/></p>
@@ -75,17 +76,16 @@ The following skecth is a first draft design we considered to display the data.
 World map wih conflict locations and magnitudes, temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
 
 *Optional Features. Those features which you consider would be nice to have, but not critical.*
-
-
+Additional temporal plots (cross-filtered with the other components of the visualization), arcs or links between adverserial countries.
 
 
 **Project Schedule**
 -------------------
-**By Apr 12th** : Obtain data, clean it, fill out gaps, convert to JSON.
+**By Apr 10th** : Obtain data, clean it, fill out gaps, combine it, convert to JSON, settle on design of initial implementation.  
 
-**By Apr 17th** : Write implementation code structure, page layout, basic page elements in place.
+**By Apr 17th** : Milestone 1 complete with page layout, code structure in place, process book started, and partial/prototype implementation working.
 
-**By Apr 23rd** : First implementation completed with all must-have features, ready for feedback.
+**By Apr 23rd** : First implementation completed with all must-have features working ready for feedback by TF.
 
 **By Apr 30th** : Modifications made based upon feedback received, optional features implemented.
 
