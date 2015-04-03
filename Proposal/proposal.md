@@ -6,7 +6,7 @@ by Yvan Gauthier and Ed Gonzalez
 -----------------------------
 *Discuss your motivations and reasons for choosing this project, especially any background or research interests that may have influenced your decision.*
 
-One of us (Yvan) works as a defence scientist for the Department of National Defence in Canada, so from a professional perspective, he is interested in  military topics. The other member of the team (Ed) was  primarily interested in working on a rich data set with multiple spatial and temporal dimensions that could be explored through interactive visualization.
+One of us (Yvan) works as a defense scientist for the Department of National Defence in Canada, so from a professional perspective, he is interested in  military topics. The other member of the team (Ed) was  primarily interested in working on a rich data set with multiple spatial and temporal dimensions that could be explored through interactive visualization.
 
 We had to select a topic that did not require the use of classified or sensitive material.  We decided to concentrate on the recent history (post World War II) of armed conflicts in the world, a topic that is fully unclassified and for which we were able to find some interesting data sets.  
 
@@ -15,7 +15,7 @@ We had to select a topic that did not require the use of classified or sensitive
 ---------------------
 *Provide the primary questions you are trying to answer with your visualization. What would you like to learn and accomplish? List the benefits.*
 
-Hundreds of armed conflicts, large and small, have occured in the world since World War II (WWII).  This is a lot of data for anybody to grasp.  We want to produce an interactive visualization that will effectively convey information on armed conflicts and allow its users to answer various questions, such as:
+Hundreds of armed conflicts, large and small, have occurred in the world since World War II (WWII).  This is a lot of data for anybody to grasp.  We want to produce an interactive visualization that will effectively convey information on armed conflicts and allow its users to answer various questions, such as:
 
 * Where in the world (countries and regions) have armed conflicts occurred since WWII?
 * What was the magnitude and duration of these conflicts?
@@ -24,7 +24,7 @@ Hundreds of armed conflicts, large and small, have occured in the world since Wo
 * Is there any downward/upward trend in the number of armed conflicts, either  worldwide or in specific regions of interest?
 * Do these trends, if any, differ depending on the type and intensity of the conflict?
 
-We will design the visualisation with a general, non-specialist audience in mind.  That being said, we expect it to be of interest to military historians and defence analysts as well.
+We will design the visualization with a general, non-specialist audience in mind.  That being said, we expect it to be of interest to military historians and defense analysts as well.
 
 **Data**
 ---------
@@ -58,25 +58,24 @@ Minimally, we will have to estimate the duration of conflicts, from start and en
 ------------------
 *How will you display your data? Provide some general ideas that you have for the visualization design. Include sketches of your design.*
 
-Minimally, we want to display the temporal and spatial aspects of conflicts in a simulataneous fashion.  We foresee a world map at the top of the design, and one (or more) temporal plots at the bottom showing how different variables changed over time.  There would also be pulldown menus to filter the data according to specific variable (e.g, intensity, type, region of conflict).  
+Minimally, we want to display the temporal and spatial aspects of conflicts in a simultaneous fashion.  We foresee a world map at the top of the design, and one (or more) temporal plots at the bottom showing how different variables changed over time.  There would also be pulldown menus to filter the data according to specific variable (e.g, intensity, type, region of conflict).  
 
-The following skecth is a first draft design from Yvan we considered to display the data.
+The following sketch is a first draft design from Yvan we considered to display the data.
 
 <p align="center">Design A: Minimalistic design with a world map, temporal plot, and filters.<br>
 <img src="Designs/designA.jpg" width="800"/></p>
 
-The sketch above only presents a single temporal plot.  We would ideally have more than one temporal plot in the overall design.  We are considering to add a timeline in the form of a Gantt chart (or similar) to show when conflicts occured over time.  Here is a sketch by Ed showing how this would be done.  
+The sketch above only presents a single temporal plot.  We would ideally have more than one temporal plot in the overall design.  We are considering to add a timeline in the form of a Gantt chart (or similar) to show when conflicts occurred over time.  Here is a sketch by Ed showing how this would be done.  
 
 <p align="center">Timeline example sketch<br>
 <img src="Designs/timeline.jpg" width="800"/></p>
 
 
-*Must-Have Features. These are features without which you would consider your project to be a failure.*
+**Must-Have Features** : 
+World map with conflict locations and magnitudes, one temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
 
-World map wih conflict locations and magnitudes, temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
-
-*Optional Features. Those features which you consider would be nice to have, but not critical.*
-Additional temporal plots (cross-filtered with the other components of the visualization), arcs or links between adverserial countries.
+**Optional Features** :
+Additional temporal plots (cross-filtered with the other components of the visualization), arcs or links between adversarial countries.
 
 
 **Project Schedule**
