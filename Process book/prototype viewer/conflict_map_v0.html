@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <style type="text/css">
+      body { margin: 0; padding: 0; }
+      #map { height: 598px; width: 1066px; margin: auto;}
+      #filters {
+          font-family: Verdana;
+          font-size: 14px;
+          border: 0;
+          border-top: 1px;
+          border-bottom: 1px;
+          padding: 1.154em;
+          text-align: center;
+          border-style: solid;
+          line-height: 20px;
+          margin: 20px 0px;
+          font-weight: 400;
+          font-style: normal;
+      }
+      .inline {
+          display: inline;
+      }
+      #selectYear{
+          width:300px;
+      }
+        #year{
+
+            font-family: Verdana;
+            font-size: 24px;
+            font-weight: 400;
+            height: 40px; width: 100px;
+            margin: auto;
+        }
+    </style>
+  </head>
+  <body>
+  <div id="filters">
+
+
+    <p id="minYear" class="inline">1946</p> <input id="selectYear" type="range" name="points" min="1946"
+                                                               max="2012" step="1" value="2013" list="years"/>
+
+      <p id="maxYear" class="inline">2013</p>
+
+  </div>
+  <div id="year"></div>
+  <div id="container"></div>
+
+
+        <div id="map"></div>
+
+
+    <script type="text/javascript">
+      var map = new L.Map('map', { center: [21.943046, -24.082031], zoom: 2 });
+      map.addLayer(L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png'));
+
+      map._initPathRoot();
+      map.on("viewreset", drawCircles);
+      var d3Layer = d3.select("#map").select("svg").append("g");
+      var url = "dataset.csv";
+      var latestData;
+      var filteredData;
+      selectedYear = '2013';
+
+
+
+      d3.select("#selectYear").on("change", function () {
+          selectedYear = this.value;
+
+          dataWrangler();
+
+      });
+
+
+      function getData() {
+        d3.csv(url, function(data) {
+          latestData = data;
+            dataWrangler();
+        });
+      }
+
+
+
+      function dataWrangler(){
+
+         console.log();
+          d3.select("#year").text(selectedYear);
+
+
+
+       filteredData = latestData.filter(function (val, index, array) {
+              return val.Lat != "" && val.Year == selectedYear;
+          });
+          console.log(filteredData);
+         drawCircles();
+
+
+      }
+
+
+
+
+
+
+      function drawCircles() {
+
+
+
+
+
+
+        var circles = d3Layer.selectAll("circle").data(filteredData);
+
+        circles.enter().append("circle");
+
+        circles
+          .attr("cx", function(row) { return getXY(row).x; })
+          .attr("cy", function(row) { return getXY(row).y; })
+                .attr("stroke", "#2c3e50" )
+          .attr("r", function(d){return d.IntensityLevel * 10 })
+          .attr("fill", function(d){return d.IntensityLevel == 1 ? "#f1c40f" :"#c0392b";}
+                  );
+        circles.exit().remove();
+      }
+
+      function getXY(d) {
+
+        return map.latLngToLayerPoint([d.Lat, d.Lng]);
+      }
+      
+      getData();
+    </script>
+  </body>
+</html>
