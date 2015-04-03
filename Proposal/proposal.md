@@ -6,7 +6,7 @@ by Yvan Gauthier and Ed Gonzalez
 -----------------------------
 *Discuss your motivations and reasons for choosing this project, especially any background or research interests that may have influenced your decision.*
 
-One of us (Yvan) works as a defence scientist for the Department of National Defence in Canada, so from a professional perspective, he is interested in  military topics. The other team member (Ed) was  primarily interested in working on a dataset with multiple spatial and temporal dimensions that can be explored through interactive visualization.
+One of us (Yvan) works as a defence scientist for the Department of National Defence in Canada, so from a professional perspective, he is interested in  military topics. The other team member (Ed) was  primarily interested in working on a rich data set with multiple spatial and temporal dimensions that could be explored through interactive visualization.
 
 For this project, we had to select a topic that did not require the use of classified or sensitive material.  In the end, we decided to concentrate on the recent history (post-WWII) of armed conflicts in the world, a topic that is fully unclassified and for which we were able to find appropriate data sets.  
 
@@ -19,25 +19,25 @@ Hundreds of armed conflicts, large and small, have occured in the world since Wo
 
 * Where in the world (countries and regions) have armed conflicts occurred since WWII?
 * What was the magnitude and duration of these conflicts?
-* How many casualties resulted from these countries?
-* How many conflicts a particular country has been involved in over a given period of time (or similarly, how many conflict-years a particular country went through during a specific period of time) ?
+* How many casualties resulted from the conflicts?
+* How many conflicts has a particular country been involved in over a given period of time (or similarly, how many conflict-years a particular country went through during a specific period of time) ?
 * Is there any downward/upward trend in the number of armed conflicts, either  worldwide or in specific regions of interest?
 * Do these trends, if any, differ depending on the type and intensity of the conflict?
 
-We will design the visualisation with a general, non-specialist audience in mind, although it could become very useful to military historians and defence analysts.
+We will design the visualisation with a general, non-specialist audience in mind.  We expect it to be of interest to military historians and defence analysts as well.
 
 **Data**
 ---------
 *From where and how are you collecting your data? If appropriate, provide a link to your data sources.*
 
-Will will primarily use the [Armed Conflict Dataset](http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/) compiled by the University of Uppsala Conflict Data Program (UCDP) and the International Peace Research Institute, Oslo (PRIO).  We will also use the [Uppsala Conflict Database Categorical Variables] (http://www.pcr.uu.se/research/ucdp/datasets/uppsala_conflict_database_categorical_variables/) to make the primary data set richer and include, for instance, the number of casualties to the data.  In addition, we expect to
-use [topoJSON data from Mike Bostock](https://github.com/mbostock/topojson/tree/master/examples) to draw a world map.  If time permits, we may use a data set on [Sexual Violence in Armed Conflict](http://www.sexualviolencedata.org/) to add dimensions to our data.
+Will will primarily use the [Armed Conflict Dataset](http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/) compiled by the University of Uppsala Conflict Data Program (UCDP) and the International Peace Research Institute, Oslo (PRIO).  We will also use the [Uppsala Conflict Database Categorical Variables] (http://www.pcr.uu.se/research/ucdp/datasets/uppsala_conflict_database_categorical_variables/) to make the primary data set richer.  It includes, for instance, the number of casualties to the data.  In addition, we expect to
+use [topoJSON data from Mike Bostock](https://github.com/mbostock/topojson/tree/master/examples) to draw a world map.  If time permits, we may use a data set on [Sexual Violence in Armed Conflict](http://www.sexualviolencedata.org/) to add more dimensions to our data.
 
 **Data Processing**
 -------------------
 *Do you expect to do substantial data cleanup?*
 
-At first glance, not much data cleaning will be required, but we will have to fill some gaps and combine data from multiple spreadsheets.  For instance, conflicts' end dates do not appear in all rows, so that will need to be fixed.  We will have to match countries' IDs to countries' names.  We will also have to add the latitude and the longitude of countries' centroids (or capital cities) to the country data.
+At first glance, not much data cleaning will be required, but we will have to fill some gaps and combine data from multiple spreadsheets.  For instance, the end dates of conflicts do not appear in all rows, so that will need to be fixed.  We will have to match countries' IDs to countries' names, which will also need manipulation (for instance, the database typically refer to "Government of Country *x*" instead of "Country *x*" when listing opponents.  We will also have to add the latitude and the longitude of countries' centroids (or capital cities) to the country data.
 
 *What quantities do you plan to derive from your data?*
 
@@ -48,8 +48,8 @@ Minimally, we will have to estimate the duration of conflicts, from start and en
 * We will fill out missing data (e.g., missing end dates) in the spreadsheets.
 
 * We will combine data from separate spreadsheets.
-* We will convert the CSV to JSON.
 
+* We will convert the CSV to JSON.
 
 * We  will proceed to some data wrangling within the visualization (e.g., counting conflict-years within a particular period of time for a specific country).
 
