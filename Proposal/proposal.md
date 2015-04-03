@@ -63,7 +63,7 @@ Minimally, we want to display the temporal and spatial aspects of conflicts in a
 The following skecth is a first draft design we considered to display the data.
 
 Design A: Minimalistic design with a world map, temporal plot, and filters.
-<p align="center"><img src="designs/designA.jpg" width="600"/></p>
+<p align="center"><img src="Designs/designA.jpg" width="600"/></p>
 
 
 
