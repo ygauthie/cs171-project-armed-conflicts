@@ -1,0 +1,29 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1344\cocoasubrtf720
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 \
+\
+Data:\
+\
+I added 3 data files to the project:\
+\
+1.  UCDPPrioArmedConflictDataset4a-2014.csv:  This is the Original untouched file  this is used for reference and validation, although we can always get a copy of the original file from the UCDP  website, I thought it would be convenient to keep a local copy.\
+\
+2.  UCDPPrioArmedConflictDataset_geocoded.csv:  This is the Geo encoded version.  It is the same as the original with the addition of 3 extra fields.  Lat, for Latitude, lon for Longitude and finally location key, this is the first country in the location field, and what is used to determine the lat and lon.  \
+\
+3. UCDPPrioArmedConflictDataset_reduced.csv:   This version of the data is reduced to a single row for each conflict episode, showing the start and end dates on a single line.  \
+\
+It only contains the following fields:  Conflict id,  location, cumulative intensity, start date 2, EpEnddate (null if conflict is ongoing), lat and lon.  ( I will review the data to see which other fields are distinct across all years of the conflict)\
+\
+\
+ToDo:\
+\
+1. Determine other fields to be added to the reduced version.\
+2. Create a look up file with all countries, ids and lat lon, this may or may not be used, but may come in handy to map other participants in a conflict.\
+\
+\
+\
+}
