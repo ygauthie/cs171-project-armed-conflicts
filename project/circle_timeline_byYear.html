@@ -1,0 +1,203 @@
+<html><head>
+
+<style>
+
+
+    body {
+        font-size: 14px;
+        line-height: 30px;
+        color: #475577;
+        font-family: Verdana;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+
+    .loading {
+        font-family: sans-serif;
+        font-size: 15px;
+    }
+
+
+
+    #punchcard{
+        margin-right: 100px;
+        width:60%;
+        height:500px;
+        overflow:auto;
+        background-color: #ffffff;
+    }
+
+    #xAxisTop{
+        overflow:auto;
+        width: 60%;
+        margin-bottom: -12px;
+    }
+
+    #header{
+        overflow:auto;
+        width: 60%;
+        margin-bottom: -12px;
+    }
+    .scaling-svg {
+        position: absolute;
+        height: 100%;
+
+        left: 0;
+        top: 0;
+    }
+
+
+
+</style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+</head><body>
+
+<div id="header">
+<table><td>
+    Color By :
+    <div class="radio-toolbar">
+        <input type="radio" id="radio1" name="radios" class="rdoClr" value="all" checked>
+        <label for="radio1">All Solid</label>
+
+        <input type="radio" id="radio2" name="radios"  class="rdoClr" value="region">
+        <label for="radio2">By Region</label>
+
+        <input type="radio" id="radio3" name="radios"  class="rdoClr" value="inten">
+        <label for="radio3">By Intensity</label>
+    </div>
+    <br/>
+    Size :
+    <div class="radio-toolbar">
+        <input type="radio" id="radio4" name="radioSize" class="rdoSz" value="100" checked>
+        <label for="radio1">100% of Screen</label>
+
+        <input type="radio" id="radio5" name="radioSize"  class="rdoSz" value="66">
+        <label for="radio2">66% of Screen</label>
+
+        <input type="radio" id="radio6" name="radioSize"  class="rdoSz" value="0">
+        <label for="radio3">Full Size </label>
+    </div>
+</td>
+
+    <td style = 'vertical-align: top'><div style="width:300px; margin:25px;">
+    <p>
+        <label for="amount">Time range:</label>
+        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+    <div id="slider-range"></div>
+
+</div></td></table>
+
+<hr clss="rule"> </hr>
+
+
+</div>
+
+
+
+<div id="xAxisTop"></div>
+<div id="punchcard"></div>
+
+
+<script src="libs/d3/d3.min.js" charset="utf-8"></script>
+<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src = "js/circleTimeline.js"></script>
+
+<script>
+    //Scroll Function to keep header and body in sync
+    $('#punchcard').on('scroll', function () {
+              $('#xAxisTop').scrollLeft($(this).scrollLeft());
+    });
+
+
+    $( ".rdoClr" ).on('click', function() {
+        circleFill (this.value);
+    });
+
+
+    $( ".rdoSz" ).on('click', function() {
+        chrtSize (this.value);
+    });
+
+
+
+    function circleFill(fillVal){
+        console.log(fillVal);
+        switch(fillVal) {
+            case 'all':
+                $('.circle').css('fill','#003D66')
+                break;
+            case 'inten':
+                $('.intensity_1').css('fill','#FFAA00');
+                $('.intensity_2').css('fill','#800000');
+                break;
+            case 'region':
+                $('.reg_1').css('fill','#800000');
+                $('.reg_2').css('fill','#FFAA00');
+                $('.reg_3').css('fill','#95a5a6');
+                $('.reg_4').css('fill','#003D66');
+                $('.reg_5').css('fill','#107FC9');
+                break;
+            default:
+                 $('.circle').css('fill','#003D66')
+        }
+
+          }
+
+    function chrtSize(sizeVal) {
+        console.log(sizeVal);
+        switch (sizeVal) {
+            case '100':
+
+                $('#xAxisTop').css('width', '90%').css(' overflow', 'auto');
+                $('#punchcard').css('width', '90%').css('height', '90%').css(' overflow', 'auto');
+                break;
+            case '66':
+                $('#xAxisTop').css('width', '60%').css(' overflow', 'auto');
+                $('#punchcard').css('width', '60%').css('height', '60%').css(' overflow', 'auto');;
+                break;
+            case '0':
+                $('#xAxisTop').css('width', '').css(' overflow', 'auto');
+                $('#punchcard').css('width', '').css(' overflow', 'auto');
+                break;
+            default:
+                $('#xAxisTop').css(' overflow', 'visible');
+                $('#punchcard').css(' overflow', 'visible');;
+        }
+    }
+
+    $(function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 1946,
+            max: 2013,
+            values: [ 1946, 2013 ],
+            slide: function( event, ui ) {
+                $( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+                dataWrangler($( "#slider-range" ).slider( "values", 0 ), $( "#slider-range" ).slider( "values", 1 ), '1');
+            }
+        });
+        $( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+        " - " + $( "#slider-range" ).slider( "values", 1 ) );
+
+    });
+
+</script>
+
+
+
+</body></html>
