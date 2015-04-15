@@ -10,24 +10,26 @@ path {
 circle { 
   stroke:white; 
   fill: white; 
-  fill-opacity: 0.4; 
-  stroke-width:1.5; 
+  fill-opacity: 0.3; 
+  stroke-width:1.0; 
 }
 
 </style>
 <body bgcolor="black">
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
 <script src="http://d3js.org/topojson.v0.min.js"></script>
 <script>
-var width = 960,
-    height = 500;
+var width = 748,
+    height = 400;
 
 var landColor = d3.rgb("#666666");
 
-var projection = d3.geo.mercator()
-    .center([0, 20])
-    .scale(180)
-    .rotate([-10,0]);
+var projection = d3.geo.winkel3()
+    .scale(172)
+    .translate([width / 2, 30+height / 2])
+    .precision(.1);
+
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -57,7 +59,10 @@ d3.csv("UCDPPrioArmedConflictDataset_geocoded.csv", function(error, data) {
        .attr("cy", function(d) {
                return projection([d.lon, d.lat])[1];
        })
-       .attr("r", 10);
+       .attr("r", function(d) {
+               if (d.IntensityLevel==1) {return 2;}
+               else return 7;
+       });
 });
 
 
