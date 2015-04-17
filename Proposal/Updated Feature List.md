@@ -1,8 +1,10 @@
-#Must-Have Features
+##Must-Have Features
 
-##World map 
+###World map 
 
-###with conflict locations and magnitudes, one temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
+* with conflict locations and magnitudes, 
+
+* one temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
 
 **Optional Features**
 -----------------------
