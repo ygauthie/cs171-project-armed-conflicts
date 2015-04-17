@@ -2,11 +2,11 @@
 
 ###World map 
 
-* World map with country lines, with suitable projection, zoom and drag capability
+* World map with country lines, suitable projection, zoom and drag functionality
 
 * Conflict locations as circles (2 sizes depending on conflict intensity)
 
-* Handling events and filters from other elements
+* Handles events and filters from other elements/sections
 
 ###Temporal plots
 
@@ -16,18 +16,18 @@
 
 * Brushable area for period filter
 
-* Handling events and filters from other elements
+* Handle events and filters from other elements/sections
 
-###Temporal plots
+###Statistical graph
 
-* Number of conflics over time (curve or area plot)
+* Bar chart (or other chart type) 
 
-* Timeline showing conflict durations (gantt-like)
+* Showing at least one key statistic derived from the data (e.g., top 10 countries with highest number of conflict years)
 
-* Brushable area for period filter
+* Handles events and filters from other elements
 
 
-###Filters
+###Filter section
 
 * Conflict intensity (pulldown menu)
 
@@ -37,11 +37,13 @@
 
 * Region of the world (pulldown menu) 
 
-* Temporal filtering (from brushing a different element)
+* Location/country (pulldown, search box, or other)
 
 
-one temporal plot of conflicts (with brushing), filters on conflict intensity, type, and region.
+##Optional Features
 
-**Optional Features**
------------------------
-Additional temporal plots (cross-filtered with the other components of the visualization), arcs or links between adversarial countries.
+* Estimated number of deaths over time (curve or area plot) 
+
+* Additional statistics derived from data and displayed
+
+* Some visual feature focusing on adversarial or allied countries (e.g., pairs of countries that have conflicted with each other the most often)
