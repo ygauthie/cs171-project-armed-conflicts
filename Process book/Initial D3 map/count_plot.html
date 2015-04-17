@@ -51,8 +51,21 @@ body {
   stroke-width: 1.5px;
 }
 
+.boundingBox{
+    cursor: pointer;
+    fill: grey;
+    fill-opacity: .3;
+    pointer-events: all;
+}
+
+.brush{
+    fill: darkgrey;
+    fill-opacity: .5;
+    pointer-events: none;
+}
+
 </style>
-<body>
+<body bgcolor="black">
     <div class="container">
         <h1>Prototype</h1>
             <div  id="countVis">
@@ -64,7 +77,6 @@ body {
 
     <script>
 
-    var allData[];
 
         $(function(){ // this function is called after the HTML document is fully loaded
 
@@ -72,7 +84,8 @@ body {
             //==========================================
             //--- HERE IS WHERE ALL THE MAGIC STARTS --
             //==========================================
-
+            
+           var allData = [];
 
             // call this function after Data is loaded, reformatted and bound to the variables
             var initVis = function(){
@@ -134,66 +147,5 @@ body {
     </script>
 </body>
 </html>
-
-<!DOCTYPE html>
-<meta charset="utf-8">
-
-<body bgcolor="black">
-<script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
-<script>
-
-var margin = {top: 20, right: 30, bottom: 30, left: 40},
-    width = 748 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom;
-
-var x = d3.time.scale()
-    .domain([1946,2014])
-    .range([0, width]);
-
-var y = d3.scale.linear()
-    .domain([0, 2])
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-var line = d3.svg.line()
-    .interpolate("monotone")
-    .x(function(d) { return x(d.Year); })
-    .y(function(d) { return y(d.IntensityLevel); });
-
-var svg;
-
-d3.csv("UCDPPrioArmedConflictDataset_geocoded.csv", function(error, data) {
-
-
-svg = d3.select("body").append("svg")
-    .datum(data)
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-});
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
-
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
-
-svg.append("path")
-    .attr("class", "line")
-    .attr("d", line);
-
-
-</script>
 
 
