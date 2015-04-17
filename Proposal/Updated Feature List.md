@@ -6,13 +6,15 @@
 
 * Conflict locations as circles (two sizes, depending on conflict intensity)
 
-* Filtered according to events and filters from other elements/sections
+* Mouseover function to display countries involved in conflict
+
+* Map filtered according to events and filters from other elements/sections
 
 ###Temporal plots
 
-* Number of conflics over time (curve or area plot)
+* Curve or area plot showing number of conflics over time 
 
-* Timeline showing conflict durations (gantt-like)
+* Gantt-like timeline showing conflict durations over time.
 
 * Brushable area for period filter
 
@@ -42,8 +44,10 @@
 
 ##Optional Features
 
-* Estimated number of deaths over time (curve or area plot) 
+* Additional curve or area plot showing estimated number of deaths over time
+
+* Additional encoding of information.  For instance, the conflict types could be encoded by coloring circles on the map and/or the bars on timeline.  Additional prototyping is required to figure what would work best...
 
 * Additional statistics derived from data and displayed
 
-* Some visual feature focusing on adversarial or allied countries (e.g., pairs of countries that have conflicted with each other the most often)
+* Some visual feature focusing on adversarial or allied countries (e.g., pairs of countries that have conflicted with each other the most often during a given period)
