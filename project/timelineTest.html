@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Chronological Diagram of Asia</title>
+    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.v2.js"></script>
+    <style type="text/css">
+        .chart {
+            shape-rendering: crispEdges;
+        }
+
+        .mini text {
+            font: 9px sans-serif;
+        }
+
+        .main text {
+            font: 12px sans-serif;
+        }
+
+        .miniItem0 {
+            fill: darksalmon;
+            stroke-width: 6;
+        }
+
+        .miniItem1 {
+            fill: darkolivegreen;
+            fill-opacity: .7;
+            stroke-width: 6;
+        }
+
+        .miniItem2 {
+            fill: slategray;
+            fill-opacity: .7;
+            stroke-width: 6;
+        }
+
+        .brush .extent {
+            stroke: gray;
+            fill: dodgerblue;
+            fill-opacity: .365;
+        }
+
+        #smallChart{
+            margin-right: 100px;
+            width:748px;
+            height:200px;
+            overflow:auto;
+            background-color: #ffffff;
+
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="smallChart">
+
+</div>
+
+<div id ="largeChart"></div>
+
+
+<script type="text/javascript">
+    var lanes = [];
+    var laneLength = 0;
+    var  items = [];
+    var timeBegin = 19460101,
+            timeEnd = 20161231;
+var url = 'data/UCDPPrioArmedConflictDataset_reduced.csv';
+
+    function getdata(){
+
+
+
+
+
+        d3.csv(url, function(data) {
+            latestData = data;
+             byLoc = d3.nest()
+                    .key(function(d) { return d.Location; })
+                    .entries(latestData);
+
+              for (var i = 0, len = byLoc.length; i < len; i++) {
+                lanes.push(byLoc[i].key);
+                console.log(i);
+                for (var j = 0, len2 = byLoc[i].values.length; j < len2; j++) {
+                    console.log(i + ' - ' + j);
+                    var item = {}
+                    item.lane = i;
+                    item.id =  byLoc[i].values[j].Location + ':' + byLoc[i].values[j].ConflictId;
+                    item.start = parseInt(dateFormat(byLoc[i].values[j].StartDate2));
+                    item.end =  parseInt(dateFormat(byLoc[i].values[j].EpEndDate));
+
+                    items.push(item);
+
+                }
+                  console.log(i);
+
+            }
+            console.log('lanes');
+            console.log(lanes);
+
+
+            console.log('items');
+            console.log(items);
+
+            laneLength = lanes.length;
+            console.log('laneLength');
+            console.log('laneLength');
+
+
+            buildChart();
+        });
+
+
+
+
+ }
+
+
+function buildChart() {
+
+    var m = [20, 15, 15, 120], //top right bottom left
+            w = 960 - m[1] - m[3],
+            h = 500 - m[0] - m[2],
+            miniHeight = laneLength * 12 + 50,
+            mainHeight = h - miniHeight - 50;
+console.log(laneLength);
+    //scales
+     x = d3.scale.linear()
+            .domain([timeBegin, timeEnd])
+            .range([0, w]);
+     x1 = d3.scale.linear()
+            .range([0, w]);
+     y1 = d3.scale.linear()
+            .domain([0, laneLength])
+            .range([0, mainHeight]);
+     y2 = d3.scale.linear()
+            .domain([0, laneLength])
+            .range([0,  miniHeight]);
+
+     chart = d3.select("#smallChart")
+            .append("svg")
+            .attr("width", w + m[1] + m[3])
+            .attr("height", miniHeight + m[0] + m[2])
+            .attr("class", "chart");
+
+    chart.append("defs").append("clipPath")
+            .attr("id", "clip")
+            .append("rect")
+            .attr("width", w)
+            .attr("height", 10);
+    /*
+     main = chart.append("g")
+            .attr("transform", "translate(" + m[3] + "," + m[0] + ")")
+            .attr("width", w)
+            .attr("height", mainHeight)
+            .attr("class", "main");
+*/
+    mini = chart.append("g")
+            .attr("transform", "translate(" + 120 + "," + 0 + ")")
+            .attr("width", w)
+            .attr("height", miniHeight)
+            .attr("class", "mini");
+
+    //main lanes and texts
+    /*
+    main.append("g").selectAll(".laneLines")
+            .data(items)
+            .enter().append("line")
+            .attr("x1", m[1])
+            .attr("y1", function (d) {
+                return y1(d.lane);
+            })
+            .attr("x2", w)
+            .attr("y2", function (d) {
+                return y1(d.lane);
+            })
+            .attr("stroke", "lightgray")
+
+    main.append("g").selectAll(".laneText")
+            .data(lanes)
+            .enter().append("text")
+            .text(function (d) {
+                return d;
+            })
+            .attr("x", -m[1])
+            .attr("y", function (d, i) {
+                return y1(i + .5);
+            })
+            .attr("dy", ".5ex")
+            .attr("text-anchor", "end")
+            .attr("class", "laneText");
+     */
+    //mini lanes and texts
+    mini.append("g").selectAll(".laneLines")
+            .data(items)
+            .enter().append("line")
+            .attr("x1", m[1])
+            .attr("y1", function (d) {
+                return y2(d.lane);
+            })
+            .attr("x2", w)
+            .attr("y2", function (d) {
+                return y2(d.lane);
+            })
+            .attr("stroke", "lightgray");
+
+    mini.append("g").selectAll(".laneText")
+            .data(lanes)
+            .enter().append("text")
+            .text(function (d) {
+                return d;
+            })
+            .attr("x", -m[1])
+            .attr("y", function (d, i) {
+                return y2(i + .5);
+            })
+            .attr("dy", ".5ex")
+            .attr("text-anchor", "end")
+            .attr("class", "laneText");
+/*
+     itemRects = main.append("g")
+            .attr("clip-path", "url(#clip)");
+*/
+    //mini item rects
+    mini.append("g").selectAll("miniItems")
+            .data(items)
+            .enter().append("rect")
+            .attr("class", function (d) {
+                return "miniItem" + d.lane;
+            })
+            .attr("x", function (d) {
+                return x(d.start);
+            })
+            .attr("y", function (d) {
+                return y2(d.lane + .5) - 5;
+            })
+            .attr("width", function (d) {
+
+                return x(d.end) - x(d.start);
+            })
+            .attr("height", 10);
+
+    //mini labels
+    mini.append("g").selectAll(".miniLabels")
+            .data(items)
+            .enter().append("title")
+            .text(function (d) {
+                return d.id;
+            })
+            .attr("x", function (d) {
+                return x(d.start);
+            })
+            .attr("y", function (d) {
+                return y2(d.lane + .5);
+            })
+            .attr("dy", ".5ex");
+
+    //brush
+   brush = d3.svg.brush()
+            .x(x)
+            .on("brush", display);
+
+    mini.append("g")
+            .attr("class", "x brush")
+            .call(brush)
+            .selectAll("rect")
+            .attr("y", 1)
+            .attr("height", miniHeight - 1);
+
+
+}
+    function display() {
+        var rects, labels,
+                minExtent = brush.extent()[0],
+                maxExtent = brush.extent()[1],
+                visItems = items.filter(function(d) {return d.start < maxExtent && d.end > minExtent;});
+
+        console.log(minExtent)
+        console.log(maxExtent)
+        console.log(visItems)
+
+
+        mini.select(".brush")
+                .call(brush.extent([minExtent, maxExtent]));
+
+        x1.domain([minExtent, maxExtent]);
+
+    /*
+        //update main item rects
+        rects = itemRects.selectAll("rect")
+                .data(visItems, function(d) { return d.id; })
+                .attr("x", function(d) {return x1(d.start);})
+                .attr("width", function(d) {return x1(d.end) - x1(d.start);});
+
+        rects.enter().append("rect")
+                .attr("class", function(d) {return "miniItem" + d.lane;})
+                .attr("x", function(d) {return x1(d.start);})
+                .attr("y", function(d) {return y1(d.lane) + 10;})
+                .attr("width", function(d) {return x1(d.end) - x1(d.start);})
+                .attr("height", function(d) {return .8 * y1(1);});
+
+        rects.exit().remove();
+
+        //update the item labels
+        labels = itemRects.selectAll("text")
+                .data(visItems, function (d) { return d.id; })
+                .attr("x", function(d) {return x1(Math.max(d.start, minExtent) + 2);});
+
+        labels.enter().append("text")
+                .text(function(d) {return d.id;})
+                .attr("x", function(d) {return x1(Math.max(d.start, minExtent));})
+                .attr("y", function(d) {return y1(d.lane + .5);})
+                .attr("text-anchor", "start");
+
+        labels.exit().remove();
+
+*/
+
+    }
+
+    function dateFormat(origDate){
+        var isoDate = '';
+// Manual conversion of date format m/d/yyyy to iso format: yyyy-mm-dd
+
+        if (origDate != 'NULL') {
+            var res = origDate.split("/");
+            var yyyy = res[2];
+            var dd = res[1].length == 1 ? '0' + res[1] : res[1];
+            var mm = res[0].length == 1 ? '0' + res[0] : res[0];
+            var isoDate = yyyy + mm + dd;
+        } else{
+            var isoDate = '20150506';
+        }
+
+        return isoDate;
+    }
+
+
+
+</script>
+</body>
+</html>

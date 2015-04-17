@@ -17,7 +17,7 @@
 
 
     <!-- Chart js Files -->
-
+    <script src = "js/timeline.js"></script>
 
 
 
@@ -77,11 +77,52 @@
         }
 
         #right-2 {
-            width: 100%;
-            height: 200px;
-            background-color: #A8DBA8;
-            margin: 5px 0px 5px 0px;
+            width:748px;
+            height:200px;
+            overflow:auto;
+            background-color: #ffffff;
         }
+
+        /* chart related css should move to external css file */
+
+        .chart {
+            shape-rendering: crispEdges;
+        }
+
+        .mini text {
+            font: 9px sans-serif;
+        }
+
+        .main text {
+            font: 12px sans-serif;
+        }
+
+        .miniItem0 {
+            fill: darksalmon;
+            stroke-width: 6;
+        }
+
+        .miniItem1 {
+            fill: darkolivegreen;
+            fill-opacity: .7;
+            stroke-width: 6;
+        }
+
+        .miniItem2 {
+            fill: slategray;
+            fill-opacity: .7;
+            stroke-width: 6;
+        }
+
+        .brush .extent {
+            stroke: gray;
+            fill: dodgerblue;
+            fill-opacity: .365;
+        }
+
+
+
+
     </style>
 
 </head>
@@ -119,8 +160,8 @@
             <div id="right-1" class="flex">
                 <h2> 748 x 400 </h2>
             </div>
-            <div id="right-2" class="flex">
-                <h2>748 x 200</h2>
+            <div id="right-2">
+
             </div>
         </div>
     </div>
@@ -138,6 +179,8 @@
         var allData = [];
         //episodeData holds data with conflict episodes reduced to a single row with start and end dates
         var episodeData = {};
+        //dateData holds a list of months from 1946 to 2013 and is used to create a ordinal scale on the timeline
+        var dateData;
 
 
         var dateFormatter = d3.time.format("%Y-%m-%d");
@@ -150,24 +193,46 @@
             console.log(episodeData);
 
 
-            //TODO: Create an eventHandler  --> DONE :)
+           //Event Handler
             var MyEventHandler = new Object();
-            //TODO: Instantiate all Vis Objects here
-            // TODO: bind the eventHandler to the Vis Objects
-            // events will be created from the CountVis object (nothing to do here)
-            // events will be consumed by the PrioVis and AgeVis object (binding should happen here)
-        }
+
+            //Initiate Visualizations
+            var timeline_vis = new TimelineVis(d3.select("#right-2"), episodeData, dateData,  MyEventHandler);
+
+
+            // Event Handler Code
+            $(MyEventHandler).bind("selectionChanged", function(event, a, b ){
+
+
+                $('#right-1').text(a +' to ' + b);
+
+            });
+
+
+
+                  }
 
 
         // Function is called after all data files are loaded
-        var dataLoaded = function (error, _allData, _episodeData) {
+        var dataLoaded = function (error, _allData, _episodeData, _dateData) {
             if (!error) {
 
                 //Here we do any initial/Global data formatting or manipulation before initializing visualizations
 
                 allData = _allData
                 episodeData = _episodeData;
+                dateData = _dateData;
+
+                var byLoc = d3.nest()
+                        .key(function(d) { return d.Location; })
+                        .entries(episodeData);
+                console.log('byLoc');
+                console.log(byLoc)
+
+
                 initVis();
+            } else {
+                console.log(error);
             }
         }
 
@@ -176,8 +241,9 @@
 
             //TODO: load data here and call "dataLoaded" afterwards
             var wait_what =    queue()
-                    .defer(d3.json, 'data/UCDPPrioArmedConflictDataset_geocoded.csv')
-                    .defer(d3.json, 'data/UCDPPrioArmedConflictDataset_reduced.csv')
+                    .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_geocoded.csv')
+                    .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_reduced.csv')
+                    .defer(d3.csv, 'data/date_range.csv')
                     .await(dataLoaded); // function that uses files
         }
         startHere();
