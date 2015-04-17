@@ -31,15 +31,15 @@
 
 ###Filter section
 
-* Conflict intensity (pulldown menu)
+* Conflict intensity filter (likely a pulldown menu)
 
-* Conflict type (pulldown menu) 
+* Conflict type filter (likely a pulldown menu)
 
-* Conflict source (pulldown menu) 
+* Conflict source filter (likely a pulldown menu)
 
-* Region of the world (pulldown menu) 
+* Region of the world filter (likely a pulldown menu)
 
-* Location/country (pulldown, search box, or other)
+* Location/country filter (pulldown menu, search box, or other)
 
 
 ##Optional Features
