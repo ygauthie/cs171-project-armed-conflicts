@@ -4,9 +4,9 @@
 
 * World map with country lines, suitable projection, zoom and drag functionality
 
-* Conflict locations as circles (2 sizes depending on conflict intensity)
+* Conflict locations as circles (two sizes, depending on conflict intensity)
 
-* Handles events and filters from other elements/sections
+* Filtered according to events and filters from other elements/sections
 
 ###Temporal plots
 
@@ -16,7 +16,7 @@
 
 * Brushable area for period filter
 
-* Handle events and filters from other elements/sections
+* Filtered according to events and filters from other elements/sections
 
 ###Statistical graph
 
@@ -24,7 +24,7 @@
 
 * Showing at least one key statistic derived from the data (e.g., top 10 countries with highest number of conflict years)
 
-* Handles events and filters from other elements
+* Filtered according to events and filters from other elements/sections
 
 
 ###Filter section
