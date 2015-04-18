@@ -51,10 +51,6 @@ MapVis.prototype.initVis = function(){
     g.selectAll("circle")
         .data(this.data)
         .enter()
-        .append("a")
-          .attr("xlink:href", function(d) {
-            return "https://www.google.com/search?q="+d.city;}
-          )
         .append("circle")
         .attr("cx", function(d) {
             return projection([d.lon, d.lat])[0];
@@ -65,7 +61,42 @@ MapVis.prototype.initVis = function(){
         .attr("r", function(d) {
             if (d.IntensityLevel==1) {return 2;}
             else return 7;
-        });
+        })
+        .on("mouseover", function(d) {   //Add tooltip on mouseover for each circle
+
+            //Get this circle's x/y values, then augment for the tooltip
+            var xPosition = d3.select(this).attr("cx");
+            var yPosition = d3.select(this).attr("cy");
+            var SideA, SideB, Adversaries;
+                    
+            if (d.SideA2nd === "NULL") {SideA = d.SideA;}
+            else {SideA = d.SideA + " and " + d.SideA2nd;}
+
+            if (d.SideB2nd === "NULL") {SideB = d.SideB;}
+            else {SideB = d.SideB + " and " + d.SideB2nd;}
+
+            Adversaries =  SideA + "<br/>vs.<br/>" + SideB;
+
+            //Update the tooltip position and value
+            d3.select("#tooltip")
+                //Show the tooltip above where the mouse triggers the event
+                .style("left", (d3.event.pageX) + "px")     
+                .style("top", (d3.event.pageY - 90) + "px")
+                .select("#conflict-label")  
+                .html("<strong>" + d.Location + ", " + d.Year + "</strong>" + "<br/>" + 
+                     Adversaries);   
+            debugger;
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+
+         })
+        .on("mouseout", function() {
+               
+            //Hide the tooltip
+            d3.select("#tooltip").classed("hidden", true);
+                
+         });
+
 
 
     // zoom and pan
