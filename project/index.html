@@ -10,6 +10,8 @@
     <script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
     <script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
     <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+    <script src="http://d3js.org/topojson.v0.min.js"></script>
 
 
     <!--Stylesheets-->
@@ -18,6 +20,7 @@
 
     <!-- Chart js Files -->
     <script src = "js/timeline.js"></script>
+    <script src = "js/mapvis.js"></script>
 
 
 
@@ -72,7 +75,7 @@
         #right-1 {
             width: 100%;
             height: 400px;
-            background-color: #79BD9A;
+            background-color: black;
             margin: 5px 0px 10px 0px;
         }
 
@@ -120,8 +123,19 @@
             fill-opacity: .365;
         }
 
+        /* map related css should move to external css file */
+        .path {
+            stroke: white;
+            stroke-width: 0.25px;
+            fill: grey;
+        }
 
-
+        circle { 
+            stroke:white; 
+            fill: white; 
+            fill-opacity: 0.3; 
+            stroke-width:1.0; 
+        }
 
     </style>
 
@@ -158,7 +172,7 @@
 
         <div class="col-xs-8 test ">
             <div id="right-1" class="flex">
-                <h2> 748 x 400 </h2>
+               
             </div>
             <div id="right-2">
 
@@ -181,6 +195,8 @@
         var episodeData = {};
         //dateData holds a list of months from 1946 to 2013 and is used to create a ordinal scale on the timeline
         var dateData;
+        //topologyData holds data for drawing world map 
+        var topologyData;
 
 
         var dateFormatter = d3.time.format("%Y-%m-%d");
@@ -198,7 +214,7 @@
 
             //Initiate Visualizations
             var timeline_vis = new TimelineVis(d3.select("#right-2"), episodeData, dateData,  MyEventHandler);
-
+            var map_vis = new MapVis(d3.select("#right-1"), allData, topologyData, MyEventHandler);
 
             // Event Handler Code
             $(MyEventHandler).bind("selectionChanged", function(event, a, b ){
@@ -214,7 +230,7 @@
 
 
         // Function is called after all data files are loaded
-        var dataLoaded = function (error, _allData, _episodeData, _dateData) {
+        var dataLoaded = function (error, _allData, _episodeData, _dateData, _topologyData) {
             if (!error) {
 
                 //Here we do any initial/Global data formatting or manipulation before initializing visualizations
@@ -222,6 +238,7 @@
                 allData = _allData
                 episodeData = _episodeData;
                 dateData = _dateData;
+                topologyData = _topologyData;
 
                 var byLoc = d3.nest()
                         .key(function(d) { return d.Location; })
@@ -244,6 +261,7 @@
                     .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_geocoded.csv')
                     .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_reduced.csv')
                     .defer(d3.csv, 'data/date_range.csv')
+                    .defer(d3.json, 'data/world-110m2.json')
                     .await(dataLoaded); // function that uses files
         }
         startHere();
