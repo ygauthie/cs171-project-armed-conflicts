@@ -59,7 +59,7 @@ MapVis.prototype.initVis = function(){
             return projection([d.lon, d.lat])[1];
         })
         .attr("r", function(d) {
-            if (d.IntensityLevel==1) {return 2;}
+            if (d.IntensityLevel==1) {return 3;}
             else return 7;
         })
         .on("mouseover", function(d) {   //Add tooltip on mouseover for each circle
@@ -85,7 +85,7 @@ MapVis.prototype.initVis = function(){
                 .select("#conflict-label")  
                 .html("<strong>" + d.Location + ", " + d.Year + "</strong>" + "<br/>" + 
                      Adversaries);   
-            debugger;
+
             //Show the tooltip
             d3.select("#tooltip").classed("hidden", false);
 
@@ -111,6 +111,28 @@ MapVis.prototype.initVis = function(){
       });
 
     this.svg.call(zoom)
+
+    // legend
+    this.svg.append("circle")
+          .attr("cx", this.width-10)
+          .attr("cy", 20)
+          .attr("r", 7);
+    this.svg.append("text")
+          .attr("x", this.width-1)
+          .attr("y", 17)
+          .text("War (>1000 deaths/yr)")
+          .attr("style","font-size:9px;")
+          .style("stroke","#ffffff");
+    this.svg.append("circle")
+          .attr("cx", this.width-10)
+          .attr("cy", 24)
+          .attr("r", 3);
+    this.svg.append("text")
+          .attr("x", this.width-1)
+          .attr("y", 26)
+          .text("Minor armed conflict")
+          .attr("style","font-size:9px;")
+          .style("stroke","#ffffff");
 }
  
 
