@@ -6,7 +6,7 @@ MapVis = function(_parentElement, _data, _topologyData, _eventHandler){
     this.displayData = [];
 
     // TODO: define all "constants" here
-    this.margin = {top: 10, right: 10, bottom: 30, left: 90};
+    this.margin = {top: 0, right: 0, bottom: 0, left: 0};
     this.width = 748 - this.margin.left - this.margin.right;
     this.height = 400 - this.margin.top - this.margin.bottom;
 
@@ -31,7 +31,7 @@ MapVis.prototype.initVis = function(){
 
     var projection = d3.geo.winkel3()
         .scale(172)
-        .translate([this.width / 2, 30+this.height / 2])
+        .translate([-60+this.width / 2, 20+this.height / 2])
         .precision(.1);
 
     var path = d3.geo.path()
@@ -114,21 +114,21 @@ MapVis.prototype.initVis = function(){
 
     // legend
     this.svg.append("circle")
-          .attr("cx", this.width-10)
+          .attr("cx", this.width-100)
           .attr("cy", 20)
           .attr("r", 7);
     this.svg.append("text")
-          .attr("x", this.width-1)
+          .attr("x", this.width-91)
           .attr("y", 17)
           .text("War (>1000 deaths/yr)")
           .attr("style","font-size:9px;")
           .style("stroke","#ffffff");
     this.svg.append("circle")
-          .attr("cx", this.width-10)
+          .attr("cx", this.width-100)
           .attr("cy", 24)
           .attr("r", 3);
     this.svg.append("text")
-          .attr("x", this.width-1)
+          .attr("x", this.width-91)
           .attr("y", 26)
           .text("Minor armed conflict")
           .attr("style","font-size:9px;")
