@@ -28,7 +28,7 @@ CountVis = function(_parentElement, _data, _eventHandler){
     // TODO: define all "constants" here
     this.margin = {top: 10, right: 10, bottom: 30, left: 40};
     this.width = 358 - this.margin.left - this.margin.right;
-    this.height = 200 - this.margin.top - this.margin.bottom;
+    this.height = 70 - this.margin.top - this.margin.bottom;
 
 
     this.initVis();
@@ -68,7 +68,9 @@ CountVis.prototype.initVis = function(){
     var xAxis = d3.svg.axis().scale(x)
                    .orient("bottom")
                    .tickFormat(d3.format(".0f"));
-    var yAxis = d3.svg.axis().scale(y).orient("left");
+    var yAxis = d3.svg.axis().scale(y)
+                    .ticks(2)
+                    .orient("left");
 
     var area = d3.svg.area()
         .interpolate("monotone")
@@ -113,7 +115,7 @@ CountVis.prototype.initVis = function(){
         .attr("y", -35)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Number of conflicts");
+        .text("Conflicts");
         
 
 
