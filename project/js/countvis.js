@@ -28,7 +28,7 @@ CountVis = function(_parentElement, _data, _eventHandler){
     // TODO: define all "constants" here
     this.margin = {top: 10, right: 10, bottom: 30, left: 40};
     this.width = 358 - this.margin.left - this.margin.right;
-    this.height = 70 - this.margin.top - this.margin.bottom;
+    this.height = 200 - this.margin.top - this.margin.bottom;
 
 
     this.initVis();
