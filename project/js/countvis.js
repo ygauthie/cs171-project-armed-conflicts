@@ -26,7 +26,7 @@ CountVis = function(_parentElement, _data, _eventHandler){
     this.displayData = [];
 
     // TODO: define all "constants" here
-    this.margin = {top: 10, right: 10, bottom: 30, left: 40};
+    this.margin = {top: 10, right: 10, bottom: 20, left: 40};
     this.width = 358 - this.margin.left - this.margin.right;
     this.height = 200 - this.margin.top - this.margin.bottom;
 
@@ -125,10 +125,8 @@ CountVis.prototype.initVis = function(){
     //this.updateVis();
 
     function brushed() {
-       
-      
-        console.log(brush.extent());
-    //    $(that.eventHandler).trigger("selectionChanged",brush.extent());
+    
+        $(that.eventHandler).trigger("selectionChanged",brush.extent());
     //    var dateFormatter = d3.time.format("%d-%b-%Y");
     //    d3.select("#brushInfo").text(dateFormatter(brush.extent()[0])+" to "+dateFormatter(brush.extent()[1]));
     }

@@ -10,7 +10,7 @@ MapVis = function(_parentElement, _data, _topologyData, _eventHandler){
     this.width = 748 - this.margin.left - this.margin.right;
     this.height = 400 - this.margin.top - this.margin.bottom;
 
-
+    this.wrangleData();
     this.initVis();
 }
 
@@ -22,10 +22,57 @@ MapVis.prototype.initVis = function(){
 
     var that = this; // read about the this
 
-
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
+
+    // add legend
+    this.svg.append("circle")
+          .attr("cx", this.width-100)
+          .attr("cy", 20)
+          .attr("r", 7);
+    this.svg.append("text")
+          .attr("x", this.width-91)
+          .attr("y", 17)
+          .text("War (>1000 deaths/yr)")
+          .attr("style","font-size:9px;")
+          .style("stroke","#ffffff");
+    this.svg.append("circle")
+          .attr("cx", this.width-100)
+          .attr("cy", 24)
+          .attr("r", 3);
+    this.svg.append("text")
+          .attr("x", this.width-91)
+          .attr("y", 26)
+          .text("Minor armed conflict")
+          .attr("style","font-size:9px;")
+          .style("stroke","#ffffff"); 
+
+    this.updateVis();
+}
+ 
+
+
+/**
+ * Method to wrangle the data. In this case it takes an options object
+  */
+MapVis.prototype.wrangleData= function(){
+
+    // displayData should hold the data which is visualized
+    // pretty simple in this case -- no modifications needed
+    this.displayData = this.data;
+
+}
+
+
+
+/**
+ * the drawing function - should use the D3 selection, enter, exit
+ * @param _options -- only needed if different kinds of updates are needed
+ */
+MapVis.prototype.updateVis = function(){
+
+    var that = this; // read about the this
 
     var landColor = d3.rgb("#666666");
 
@@ -48,9 +95,10 @@ MapVis.prototype.initVis = function(){
         .attr("d", path)
         .attr("fill", landColor);
 
-    g.selectAll("circle")
-        .data(this.data)
-        .enter()
+    var circles = g.selectAll("circle")
+        .data(this.displayData)
+
+    var circles_enter = circles.enter()
         .append("circle")
         .attr("cx", function(d) {
             return projection([d.lon, d.lat])[0];
@@ -97,7 +145,7 @@ MapVis.prototype.initVis = function(){
                 
          });
 
-
+    circles.exit().remove();
 
     // zoom and pan
     var zoom = d3.behavior.zoom()
@@ -112,51 +160,6 @@ MapVis.prototype.initVis = function(){
 
     this.svg.call(zoom)
 
-    // legend
-    this.svg.append("circle")
-          .attr("cx", this.width-100)
-          .attr("cy", 20)
-          .attr("r", 7);
-    this.svg.append("text")
-          .attr("x", this.width-91)
-          .attr("y", 17)
-          .text("War (>1000 deaths/yr)")
-          .attr("style","font-size:9px;")
-          .style("stroke","#ffffff");
-    this.svg.append("circle")
-          .attr("cx", this.width-100)
-          .attr("cy", 24)
-          .attr("r", 3);
-    this.svg.append("text")
-          .attr("x", this.width-91)
-          .attr("y", 26)
-          .text("Minor armed conflict")
-          .attr("style","font-size:9px;")
-          .style("stroke","#ffffff");
-}
- 
-
-
-/**
- * Method to wrangle the data. In this case it takes an options object
-  */
-MapVis.prototype.wrangleData= function(){
-
-    // displayData should hold the data which is visualized
-    // pretty simple in this case -- no modifications needed
-    this.displayData = this.data;
-
-}
-
-
-
-/**
- * the drawing function - should use the D3 selection, enter, exit
- * @param _options -- only needed if different kinds of updates are needed
- */
-MapVis.prototype.updateVis = function(){
-
-    // TODO: implement update graphs (D3: update, enter, exit)
     
 
 }
@@ -169,9 +172,15 @@ MapVis.prototype.updateVis = function(){
  */
 MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 
-    // TODO: call wrangle function
-    console.log("allo");
-    // do nothing -- no update when brushing
+    
+    this.displayData = this.data.filter( function (d) {
+      if (d.Year >= selectionStart && d.Year <= selectionEnd) return d;
+    });
+
+    this.updateVis();
 
 
 }
+
+
+

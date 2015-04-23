@@ -267,8 +267,8 @@
             // Event Handler Code
             $(MyEventHandler).bind("selectionChanged", function(event, a, b ){
 
-
-                $('#right-1').text(a +' to ' + b);
+                 map_vis.onSelectionChange(a,b);
+                //$('#right-1').text(a +' to ' + b);
 
             });
 
