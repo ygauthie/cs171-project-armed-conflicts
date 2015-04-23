@@ -69,7 +69,7 @@ CountVis.prototype.initVis = function(){
                    .orient("bottom")
                    .tickFormat(d3.format(".0f"));
     var yAxis = d3.svg.axis().scale(y)
-                    .ticks(2)
+                    .ticks(4)
                     .orient("left");
 
     var area = d3.svg.area()
@@ -115,9 +115,11 @@ CountVis.prototype.initVis = function(){
         .attr("y", -35)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Conflicts");
+        .text("Number of conflicts");
         
-
+    // Set default brush value
+    brush.extent([1960, 1980]);
+    this.svg.select(".brush").call(brush);
 
     // call the update method
     //this.updateVis();
@@ -125,7 +127,7 @@ CountVis.prototype.initVis = function(){
     function brushed() {
        
       
-        
+        console.log(brush.extent());
     //    $(that.eventHandler).trigger("selectionChanged",brush.extent());
     //    var dateFormatter = d3.time.format("%d-%b-%Y");
     //    d3.select("#brushInfo").text(dateFormatter(brush.extent()[0])+" to "+dateFormatter(brush.extent()[1]));
