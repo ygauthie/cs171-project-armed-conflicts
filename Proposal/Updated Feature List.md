@@ -50,4 +50,6 @@
 
 * Additional statistics derived from data and displayed
 
+* Additional filters introduced outside the dedicated Filter section, e.g., through the bar chart or the timeline.
+
 * Some visual feature focusing on adversarial or allied countries (e.g., pairs of countries that have conflicted with each other the most often during a given period)
