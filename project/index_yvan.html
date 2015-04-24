@@ -15,15 +15,7 @@
 
 
     <!--Stylesheets-->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <!-- ***************************************************** -->
-    <!-- BootStrap Options UnComment and reload page to preview -->
-    <!-- ***************************************************** -->
-    <link rel="stylesheet" href="css/slate_bootstrap.min.css"> <!-- Grey -->
-    <!--  <link rel="stylesheet" href="css/black_bootstrap.min.css"> --> <!-- black -->
-    <!-- <link rel="stylesheet" href="css/dark_bootstrap.min.css"> -->  <!-- between grey and black -->
-    <!-- <link rel="stylesheet" href="css/superHeror_bootstrap.min.css"> -->  <!-- DarkBlue -->
-
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <!--Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
@@ -32,178 +24,140 @@
     <script src = "js/timeline.js"></script>
     <script src = "js/mapvis.js"></script>
     <script src = "js/countvis.js"></script>
-    <script src = "js/stats.js"></script>
 
 
-<!-- Local css -->
+
+    <!-- Local css -->
     <style>
-
         /* test class add borders around major divs for layout validation */
         .test {
             border-style: solid;
             border-width: 1px;
         }
-
         /* flex class centers all contents in the divs */
         .flex {
             display: flex;
             align-items: center;
             justify-content: left;
         }
-
-
         #banner {
             width: 1140px;
             height: 40px;
+            background-color: black;
             font-size: 36px;
             margin-bottom: 10px;
             color: #ffffff;
             font-family: 'Roboto Condensed', sans-serif;
             margin: 1px 1px 1px 1px;
         }
-
-
         #left-1 {
             width: 100%;
             height: 200px;
-           /*  background-color: black; */
+            background-color: black;
             margin: 1px 1px 1px 1px;
         }
-
         #left-2 {
             width: 100%;
             height: 200px;
-          /*  background-color: black;*/
+            background-color: black;
             margin: 1px 1px 1px 1px;
         }
-
-
-
+        #left-3 {
+            width: 100%;
+            height: 200px;
+            background-color: black;
+            stroke: steelblue;
+            margin: 1px 1px 1px 1px;
+        }
         #right-1 {
             width: 100%;
             height: 400px;
-           /* background-color: black; */
+            background-color: black;
             margin: 1px 1px 1px 1px;
-            position:absolute
         }
-
         #right-2 {
-            width:1150px;
+            width:748px;
             height:200px;
-            position: absolute;
-
-
+            overflow:auto;
+            background-color: #ffffff;
         }
-        #timeLn {
-
-            height:165px;
-            overflow-x:hidden;
-            overflow-y:auto;
-        }
-
-        #xAxisTop{
-
-            height:50px;
-            overflow-y:hidden;
-            overflow-x:auto;
-            margin-bottom: -15px;
-        }
-        #bottomRow{
-            padding-top:15px;
-            border-top:dashed 1px #42484f
-        }
-    #midRow{
-            padding:15px 0 15px 0;
-
-        }
-
-    #colLeft{
-        border-right:dashed 1px #42484f
-    }
- /* chart related css should move to external css file */
-
+        /* chart related css should move to external css file */
         .chart {
             shape-rendering: crispEdges;
         }
-
         .mini text {
-           font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 9px;
-            line-height: 1.42857143;
-            color: #c8c8c8;
-            fill:#c8c8c8;
+            font: 9px sans-serif;
         }
-
-
-
         .main text {
             font: 12px sans-serif;
         }
-
-     .laneRect {
-         fill: #d3d4d5;
-     }
-        .laneLines{
-            stroke: black;
+        .miniItem0 {
+            fill: darksalmon;
+            stroke-width: 6;
+        }
+        .miniItem1 {
+            fill: darkolivegreen;
+            fill-opacity: .7;
+            stroke-width: 6;
+        }
+        .miniItem2 {
+            fill: slategray;
+            fill-opacity: .7;
+            stroke-width: 6;
         }
         .brush .extent {
-            stroke: gray;
-            fill: dodgerblue;
+            stroke: gray;wh
+        fill: dodgerblue;
             fill-opacity: .365;
         }
-
         /* map related css should move to external css file */
         .path {
             stroke: white;
             stroke-width: 0.25px;
             fill: grey;
         }
-
         .area {
             fill: white;
-            fill-opacity: 0.8; 
+            fill-opacity: 0.8;
         }
-
-        circle { 
-            stroke:white; 
-            fill: white; 
-            fill-opacity: 0.3; 
-            stroke-width:1.0; 
+        circle {
+            stroke:white;
+            fill: white;
+            fill-opacity: 0.3;
+            stroke-width:1.0;
         }
-
         .axis {
             fill: none;
             stroke: grey;
             shape-rendering: crispEdges;
             font: 10px sans-serif;
         }
-        
 
         #tooltip {
-        -moz-transition: all 0.15s;
-        -o-transition: all 0.15s;
-        -webkit-transition: all 0.15s;
-        transition: all 0.15s;
-        position: absolute;
-        min-width: 60px;
-        padding: 10px;
-        background-color: white;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-        pointer-events: none;
-        } 
+            -moz-transition: all 0.15s;
+            -o-transition: all 0.15s;
+            -webkit-transition: all 0.15s;
+            transition: all 0.15s;
+            position: absolute;
+            min-width: 60px;
+            padding: 10px;
+            background-color: white;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            pointer-events: none;
+        }
         #tooltip.hidden {
-        display: none;
+            display: none;
         }
         #tooltip p {
-        margin: 0;
-        font-family: sans-serif;
-        font-size: 12px;
-        } 
+            margin: 0;
+            font-family: sans-serif;
+            font-size: 12px;
+        }
     </style>
 
 </head>
@@ -215,70 +169,48 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-xs-12 ">
-            <div id="banner" class="flex"> 
-                <h3>Armed Conflicts since WWII </h3>
-               
+        <div class="col-xs-12 test ">
+            <div id="banner" class="flex">
+                <b>&nbsp; Armed Conflicts since WWII</b>
+
             </div>
         </div>
     </div>
 
-    <div  id="midRow" class="row">
+    <div class="row">
 
-        <div id="colLeft"  class="col-xs-4 ">
-            <div id="left-1" >
+        <div class="col-xs-4 test">
+            <div id="left-1" class="flex">
+                <h2>Categorical filters here</h2>
+            </div>
+            <div id="left-2" class="flex">
 
             </div>
-            <div id="left-2" >
-                
+            <div id="left-3" class="flex">
+                <h2>Statistical graph here</h2>
             </div>
-
         </div>
 
 
-        <div id="colRight"  class="col-xs-8  ">
-            <div id="right-1">
-               
+        <div class="col-xs-8 test ">
+            <div id="right-1" class="flex">
+
             </div>
-
-        </div>
-    </div>
-
-    <div id="bottomRow" class="row">
-
-
             <div id="right-2">
-              <!--  <span class="glyphicon glyphicon-resize-full" style="font-size: 20px; color: red;"></span> -->
-                <div id="xAxisTop"></div>
-                <div id="timeLn" class="col-xs-12"></div>
+
             </div>
-
         </div>
-
+    </div>
 </div>
-
-
-
-
-
-
-
-
 <div id="tooltip" class="hidden">
-<p><span id="conflict-label"></span></p>
+    <p><span id="conflict-label"></span></p>
 </div>
-
-
-
-
 
 <! -- ******************* Begin index.html JavaScript  ********************** -->
 <! --  index.html JavaScript is based on workflow introduced in HW3.   It will handle initial data loading and communication between Chart js files -->
 
 <script>
     $(function(){ // this function is called after the HTML document is fully loaded
-
-
         //allData holds original data with georeference
         var allData = [];
         //episodeData holds data with conflict episodes reduced to a single row with start and end dates
@@ -287,66 +219,43 @@
         var dateData;
         //topologyData holds data for drawing world map 
         var topologyData;
-
-
         var dateFormatter = d3.time.format("%Y-%m-%d");
-
-
         // call this function after Data is loaded, reformatted and bound to the variables
         var initVis = function(){
-
             console.log(allData);
             console.log(episodeData);
-
-
-           //Event Handler
+            //Event Handler
             var MyEventHandler = new Object();
-
             //Initiate Visualizations
             var timeline_vis = new TimelineVis(d3.select("#right-2"), episodeData, dateData,  MyEventHandler);
             var map_vis = new MapVis(d3.select("#right-1"), allData, topologyData, MyEventHandler);
-            var count_vis = new CountVis(d3.select("#left-2"), allData, MyEventHandler);    
-
+            var count_vis = new CountVis(d3.select("#left-2"), allData, MyEventHandler);
             // Event Handler Code
             $(MyEventHandler).bind("selectionChanged", function(event, a, b ){
-
-                 map_vis.onSelectionChange(a,b);
+                map_vis.onSelectionChange(a,b);
                 //$('#right-1').text(a +' to ' + b);
-
             });
-
-
-
-                  }
-
-
+        }
         // Function is called after all data files are loaded
         var dataLoaded = function (error, _allData, _episodeData, _dateData, _topologyData) {
             if (!error) {
-
                 //Here we do any initial/Global data formatting or manipulation before initializing visualizations
-
                 allData = _allData
                 episodeData = _episodeData;
                 dateData = _dateData;
                 topologyData = _topologyData;
-
                 var byLoc = d3.nest()
                         .key(function(d) { return d.Location; })
                         .entries(episodeData);
                 console.log('byLoc');
                 console.log(byLoc)
-
-
                 initVis();
             } else {
                 console.log(error);
             }
         }
-
         //Load Data Here
         var startHere = function(){
-
             //TODO: load data here and call "dataLoaded" afterwards
             var wait_what =    queue()
                     .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_geocoded.csv')
@@ -356,58 +265,7 @@
                     .await(dataLoaded); // function that uses files
         }
         startHere();
-
-
-
-
-
     })
-
-
-    //HelperFunctions
-
-    //Scroll Function to keep header and body in sync
-    $('#timeLn').on('scroll', function () {
-        $('#xAxisTop').scrollLeft($(this).scrollLeft());
-    });
-
-    function expandTimeLn() {
-        var bdClr = $('body').css("background-color");
-        $('#timeLn').css('height', '2000px');
-        $("#right-2").css("background-color", bdClr );
-        $("#right-2").css("top", "484px");
-
-
-
-        $("#right-2").animate({
-            top: "50px", width: "1150px",
-            height: "2000px"
-        }, 1500 );
-
-        var bdClr = $('body').css("background-color");
-        $('#timeLn').css('height', '2000px');
-        $("#right-2").css("background-color", bdClr );
-
-    }
-
-    function collapseTimeLn() {
-
-
-        $("#right-2").animate({
-            top: "484px", width: "1150px",
-            height: "200px"
-        }, 1500 );
-
-        $('#timeLn').css('height', '168px');
-
-    }
-
-
-    $('.laneText').mouseover(function() {
-        alert('hello');
-    })
-
-
 </script>
 
 

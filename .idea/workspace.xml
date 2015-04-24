@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2693e79c-0958-4ba9-943e-73a04743f687" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/project/data/ATT_March.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/project/js/ganntTimeline.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/project/js/generic.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/project/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/data/date_range.csv" afterPath="$PROJECT_DIR$/project/data/date_range.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/layout_v1_outline.html" afterPath="$PROJECT_DIR$/project/layout_v1_outline.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/index.html" afterPath="$PROJECT_DIR$/project/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/js/timeline.js" afterPath="$PROJECT_DIR$/project/js/timeline.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/timelineTest.html" afterPath="$PROJECT_DIR$/project/timelineTest.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="cs171-project-armed-conflicts.iws" />
@@ -32,98 +30,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index_yvan.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project/index_yvan.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.63141024" vertical-offset="3174" max-vertical-offset="4170">
+              <caret line="251" column="26" selection-start-line="251" selection-start-column="26" selection-end-line="251" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66346157" vertical-offset="2559" max-vertical-offset="3900">
-              <caret line="212" column="19" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout_v1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/layout_v1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.125" vertical-offset="2094" max-vertical-offset="4365">
-              <caret line="167" column="22" selection-start-line="164" selection-start-column="6" selection-end-line="169" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="circleTimeline.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/js/circleTimeline.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="4800">
-              <caret line="50" column="21" selection-start-line="48" selection-start-column="4" selection-end-line="51" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timelineTest.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/timelineTest.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="4725">
-              <caret line="15" column="20" selection-start-line="7" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-              <folding>
-                <element signature="e#1488#2657#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="map_v1.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/js/map_v1.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1395">
-              <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="timeline.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/js/timeline.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5370">
-              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-              <folding>
-                <element signature="e#8500#8586#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="proposal_gauthier_gonzalez.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Proposal/proposal_gauthier_gonzalez.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1440">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="MarkdownPreviewEditor">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="readme.rtf" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/data/readme.rtf">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="date_range.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/data/date_range.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12345">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="6300">
+              <caret line="17" column="103" selection-start-line="17" selection-start-column="103" selection-end-line="17" selection-end-column="103" />
               <folding />
             </state>
           </provider>
@@ -138,16 +59,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/project/js/map_v1.js" />
-        <option value="$PROJECT_DIR$/project/js/circleTimeline.js" />
         <option value="$PROJECT_DIR$/project/validation_points.html" />
         <option value="$PROJECT_DIR$/project/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/project/js/ganntTimeline.js" />
         <option value="$PROJECT_DIR$/project/layout_v1_outline.html" />
-        <option value="$PROJECT_DIR$/project/timelineTest.html" />
         <option value="$PROJECT_DIR$/project/template.js" />
         <option value="$PROJECT_DIR$/project/data/date_range.csv" />
-        <option value="$PROJECT_DIR$/project/js/timeline.js" />
+        <option value="$PROJECT_DIR$/project/js/circleTimeline.js" />
         <option value="$PROJECT_DIR$/project/index.html" />
+        <option value="$PROJECT_DIR$/project/timelineTest.html" />
+        <option value="$PROJECT_DIR$/project/layout_v2_outline.html" />
+        <option value="$PROJECT_DIR$/project/index_layout_v3.html" />
+        <option value="$PROJECT_DIR$/project/js/timeline.js" />
+        <option value="$PROJECT_DIR$/project/index_yvan.html" />
       </list>
     </option>
   </component>
@@ -155,8 +79,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="30" />
-    <option name="y" value="30" />
+    <option name="y" value="23" />
     <option name="width" value="1916" />
     <option name="height" value="1057" />
   </component>
@@ -183,6 +106,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -200,83 +124,32 @@
               <option name="myItemId" value="cs171-project-armed-conflicts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Proposal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs171-project-armed-conflicts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs171-project-armed-conflicts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs171-project-armed-conflicts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs171-project-armed-conflicts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs171-project-armed-conflicts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs171-project-armed-conflicts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/cs171-project-armed-conflicts-master/project" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/project/js" />
       <recent name="$PROJECT_DIR$/project" />
+      <recent name="$PROJECT_DIR$/project/js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/project/js" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <method />
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -284,6 +157,10 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -320,7 +197,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="30" y="30" width="1916" height="1057" extended-state="0" />
+    <frame x="0" y="23" width="1916" height="1057" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -328,9 +205,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29123172" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32724425" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -338,7 +213,9 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -361,7 +238,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -370,7 +247,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1800">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -390,45 +266,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/layout_v1_outline.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.0" vertical-offset="1944" max-vertical-offset="2910">
-          <caret line="168" column="43" selection-start-line="168" selection-start-column="43" selection-end-line="168" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/layout_v1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.125" vertical-offset="2094" max-vertical-offset="4365">
-          <caret line="167" column="22" selection-start-line="164" selection-start-column="6" selection-end-line="169" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/data/date_range.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12345">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/js/circleTimeline.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="570" max-vertical-offset="4800">
-          <caret line="50" column="21" selection-start-line="48" selection-start-column="4" selection-end-line="51" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/js/timeline.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5370">
-          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-          <folding>
-            <element signature="e#8500#8586#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -436,20 +277,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project/data/readme.rtf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project/timelineTest.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="4725">
-          <caret line="15" column="20" selection-start-line="7" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#1488#2657#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.6912243" vertical-offset="2797" max-vertical-offset="3720">
+          <caret line="265" column="8" selection-start-line="265" selection-start-column="8" selection-end-line="265" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/circle_timeline_byYear.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-38.375" vertical-offset="1164" max-vertical-offset="3120">
+          <caret line="139" column="25" selection-start-line="139" selection-start-column="25" selection-end-line="139" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -457,22 +308,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1395">
           <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/data/readme.rtf">
+    <entry file="file://$PROJECT_DIR$/project/layout_v1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
-          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        <state vertical-scroll-proportion="-1.5" vertical-offset="2094" max-vertical-offset="4365">
+          <caret line="142" column="21" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/js/circleTimeline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.88889" vertical-offset="3303" max-vertical-offset="4800">
+          <caret line="256" column="23" selection-start-line="254" selection-start-column="8" selection-end-line="258" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/layout_v1_outline.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.125" vertical-offset="819" max-vertical-offset="2910">
+          <caret line="90" column="76" selection-start-line="90" selection-start-column="76" selection-end-line="90" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/layout_v2_outline.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.125" vertical-offset="1200" max-vertical-offset="2745">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/js/timeline.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3626126" vertical-offset="2423" max-vertical-offset="4785">
+          <caret line="235" column="2" selection-start-line="235" selection-start-column="2" selection-end-line="235" selection-end-column="2" />
+          <folding>
+            <element signature="e#75#119#0" expanded="false" />
+            <element signature="e#124#311#0" expanded="false" />
+            <element signature="e#313#649#0" expanded="false" />
+            <element signature="e#3485#3511#0" expanded="false" />
+            <element signature="e#3552#3627#0" expanded="false" />
+            <element signature="e#3628#3703#0" expanded="false" />
+            <element signature="e#3704#3721#0" expanded="false" />
+            <element signature="e#3722#3797#0" expanded="false" />
+            <element signature="e#3798#3873#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/index_layout_v3.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8611111" vertical-offset="4011" max-vertical-offset="4875">
+          <caret line="317" column="0" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66346157" vertical-offset="2559" max-vertical-offset="3900">
-          <caret line="212" column="19" selection-start-line="212" selection-start-column="19" selection-end-line="212" selection-end-column="19" />
+        <state vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="6300">
+          <caret line="17" column="103" selection-start-line="17" selection-start-column="103" selection-end-line="17" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/index_yvan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63141024" vertical-offset="3174" max-vertical-offset="4170">
+          <caret line="251" column="26" selection-start-line="251" selection-start-column="26" selection-end-line="251" selection-end-column="26" />
           <folding />
         </state>
       </provider>
