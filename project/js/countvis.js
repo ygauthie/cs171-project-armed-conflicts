@@ -118,8 +118,11 @@ CountVis.prototype.initVis = function(){
         .text("Number of conflicts");
         
     // Set default brush value
-    brush.extent([1960, 1980]);
-    this.svg.select(".brush").call(brush);
+    brush.extent([1960, 1961]);
+    var gbrush = this.svg.select(".brush").call(brush);
+
+    gbrush.call(brush.event);
+    brushed();
 
     // call the update method
     //this.updateVis();
