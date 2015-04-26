@@ -117,13 +117,13 @@ CountVis.prototype.initVis = function(){
         .style("text-anchor", "end")
         .text("Number of conflicts");
         
+    initBrush();
     // Set default brush value
-    brush.extent([1960, 1961]);
-    var gbrush = this.svg.select(".brush").call(brush);
-
-    gbrush.call(brush.event);
-    brushed();
-
+    function initBrush() {
+        brush.extent([1960, 1975]);
+        brush(d3.select(".brush").transition());
+        brush.event(d3.select(".brush").transition().delay(10));
+    }
     // call the update method
     //this.updateVis();
 

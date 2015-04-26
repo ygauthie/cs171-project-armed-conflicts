@@ -21,9 +21,9 @@
     <!-- ***************************************************** -->
     <!-- BootStrap Options UnComment a css reference and reload page to preview -->
     <!-- ***************************************************** -->
-    <!--  <link rel="stylesheet" href="css/slate_bootstrap.min.css">  <!-- Grey -->
+    <link rel="stylesheet" href="css/slate_bootstrap.min.css">  <!-- Grey -->
     <!--  <link rel="stylesheet" href="css/black_bootstrap.min.css"> --> <!-- black -->
-    <link rel="stylesheet" href="css/dark_bootstrap.min.css"> <!-- between grey and black -->
+    <!-- <link rel="stylesheet" href="css/dark_bootstrap.min.css"> --> <!-- between grey and black -->
     <!-- <link rel="stylesheet" href="css/superHeror_bootstrap.min.css"> -->  <!-- DarkBlue -->
 
 
@@ -175,9 +175,10 @@
 
         .axis {
             fill: none;
-            stroke: grey;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            stroke: #c8c8c8;
             shape-rendering: crispEdges;
-            font: 10px sans-serif;
+            font-size: 10px;
         }
 
 
@@ -189,7 +190,8 @@
             position: absolute;
             min-width: 60px;
             padding: 10px;
-            background-color: white;
+            background-color: black;
+            opacity:0.85;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
@@ -218,9 +220,11 @@
     <div class="row">
 
         <div class="col-xs-12 ">
-            <div id="banner" class="flex">
-                <h3>Armed Conflicts since WWII </h3>
-
+            <div id="banner" >
+                Armed Conflicts since WWII <b style="font-size:11px">Data from the 
+                <a href="http://www.pcr.uu.se/research/ucdp/program_overview/">Uppsala Data Conflict Program
+                    (UCDP)</a> and the International Peace Research Institute, Oslo (PRIO)
+               </b>            
             </div>
         </div>
     </div>
@@ -256,7 +260,7 @@
         </div>
 
     </div>
-
+           
 </div>
 
 
@@ -313,6 +317,7 @@
             $(MyEventHandler).bind("selectionChanged", function(event, a, b ){
 
                 map_vis.onSelectionChange(a,b);
+                //map_vis.onContinentChange(1);
                 //$('#right-1').text(a +' to ' + b);
 
             });

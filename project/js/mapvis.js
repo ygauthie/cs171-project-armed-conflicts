@@ -38,26 +38,27 @@ MapVis.prototype.initVis = function(){
 
     // add legend
     this.svg.append("circle")
-          .attr("cx", this.width-100)
-          .attr("cy", 20)
+          .attr("cx", this.width-110)
+          .attr("cy", 16)
           .attr("r", 7);
     this.svg.append("text")
-          .attr("x", this.width-91)
-          .attr("y", 17)
+          .attr("x", this.width-101)
+          .attr("y", 19)
           .text("War (>1000 deaths/yr)")
-          .attr("style","font-size:9px;")
+          .attr("style","font-size:10px;")
           .style("stroke","#ffffff");
     this.svg.append("circle")
-          .attr("cx", this.width-100)
-          .attr("cy", 24)
+          .attr("cx", this.width-110)
+          .attr("cy", 30)
           .attr("r", 3);
     this.svg.append("text")
-          .attr("x", this.width-91)
-          .attr("y", 26)
-          .text("Minor armed conflict")
-          .attr("style","font-size:9px;")
+          .attr("x", this.width-101)
+          .attr("y", 33)
+          .text("Conflict")
+          .attr("style","font-size:10px;")
           .style("stroke","#ffffff"); 
 
+    
     this.updateVis();
 }
  
@@ -86,13 +87,16 @@ MapVis.prototype.updateVis = function(){
 
     var landColor = d3.rgb("#666666");
 
-    this.g.selectAll("path")
+    var land = this.g.selectAll("path")
         .data(topojson.object(that.topologyData, that.topologyData.objects.countries)
-          .geometries)
-        .enter()
+          .geometries);
+
+    var land_enter = land.enter()
         .append("path")
         .attr("d", that.path)
         .attr("fill", landColor);
+    
+    land.exit().remove();
 
     var circles = this.g.selectAll("circle")
         .data(that.displayData)
@@ -188,6 +192,19 @@ MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
     console.log("count:"+count);
     this.updateVis();
 
+
+}
+
+MapVis.prototype.onContinentChange= function (continentNumber){
+
+    var that = this;
+
+      this.projection = d3.geo.winkel3()
+          .scale(75)
+          .translate([-8+this.width / 2, 20+this.height / 2])
+          .precision(.1);
+      
+      this.updateVis();
 
 }
 
