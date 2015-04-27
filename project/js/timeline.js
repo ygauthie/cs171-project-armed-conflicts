@@ -105,7 +105,7 @@ TimelineVis.prototype.wrangleData= function(){
 //**************** Country Select *******************
 
 
-        var html = '<li> <input type="checkbox" name="country" value="'+ byLoc[i].key +'">' +' ' + byLoc[i].key + '</li>'
+        var html = '<li> <input type="checkbox" name="country" class = "cntryChk" checked value="'+ byLoc[i].key +'">' +' ' + byLoc[i].key + '</li>'
 
         if( i <= colMax) {
             $('#countries_1').append(html);

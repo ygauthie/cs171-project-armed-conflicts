@@ -15,14 +15,14 @@
 
 
     <!--Stylesheets-->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-
+    <!-- Default Bootstarp CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- ***************************************************** -->
-    <!-- BootStrap Options UnComment a css reference and reload page to preview -->
+    <!-- BootStrap Themes UnComment a css reference and reload page to preview -->
     <!-- ***************************************************** -->
-
-    <link rel="stylesheet" href="css/slate_bootstrap.min.css">  <!-- Grey -->
+    <link rel="stylesheet" href="css/slate_bootstrap.min.css">
+    <!-- Grey -->
     <!--  <link rel="stylesheet" href="css/black_bootstrap.min.css"> --> <!-- black -->
     <!-- <link rel="stylesheet" href="css/dark_bootstrap.min.css"> --> <!-- between grey and black -->
     <!-- <link rel="stylesheet" href="css/superHeror_bootstrap.min.css"> -->  <!-- DarkBlue -->
@@ -43,9 +43,8 @@
     <style>
 
         /* test class add borders around major divs for layout validation */
-        .test {
-            border-style: solid;
-            border-width: 1px;
+        .border {
+            border: solid 1px #d3d4d5
         }
 
         /* flex class centers all contents in the divs */
@@ -59,18 +58,25 @@
             width: 1140px;
             height: 40px;
             font-size: 12px;
-            margin-bottom: 10px;
             color: #ffffff;
             font-family: 'Roboto Condensed', sans-serif;
-            margin: 1px 1px 1px 1px;
+            margin: 1px 1px 20px 1px;
         }
 
+        #banner h2 {
+
+            margin-bottom: 5px;
+        }
+        #banner p {
+
+            border-bottom: solid 1px #42484f
+        }
         #left-1 {
             width: 100%;
             height: 200px;
             /*  background-color: black; */
             margin: 1px 1px 1px 1px;
-            padding-left: 60px;
+
         }
 
         #left-2 {
@@ -100,6 +106,10 @@
             width: 150px;
             height: 75px;
             margin-bottom: 15px;
+
+        }
+        .stat h5{
+            margin-top: 0px;
         }
 
         #timeLn {
@@ -143,12 +153,21 @@
             background-color: #272b30;
             z-index: 1;
             display: none;
-            top: 100px;
+            top: 115px;
             width: 1150px;
             border: solid 1px #d3d4d5
 
         }
+        #cntryDiv{
+            margin-bottom: 0px;
+            position: absolute;
+            background-color: #272b30;
+            z-index: 2;
+        }
+        #country{
+            margin-bottom:30px;
 
+        }
         /* chart related css should move to external css file */
 
         .chart {
@@ -224,7 +243,7 @@
             min-width: 60px;
             padding: 10px;
             background-color: black;
-            opacity:0.85;
+            opacity: 0.85;
             -webkit-border-radius: 5px;
             -moz-border-radius: 5px;
             border-radius: 5px;
@@ -257,32 +276,41 @@
     <div class="row">
 
         <div class="col-xs-12 ">
-            <div id="banner" >
-                <b style="font-size:32px">A Modern History of Armed Conflicts</b>
-                <p style="margin-top: -6px">From 1946 to 2013.  With
-                data from the <a href="http://www.pcr.uu.se/research/ucdp/program_overview/">Uppsala Data Conflict Program
-                    (UCDP)</a> and the International Peace Research Institute, Oslo (PRIO)</p>
-                        
+            <div id="banner">
+                <h2>A Modern History of Armed Conflicts</h2>
+
+                <p>From 1946 to 2013. With
+                    data from the <a href="http://www.pcr.uu.se/research/ucdp/program_overview/">Uppsala Data Conflict
+                        Program
+                        (UCDP)</a> and the International Peace Research Institute, Oslo (PRIO)</p>
             </div>
         </div>
 
     </div>
+
+<div id="country" class="row">
+                    <div class="col-xs-3 ">
+                        <div id="cntryDiv" class="flex border"> <h5 style="display:inline"> &nbsp; Select Country &nbsp; </h5> <span id='cntrySelect'
+                                                                                                       class="glyphicon glyphicon-triangle-bottom"
+                                                                                                       style="font-size: 14px; color: #d3d4d5; display:inline">&nbsp;</span>
+                        </div>
+
+                    </div>
+                    <div id="stats0_right" class="col-xs-9"></div>
+
+                </div>
 
     <div id="midRow" class="row">
 
         <div id="colLeft" class="col-xs-4 ">
             <div id="left-1">
 
-                <div id="country" class="row">
-                    <div class="flex"><h4 style="display:inline">Select Country &nbsp; </h4> <span id='cntrySelect'
-                                                                                                   class="glyphicon glyphicon-chevron-down"
-                                                                                                   style="font-size: 20px; color: #d3d4d5; display:inline"></span>
-                    </div>
-                </div>
+
                 <div id="stats1" class="row">
 
-                    <div id="stats1_left" class="col-xs-5 stat"><h5>Region</h5></div>
-                    <div id="stats1_right" class="col-xs-5 stat"><h5>Conflict Type</h5></div>
+                    <div id="stats1_left" class="col-xs-4 stat"><h5>Region</h5></div>
+                    <div id="stats1_right" class="col-xs-4 stat"><h5>Conflict Type</h5></div>
+
                 </div>
                 <div id="stats2" class="row">
 
@@ -319,7 +347,14 @@
 
 
     <div id="countryList">
-        <div id="slectAll" class="row"><h5>Select All</h5> <h5>De-Select All</h5></div>
+        <div id="slectAll" class="row">
+            <div class="col-xs-3">
+                <br/>
+            <ul class="chk-container">
+            <li><input type="checkbox" checked id="selecctall"/> Selecct All</li>
+            </ul>
+        </div>
+        </div>
         <div class="row">
             <div class="col-xs-3">
                 <ul id="countries_1"></ul>
@@ -334,170 +369,195 @@
                 <ul id="countries_4"></ul>
             </div>
 
-           
-</div>
-
-
-
 
         </div>
 
+
     </div>
 
-
-    <div id="tooltip" class="hidden">
-        <p><span id="conflict-label"></span></p>
-    </div>
+</div>
 
 
-    <! -- ******************* Begin index.html JavaScript ********************** -->
-    <! -- index.html JavaScript is based on workflow introduced in HW3. It will handle initial data loading and
-    communication between Chart js files -->
-
-    <script>
-        $(function () { // this function is called after the HTML document is fully loaded
+<div id="tooltip" class="hidden">
+    <p><span id="conflict-label"></span></p>
+</div>
 
 
-            //allData holds original data with georeference
-            var allData = [];
-            //episodeData holds data with conflict episodes reduced to a single row with start and end dates
-            var episodeData = {};
-            //dateData holds a list of months from 1946 to 2013 and is used to create a ordinal scale on the timeline
-            var dateData;
-            //topologyData holds data for drawing world map
-            var topologyData;
+<! -- ******************* Begin index.html JavaScript ********************** -->
+<! -- index.html JavaScript is based on workflow introduced in HW3. It will handle initial data loading and
+communication between Chart js files -->
 
+<script>
 
-            var dateFormatter = d3.time.format("%Y-%m-%d");
-
-
-            // call this function after Data is loaded, reformatted and bound to the variables
-            var initVis = function () {
-
-                console.log(allData);
-                console.log(episodeData);
-
-
-                //Event Handler
-                var MyEventHandler = {};
-
-                //Initiate Visualizations
-                var timeline_vis = new TimelineVis(d3.select("#right-2"), episodeData, MyEventHandler);
-                var map_vis = new MapVis(d3.select("#right-1"), allData, topologyData, MyEventHandler);
-                var count_vis = new CountVis(d3.select("#left-2"), allData, MyEventHandler);
-
-                // Event Handler Code
-                $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
-
-                    map_vis.onSelectionChange(a, b);
-                    //$('#right-1').text(a +' to ' + b);
-
-                });
-
-
-            };
+    //allData holds original data with georeference
+    var allData = [];
+    //episodeData holds data with conflict episodes reduced to a single row with start and end dates
+    var episodeData = {};
 
 
 
-            function filter() {
+    $(function () { // this function is called after the HTML document is fully loaded
 
+        //topologyData holds data for drawing world map
+        var topologyData;
+
+        var dateFormatter = d3.time.format("%Y-%m-%d");
+
+
+        // call this function after Data is loaded, reformatted and bound to the variables
+        var initVis = function () {
+
+
+
+
+            //Event Handler
+            var MyEventHandler = {};
+
+            //Initiate Visualizations
+            var timeline_vis = new TimelineVis(d3.select("#right-2"), episodeData, MyEventHandler);
+            var map_vis = new MapVis(d3.select("#right-1"), allData, topologyData, MyEventHandler);
+            var count_vis = new CountVis(d3.select("#left-2"), allData, MyEventHandler);
+
+            // Event Handler Code
+            $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
+
+                map_vis.onSelectionChange(a, b);
+                //$('#right-1').text(a +' to ' + b);
+
+            });
+
+
+        };
+
+        // Function is called after all data files are loaded
+        var dataLoaded = function (error, _allData, _episodeData, _topologyData) {
+            if (!error) {
+
+                //Here we do any initial/Global data formatting or manipulation before initializing visualizations
+
+                allData = _allData;
+                episodeData = _episodeData;
+                topologyData = _topologyData;
+
+                var byLoc = d3.nest()
+                        .key(function (d) {
+                            return d.Location;
+                        })
+                        .entries(episodeData);
+                console.log('byLoc');
+                console.log(byLoc);
+
+
+                initVis();
+            } else {
+                console.log(error);
             }
+        };
+
+        //Load Data Here
+        var startHere = function () {
+
+            //load data here and call "dataLoaded" afterwards
+            var wait_what = queue()
+                    .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_geocoded.csv')
+                    .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_reduced.csv')
+                    .defer(d3.json, 'data/world-110m2.json')
+                    .await(dataLoaded); // function that uses files
+        };
+        startHere();
+
+        addStats();
 
 
-            // Function is called after all data files are loaded
-            var dataLoaded = function (error, _allData, _episodeData, _topologyData) {
-                if (!error) {
-
-                    //Here we do any initial/Global data formatting or manipulation before initializing visualizations
-
-                    allData = _allData;
-                    episodeData = _episodeData;
-                    topologyData = _topologyData;
-
-                    var byLoc = d3.nest()
-                            .key(function (d) {
-                                return d.Location;
-                            })
-                            .entries(episodeData);
-                    console.log('byLoc');
-                    console.log(byLoc);
+    });
 
 
-                    initVis();
-                } else {
-                    console.log(error);
-                }
-            };
-
-            //Load Data Here
-            var startHere = function () {
-
-                //load data here and call "dataLoaded" afterwards
-                var wait_what = queue()
-                        .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_geocoded.csv')
-                        .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_reduced.csv')
-                        .defer(d3.json, 'data/world-110m2.json')
-                        .await(dataLoaded); // function that uses files
-            };
-            startHere();
-
-            addStats();
+    //filter Functions **************************************
 
 
+    function filter() {
+
+        console.log(allData);
+        console.log(episodeData);
+
+    }
+
+
+
+    //HelperFunctions ****************************************
+
+    //Scroll Function to keep header and body in sync
+    $('#timeLn').on('scroll', function () {
+        $('#xAxisTop').scrollLeft($(this).scrollLeft());
+    });
+
+    function expandTimeLn() {
+        var bdClr = $('body').css("background-color");
+        $('#timeLn').css('height', '2000px');
+        $("#right-2").css("background-color", bdClr);
+        $("#right-2").css("top", "484px");
+
+
+        $("#right-2").animate({
+            top: "50px", width: "1150px",
+            height: "2000px"
+        }, 1500);
+
+        var bdClr = $('body').css("background-color");
+        $('#timeLn').css('height', '2000px');
+        $("#right-2").css("background-color", bdClr);
+
+    }
+
+    function collapseTimeLn() {
+
+
+        $("#right-2").animate({
+            top: "484px", width: "1150px",
+            height: "200px"
+        }, 1500);
+
+        $('#timeLn').css('height', '168px');
+
+    }
+
+
+    $('.laneText').mouseover(function () {
+        alert('hello');
+    });
+
+    $('#cntrySelect').click(function () {
+
+         $("#cntryDiv").css("border-bottom","none");
+
+        $("#countryList").slideToggle( function(){
+
+            if ( $(this).css('display') == 'none' ){
+                $("#cntryDiv").css("border-bottom","solid 1px #d3d4d5");
+            }else{ $("#cntryDiv").css("border-bottom","none");}
+        });
+
+    })
+
+
+
+        $('#selecctall').click(function(event) {  //on click
+            if(this.checked) { // check select status
+                $('.cntryChk').each(function() { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            }else{
+                $('.cntryChk').each(function() { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
         });
 
 
-        //HelperFunctions
-
-        //Scroll Function to keep header and body in sync
-        $('#timeLn').on('scroll', function () {
-            $('#xAxisTop').scrollLeft($(this).scrollLeft());
-        });
-
-        function expandTimeLn() {
-            var bdClr = $('body').css("background-color");
-            $('#timeLn').css('height', '2000px');
-            $("#right-2").css("background-color", bdClr);
-            $("#right-2").css("top", "484px");
 
 
-            $("#right-2").animate({
-                top: "50px", width: "1150px",
-                height: "2000px"
-            }, 1500);
 
-            var bdClr = $('body').css("background-color");
-            $('#timeLn').css('height', '2000px');
-            $("#right-2").css("background-color", bdClr);
-
-        }
-
-        function collapseTimeLn() {
-
-
-            $("#right-2").animate({
-                top: "484px", width: "1150px",
-                height: "200px"
-            }, 1500);
-
-            $('#timeLn').css('height', '168px');
-
-        }
-
-
-        $('.laneText').mouseover(function () {
-            alert('hello');
-        });
-
-        $('#cntrySelect').click(function () {
-
-
-            $("#countryList").slideToggle();
-
-        })
-
-
-    </script>
+</script>
 
 
 </body>
