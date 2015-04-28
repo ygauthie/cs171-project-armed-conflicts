@@ -1,24 +1,4 @@
-/**
- * Created by Hendrik Strobelt (hendrik.strobelt.com) on 1/28/15.
- */
 
-
-/*
- *
- * ======================================================
- * We follow the vis template of init - wrangle - update
- * ======================================================
- *
- * */
-
-/**
- * CountVis object for HW3 of CS171
- * @param _parentElement -- the HTML or SVG element (D3 node) to which to attach the vis
- * @param _data -- the data array
- * @param _metaData -- the meta-data / data description object
- * @param _eventHandler -- the Eventhandling Object to emit data to (see Task 4)
- * @constructor
- */
 CountVis = function(_parentElement, _data, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
@@ -42,15 +22,6 @@ CountVis.prototype.initVis = function(){
 
     var that = this; // read about the this
 
-    //TODO: implement here all things that don't change
-    //TODO: implement here all things that need an initial status
-    // Examples are:
-    // - construct SVG layout
-    // - create axis
-    // -  implement brushing !!
-    // --- ONLY FOR BONUS ---  implement zooming
-
-    // TODO: modify this to append an svg element, not modify the current placeholder SVG element
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
         .attr("height", this.height + this.margin.top + this.margin.bottom);
@@ -128,10 +99,8 @@ CountVis.prototype.initVis = function(){
     //this.updateVis();
 
     function brushed() {
-    
+        console.log(brush.extent());
         $(that.eventHandler).trigger("selectionChanged",brush.extent());
-    //    var dateFormatter = d3.time.format("%d-%b-%Y");
-    //    d3.select("#brushInfo").text(dateFormatter(brush.extent()[0])+" to "+dateFormatter(brush.extent()[1]));
     }
 }
  
@@ -198,16 +167,6 @@ CountVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
 
 
 }
-
-
-/*
- *
- * ==================================
- * From here on only HELPER functions
- * ==================================
- *
- * */
-
 
 
 

@@ -4,6 +4,7 @@ MapVis = function(_parentElement, _data, _topologyData, _eventHandler){
     this.topologyData = _topologyData;
     this.eventHandler = _eventHandler;
     this.displayData = [];
+    this.g = 0;
 
     // TODO: define all "constants" here
     this.margin = {top: 0, right: 0, bottom: 0, left: 0};
@@ -34,7 +35,8 @@ MapVis.prototype.initVis = function(){
     this.path = d3.geo.path()
           .projection(this.projection);
 
-    this.g = this.svg.append("g");
+    this.g = this.svg.append("g")
+              .attr("class", "conflictCircles");
 
     // add legend
     this.svg.append("circle")
@@ -99,11 +101,12 @@ MapVis.prototype.updateVis = function(){
     land.exit().remove();
 
     var circles = this.g.selectAll("circle")
-        .data(that.displayData)
+        .data(that.displayData);
 
     var circles_enter = circles.enter()
         .append("circle")
         .attr("cx", function(d) {
+            //if (d.ConflictId == "1-224") debugger;
             return that.projection([d.lon, d.lat])[0];
         })
         .attr("cy", function(d) {
@@ -147,8 +150,7 @@ MapVis.prototype.updateVis = function(){
             d3.select("#tooltip").classed("hidden", true);
                 
          });
-
-
+    
     circles.transition().duration(500)
         .attr("r", function(d) {
             if (d.IntensityLevel==1) {return 3;}
@@ -156,6 +158,7 @@ MapVis.prototype.updateVis = function(){
     })
 
     circles.exit().remove();
+
 
     // zoom and pan
     var zoom = d3.behavior.zoom()
@@ -180,16 +183,17 @@ MapVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd, _data){
 
     var count = 0;
+    this.data = _data;
     this.displayData = this.data.filter( function (d) {
       if (d.Year >= selectionStart && d.Year <= selectionEnd) {
         //console.log(d);
         count++;
         return d;
     }});
-    console.log("count:"+count);
+    console.log(this.displayData.length);
     this.updateVis();
 
 
@@ -203,6 +207,9 @@ MapVis.prototype.onContinentChange= function (continentNumber){
           .scale(75)
           .translate([-8+this.width / 2, 20+this.height / 2])
           .precision(.1);
+
+      this.path = d3.geo.path()
+          .projection(this.projection);
       
       this.updateVis();
 
