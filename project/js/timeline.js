@@ -27,10 +27,10 @@
  * @constructor
  */
 
-TimelineVis = function(_parentElement, _data, dateData, _eventHandler){
+TimelineVis = function(_parentElement, _data, _eventHandler){
     this.parentElement = _parentElement;
     this.data = _data;
-    this.metaData = dateData;
+    this.metaData = [];
     this.eventHandler = _eventHandler;
     this.laneData = [];
     this.itemData = [];
@@ -44,7 +44,6 @@ TimelineVis = function(_parentElement, _data, dateData, _eventHandler){
 
 
     console.log('TimelineVis')
-    console.log(dateData);
 
     this.initVis();
 }
@@ -101,6 +100,27 @@ TimelineVis.prototype.wrangleData= function(){
     for (var i = 0, len = byLoc.length; i < len; i++) {
         this.laneData.push(byLoc[i].key);
 
+        var colMax = byLoc.length / 4
+        var keycount = 0
+//**************** Country Select *******************
+
+
+        var html = '<li> <input type="checkbox" name="country" class = "cntryChk" checked value="'+ byLoc[i].key +'">' +' ' + byLoc[i].key + '</li>'
+
+        if( i <= colMax) {
+            $('#countries_1').append(html);
+        }
+        if( i > colMax &&  i <= colMax * 2) {
+            $('#countries_2').append(html);
+        }
+        if( i > colMax * 2 &&  i <= colMax * 3) {
+            $('#countries_3').append(html);
+        }
+        if( i >  colMax * 3) {
+            $('#countries_4').append(html);
+        }
+
+//******************************************************
         for (var j = 0, len2 = byLoc[i].values.length; j < len2; j++) {
             var item = {}
             item.lane = i;

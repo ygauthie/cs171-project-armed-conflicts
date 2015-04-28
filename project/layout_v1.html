@@ -72,60 +72,33 @@
     <div class="row">
 
         <div class="col-xs-12 test ">
-            <div id="banner"> <h3>Visualizing Modern History of Armed Conflicts </h3> </div>
+            <div id="banner"> <h3>Visualizing Modern History of Armed Conflicts!!! </h3> </div>
          </div>
     </div>
 
     <div class ="row">
 
         <div class="col-xs-4 test">
+
+
+
+
             <div id="left-1" >
-                <br/>
-                Color By :
-                <div class="radio-toolbar">
-                    <input type="radio" id="radio1" name="radios" class="rdoClr" value="all" checked>
-                    <label for="radio1">All Solid</label>
 
-                    <input type="radio" id="radio2" name="radios"  class="rdoClr" value="region">
-                    <label for="radio2">By Region</label>
-
-                    <input type="radio" id="radio3" name="radios"  class="rdoClr" value="inten">
-                    <label for="radio3">By Intensity</label>
+                <div id="country" class="row"></div>
+                <div id="stats1" class="row">
+                    <div id="stats1_left" class="col-xs-6"></div>
+                    <div id="stats1_right" class="col-xs-6"></div>
                 </div>
-                <hr>
-
-                <div class="dropdown" style="display:inline">
-                    <button class="btn-xs btn-primary dropdown-toggle" type="button" id="dd-menu" data-toggle="dropdown">
-                        Country <span class="caret"></span>
-                    </button>
-
-                    <ul class="dropdown-menu" role="menu">
-                        <li role="presentation" class="dropdown-header">A header</li>
-                        <li role="presentation" class="disabled"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation" class="dropdown-header">Another header</li>
-                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                    </ul>
+                <div id="stats2" class="row">
+                    <div id="stats2_left" class="col-xs-6"></div>
+                    <div id="stats2_right" class="col-xs-6"></div>
                 </div>
-                <div class="dropdown" style="display:inline">
-                    <button class="btn-xs btn-primary dropdown-toggle" type="button" id="dd-menu2" data-toggle="dropdown">
-                        Year <span class="caret"></span>
-                    </button>
+</div>
 
-                    <ul class="dropdown-menu" role="menu">
-                        <li role="presentation" class="dropdown-header">A header</li>
-                        <li role="presentation" class="disabled"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation" class="dropdown-header">Another header</li>
-                        <li role="presentation"><a href="#" role="menuitem" tabindex="-1">List item</a></li>
-                    </ul>
-                </div>
 
-        </div>
+
+
             <div id="left-2" class="flex">
 
             </div>
@@ -231,18 +204,18 @@
     }
 
 
-        function sampleBar(div_container ){
+function sampleBar(div_container, cnt ){
 //Sample BarChart placeholder
 
-    var smpl_data = [];                         //Initialize empty array
-    for (var i = 0; i < 25; i++) {            //Loop 25 times
-        var newNumber = Math.random() * 30;   //New random number (0-30)
-        smpl_data.push(newNumber);              //Add new number to array
+    var smpl_data = [];
+    for (var i = 0; i < cnt; i++) {
+        var newNumber = Math.random() * 30;
+        smpl_data.push(newNumber);
     }
 
 
-var w=358;
-var h=180;
+var w=100;
+var h=40;
     var barPadding = 1;
 
  bar_svg = d3.select(div_container).append('svg')
