@@ -465,6 +465,7 @@ communication between Chart js files -->
             //load data here and call "dataLoaded" afterwards
             var wait_what = queue()
                     .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_geocoded.csv')
+                  //  .defer(d3.csv, 'data/test.csv')
                     .defer(d3.csv, 'data/UCDPPrioArmedConflictDataset_reduced.csv')
                     .defer(d3.json, 'data/world-110m2.json')
                     .await(dataLoaded); // function that uses files

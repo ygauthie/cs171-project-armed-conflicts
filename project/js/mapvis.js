@@ -35,8 +35,7 @@ MapVis.prototype.initVis = function(){
     this.path = d3.geo.path()
           .projection(this.projection);
 
-    this.g = this.svg.append("g")
-              .attr("class", "conflictCircles");
+    this.g = this.svg.append("g");
 
     // add legend
     this.svg.append("circle")
@@ -89,7 +88,7 @@ MapVis.prototype.updateVis = function(){
 
     var landColor = d3.rgb("#666666");
 
-    var land = this.g.selectAll("path")
+    var land = that.g.selectAll("path")
         .data(topojson.object(that.topologyData, that.topologyData.objects.countries)
           .geometries);
 
@@ -100,9 +99,16 @@ MapVis.prototype.updateVis = function(){
     
     land.exit().remove();
 
-    var circles = this.g.selectAll("circle")
-        .data(that.displayData);
 
+    //console.log("before binding:");
+    //console.log(that.g.selectAll("circle"));
+    //that.displayData.forEach(function (d) {console.log(d);});
+    var circles = that.g.selectAll("circle")
+        .data(that.displayData, function(d) { return d.RecordId });
+
+
+    //console.log("after binding:");
+    //console.log(that.g.selectAll("circle"));
     var circles_enter = circles.enter()
         .append("circle")
         .attr("cx", function(d) {
@@ -111,10 +117,6 @@ MapVis.prototype.updateVis = function(){
         })
         .attr("cy", function(d) {
             return that.projection([d.lon, d.lat])[1];
-        })
-        .attr("r", function(d) {
-            if (d.IntensityLevel==1) {return 3;}
-            else return 7;
         })
         .on("mouseover", function(d) {   //Add tooltip on mouseover for each circle
 
@@ -156,7 +158,8 @@ MapVis.prototype.updateVis = function(){
             if (d.IntensityLevel==1) {return 3;}
             else return 7;
     })
-
+    //console.log("after enter:");
+    //console.log(that.g.selectAll("circle"));
     circles.exit().remove();
 
 
