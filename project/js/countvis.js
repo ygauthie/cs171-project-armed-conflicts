@@ -128,13 +128,13 @@ CountVis.prototype.initVis = function(){
     //this.updateVis();
 
     function brushed() {
-    
+
         $(that.eventHandler).trigger("selectionChanged",brush.extent());
     //    var dateFormatter = d3.time.format("%d-%b-%Y");
     //    d3.select("#brushInfo").text(dateFormatter(brush.extent()[0])+" to "+dateFormatter(brush.extent()[1]));
     }
 }
- 
+
 
 
 /**

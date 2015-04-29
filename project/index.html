@@ -168,6 +168,13 @@
             margin-bottom:30px;
 
         }
+
+        .filter{
+            cursor:pointer;
+        }
+
+
+
         /* chart related css should move to external css file */
 
         .chart {
@@ -296,7 +303,7 @@
                         </div>
 
                     </div>
-                    <div id="stats0_right" class="col-xs-9"></div>
+                    <div id="stats0_right" class="col-xs-9"> <a href="#" onclick="gblFilterReset();">Reset</a></div>
 
                 </div>
 
@@ -405,18 +412,19 @@ communication between Chart js files -->
 
 
         // call this function after Data is loaded, reformatted and bound to the variables
+
         var initVis = function () {
-
-
-
-
-            //Event Handler
+        //Event Handler
             var MyEventHandler = {};
 
             //Initiate Visualizations
             var timeline_vis = new TimelineVis(d3.select("#right-2"), episodeData, MyEventHandler);
             var map_vis = new MapVis(d3.select("#right-1"), allData, topologyData, MyEventHandler);
             var count_vis = new CountVis(d3.select("#left-2"), allData, MyEventHandler);
+
+            addStats(allData);
+
+
 
             // Event Handler Code
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
@@ -425,6 +433,7 @@ communication between Chart js files -->
                 //$('#right-1').text(a +' to ' + b);
 
             });
+
 
 
         };
@@ -444,8 +453,31 @@ communication between Chart js files -->
                             return d.Location;
                         })
                         .entries(episodeData);
-                console.log('byLoc');
-                console.log(byLoc);
+
+                /******* Populate Country Dropdown ***************/
+
+                for (var i = 0, len = byLoc.length; i < len; i++) {
+
+                    var colMax = byLoc.length / 4
+                    var keycount = 0
+
+                    var html = '<li> <input type="checkbox" name="country" class = "cntryChk" checked value="'+ byLoc[i].key +'">' +' ' + byLoc[i].key + '</li>'
+
+                    if( i <= colMax) {
+                        $('#countries_1').append(html);
+                    }
+                    if( i > colMax &&  i <= colMax * 2) {
+                        $('#countries_2').append(html);
+                    }
+                    if( i > colMax * 2 &&  i <= colMax * 3) {
+                        $('#countries_3').append(html);
+                    }
+                    if( i >  colMax * 3) {
+                        $('#countries_4').append(html);
+                    }
+
+                }
+                /******* END Populate Country Dropdown ***************/
 
 
                 initVis();
@@ -466,7 +498,7 @@ communication between Chart js files -->
         };
         startHere();
 
-        addStats();
+
 
 
     });
@@ -474,13 +506,116 @@ communication between Chart js files -->
 
     //filter Functions **************************************
 
+    //Define Global Variables to hold filters
+    var byType = ''
+    var byRegion = ''
+    var bySource = ''
+    var byIntensity = ''
+    var byCntry = ''
 
-    function filter() {
 
-        console.log(allData);
-        console.log(episodeData);
+    //Set Filter Variables based on the filter and key
+    function gblFilterSet(filter, key) {
+    console.log('gblFilterSet')
+        switch (filter) {
+            case 'type':
+                byType = key;
+                break;
+            case 'source':
+                bySource = key;
+                break;
+            case 'region':
+                byRegion = key;
+                break;
+            case 'intensity':
+                byIntensity = key;
+                break;
+            case 'country':
+                byCntry = $('.cntryChk:checkbox:checked').map(function() {
+                    return this.value;
+                }).get();
+
+                break;
+        }
+
+        filterData();
+    }
+
+    //Reset All Filter Variables to Null
+    function gblFilterReset(){
+        byType = ''
+       byRegion = ''
+         bySource = ''
+        byIntensity = ''
+         byCntry = ''
+
+        $('.filter').css('fill-opacity',0);
+        $('.filter').css('stroke-opacity',0);
+
+        filterData();
+    }
+
+
+    //Filter the data based on Filter Variables
+    function filterData(){
+        console.log('filterData')
+        //Check Filters one by one
+
+        filteredData = allData;
+
+
+        if (byType != ''){
+
+            filteredData = filteredData.filter(function (val, i, array) {
+                if( val.TypeOfConflict == byType ) {
+                    return val;
+                }
+            });
+        }
+
+        if (byRegion != ''){
+            filteredData = filteredData.filter(function (val, i, array) {
+                if( val.Region == byRegion ) {
+                    return val;
+                }
+            });
+        }
+        if (bySource != ''){
+            filteredData = filteredData.filter(function (val, i, array) {
+                if( val.Incompatibility == bySource ) {
+                    return val;
+                }
+            });
+        }
+
+        if (byIntensity != ''){
+            filteredData = filteredData.filter(function (val, i, array) {
+                if( val.IntensityLevel == byIntensity ) {
+                    return val;
+                }
+            });
+        }
+        if (byCntry!= ''){
+            filteredData = filteredData.filter(function (val, index, array) {
+
+                if (byCntry.indexOf(val.Location) >= 0) {
+                    return val;
+                }
+            });
+        }
+
+        console.log(filteredData)
+
+        /********************************************************************************************/
+        /****************** Call Update Functions and pass Filtered Data Set here ******************/
+        /********************************************************************************************/
+
+        console.log('filteredData')
+        console.log(filteredData)
+
 
     }
+
 
 
 
@@ -534,6 +669,9 @@ communication between Chart js files -->
 
             if ( $(this).css('display') == 'none' ){
                 $("#cntryDiv").css("border-bottom","solid 1px #d3d4d5");
+
+                gblFilterSet('country', 1);
+
             }else{ $("#cntryDiv").css("border-bottom","none");}
         });
 
@@ -552,6 +690,11 @@ communication between Chart js files -->
                 });
             }
         });
+
+
+
+
+
 
 
 

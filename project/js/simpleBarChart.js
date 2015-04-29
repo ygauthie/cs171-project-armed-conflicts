@@ -2,9 +2,8 @@
  * Created by edgonzalez on 4/26/15.
  */
 
-function simpleBar(div_container, smpl_data, cnt ){
+function simpleBar(div_container, smpl_data, curfilter, cnt ){
 
-    console.log('hello')
 //Sample BarChart placeholder
 
     var w
@@ -30,13 +29,20 @@ function simpleBar(div_container, smpl_data, cnt ){
 
 
     }
+
+//var max =  d3.max(smpl_data[value])
+
     var h=35;
     var barPadding = 1;
 
+    var maxVal = d3.max(smpl_data, function(d) { return d.values; })
+    var minVal = d3.min(smpl_data, function(d) { return d.values; })
+
 
     var scale = d3.scale.linear()
-        .domain([0, 30])
+        .domain([minVal, maxVal])
         .range([1, 35]);
+
 
 
 
@@ -52,22 +58,23 @@ function simpleBar(div_container, smpl_data, cnt ){
             return i * (w / smpl_data.length);
         })
         .attr("y", function(d) {
-            return h - scale(d);
+            return h - scale(d.values);
         })
         .attr("width", w / smpl_data.length - barPadding)
         .attr("height", function(d) {
-            return scale(d);
+            return scale(d.values);
         })
         .attr("fill", function(d) {
             return "#d3d4d5";
         });
+
 
     bar_svg.selectAll("text")
         .data(smpl_data)
         .enter()
         .append("text")
         .text(function(d, i) {
-            return i;
+            return d.key;
         })
         .attr("x", function(d, i) {
             return i * (w / smpl_data.length) + 9;
@@ -76,6 +83,31 @@ function simpleBar(div_container, smpl_data, cnt ){
             return h + 15;
         })
         .attr("text-anchor", "middle")
+        .attr('key', function(d) {
+            return d.key
+        })
         .attr('class', 'xLabels');
+
+
+    bar_svg.selectAll(".rectFiltr")
+        .data(smpl_data)
+        .enter()
+        .append("rect")
+        .attr("x", function(d, i) {
+            return i * (w / smpl_data.length);
+        })
+        .attr("y", 0)
+        .attr("width", w / smpl_data.length - barPadding)
+        .attr("height", h + 15)
+        .attr('key', function(d) {
+            return d.key
+        })
+        .style("stroke", "pink")
+        .style("stroke-opacity",0.0)
+        .style("fill", "dodgerblue")
+        .style("fill-opacity", 0.0)
+        .attr('filter', curfilter )
+        .attr('class', 'filter');
+
 
 }

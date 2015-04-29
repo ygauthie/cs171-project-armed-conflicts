@@ -43,7 +43,7 @@ TimelineVis = function(_parentElement, _data, _eventHandler){
     // TODO: define all "constants" here
 
 
-    console.log('TimelineVis')
+
 
     this.initVis();
 }
@@ -59,7 +59,7 @@ TimelineVis.prototype.initVis = function(){
     var that = this; // read about the this
     /*****************************************************/
 
-    console.log('initVis');
+
 
     /*****************************************************/
 
@@ -79,7 +79,6 @@ TimelineVis.prototype.initVis = function(){
 
 TimelineVis.prototype.wrangleData= function(){
 
-    console.log('wrangleData');
 
     //  latestData = this.data;
 
@@ -100,27 +99,7 @@ TimelineVis.prototype.wrangleData= function(){
     for (var i = 0, len = byLoc.length; i < len; i++) {
         this.laneData.push(byLoc[i].key);
 
-        var colMax = byLoc.length / 4
-        var keycount = 0
-//**************** Country Select *******************
 
-
-        var html = '<li> <input type="checkbox" name="country" class = "cntryChk" checked value="'+ byLoc[i].key +'">' +' ' + byLoc[i].key + '</li>'
-
-        if( i <= colMax) {
-            $('#countries_1').append(html);
-        }
-        if( i > colMax &&  i <= colMax * 2) {
-            $('#countries_2').append(html);
-        }
-        if( i > colMax * 2 &&  i <= colMax * 3) {
-            $('#countries_3').append(html);
-        }
-        if( i >  colMax * 3) {
-            $('#countries_4').append(html);
-        }
-
-//******************************************************
         for (var j = 0, len2 = byLoc[i].values.length; j < len2; j++) {
             var item = {}
             item.lane = i;
@@ -161,7 +140,7 @@ TimelineVis.prototype.updateVis = function(){
 
     var that = this; // read about the this
 
-    console.log('updateVis');
+
 
     // var parseDate = d3.time.format("%Y%m%d").parse;
     var m = [20, 15, 15, 150], //top right bottom left
@@ -170,8 +149,7 @@ TimelineVis.prototype.updateVis = function(){
         miniHeight = this.laneLength * 12 + 50,
         mainHeight = h - miniHeight - 50;
 
-    console.log(this.timeBegin);
-    console.log(this.parseDate(this.timeBegin));
+
 
     //scales
     this.x = d3.time.scale()
@@ -426,10 +404,6 @@ TimelineVis.prototype.display = function() {
         minExtent = brush.extent()[0],
         maxExtent = brush.extent()[1],
         visItems = this.itemData.filter(function(d) {return d.start < maxExtent && d.end > minExtent;});
-    console.log('display');
-    console.log(minExtent)
-    console.log(maxExtent)
-    console.log(visItems)
 
 
     mini.select(".brush")
