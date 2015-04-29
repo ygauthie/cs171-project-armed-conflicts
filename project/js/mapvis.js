@@ -4,6 +4,7 @@ MapVis = function(_parentElement, _data, _topologyData, _eventHandler){
     this.topologyData = _topologyData;
     this.eventHandler = _eventHandler;
     this.displayData = [];
+    this.g = 0;
 
     // TODO: define all "constants" here
     this.margin = {top: 0, right: 0, bottom: 0, left: 0};
@@ -87,7 +88,7 @@ MapVis.prototype.updateVis = function(){
 
     var landColor = d3.rgb("#666666");
 
-    var land = this.g.selectAll("path")
+    var land = that.g.selectAll("path")
         .data(topojson.object(that.topologyData, that.topologyData.objects.countries)
           .geometries);
 
@@ -98,20 +99,24 @@ MapVis.prototype.updateVis = function(){
     
     land.exit().remove();
 
-    var circles = this.g.selectAll("circle")
-        .data(that.displayData)
 
+    //console.log("before binding:");
+    //console.log(that.g.selectAll("circle"));
+    //that.displayData.forEach(function (d) {console.log(d);});
+    var circles = that.g.selectAll("circle")
+        .data(that.displayData, function(d) { return d.RecordId });
+
+
+    //console.log("after binding:");
+    //console.log(that.g.selectAll("circle"));
     var circles_enter = circles.enter()
         .append("circle")
         .attr("cx", function(d) {
+            //if (d.ConflictId == "1-224") debugger;
             return that.projection([d.lon, d.lat])[0];
         })
         .attr("cy", function(d) {
             return that.projection([d.lon, d.lat])[1];
-        })
-        .attr("r", function(d) {
-            if (d.IntensityLevel==1) {return 3;}
-            else return 7;
         })
         .on("mouseover", function(d) {   //Add tooltip on mouseover for each circle
 
@@ -147,15 +152,16 @@ MapVis.prototype.updateVis = function(){
             d3.select("#tooltip").classed("hidden", true);
                 
          });
-
-
+    
     circles.transition().duration(500)
         .attr("r", function(d) {
             if (d.IntensityLevel==1) {return 3;}
             else return 7;
     })
-
+    //console.log("after enter:");
+    //console.log(that.g.selectAll("circle"));
     circles.exit().remove();
+
 
     // zoom and pan
     var zoom = d3.behavior.zoom()
@@ -180,16 +186,17 @@ MapVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd, _data){
 
     var count = 0;
+    this.data = _data;
     this.displayData = this.data.filter( function (d) {
       if (d.Year >= selectionStart && d.Year <= selectionEnd) {
         //console.log(d);
         count++;
         return d;
     }});
-    console.log("count:"+count);
+    console.log(this.displayData.length);
     this.updateVis();
 
 
@@ -203,10 +210,37 @@ MapVis.prototype.onContinentChange= function (continentNumber){
           .scale(75)
           .translate([-8+this.width / 2, 20+this.height / 2])
           .precision(.1);
+
+      this.path = d3.geo.path()
+          .projection(this.projection);
       
       this.updateVis();
 
 }
 
+
+function projectionTween(projection0, projection1) {
+  return function(d) {
+    var t = 0;
+
+    var projection = d3.geo.projection(project)
+        .scale(1)
+        .translate([width / 2, height / 2]);
+
+    var path = d3.geo.path()
+        .projection(projection);
+
+    function project(λ, φ) {
+      λ *= 180 / Math.PI, φ *= 180 / Math.PI;
+      var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
+      return [(1 - t) * p0[0] + t * p1[0], (1 - t) * -p0[1] + t * -p1[1]];
+    }
+
+    return function(_) {
+      t = _;
+      return path(d);
+    };
+  };
+}
 
 
