@@ -165,8 +165,7 @@ MapVis.prototype.updateVis = function(){
             if (d.IntensityLevel==1) {return 3;}
             else return 7;
     })
-    console.log("after enter:");
-    console.log(that.g.selectAll("circle"));
+
     circles.exit().remove();
 
 
@@ -219,26 +218,48 @@ MapVis.prototype.onContinentChange= function (continentNumber){
 
     var that = this;
 
-      this.projection = d3.geo.winkel3()
-          .scale(75)
-          .translate([-8+this.width / 2, 20+this.height / 2])
+      var newProjection = d3.geo.winkel3()
+          .scale(92)
+          .translate([this.width / 2, this.height / 2])
           .precision(.1);
+          
+      that.g.selectAll("path").transition()
+      .duration(2400)
+      .attrTween("d", projectionTween(that.projection, newProjection, that.width, that.height));   
 
-      this.path = d3.geo.path()
-          .projection(this.projection);
+     // that.g.selectAll("circle").transition()
+     //   .duration(2400)
+     //   .attrTween("d", projectionTween(that.projection, newProjection, that.width, that.height));
+      
+      this.projection = newProjection;
       
       this.updateVis();
 
 }
 
+MapVis.prototype.zoomOnContinent= function (continentNumber){
 
-function projectionTween(projection0, projection1) {
+    var that = this;
+
+    that.g.transition()
+      .duration(750)
+      .attr("transform","translate(30)scale(1.5)");
+            that.g.selectAll("circle")
+                .attr("d", that.path.projection(that.projection));
+            that.g.selectAll("path")  
+                .attr("d", that.path.projection(that.projection)); 
+
+}
+
+// Derived from from https://gist.github.com/mbostock/3711652
+function projectionTween(projection0, projection1, width, height) {
+
   return function(d) {
     var t = 0;
 
     var projection = d3.geo.projection(project)
         .scale(1)
-        .translate([width / 2, height / 2]);
+        .translate([width / 2, height/ 2]);
 
     var path = d3.geo.path()
         .projection(projection);

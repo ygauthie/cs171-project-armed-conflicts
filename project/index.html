@@ -431,7 +431,7 @@ communication between Chart js files -->
             // for brushed time period
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
                 map_vis.onSelectionChange(a,b,filteredData);
-                //map_vis.onContinentChange(1);
+                //map_vis.zoomOnContinent(1);
             });
 
             // for other filters
@@ -545,7 +545,7 @@ communication between Chart js files -->
         }
 
         filterData();
-        $(this.eventHandler).trigger("filtersChanged");
+        $(this.eventHandler).trigger("selectionChanged");
     }
 
     //Reset All Filter Variables to Null
