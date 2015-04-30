@@ -398,6 +398,7 @@ communication between Chart js files -->
 
     //allData holds original data with georeference
     var allData = [];
+    var filteredData = [];
     //episodeData holds data with conflict episodes reduced to a single row with start and end dates
     var episodeData = {};
 
@@ -430,7 +431,7 @@ communication between Chart js files -->
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
 
 
-                map_vis.onSelectionChange(a,b,allData);
+                map_vis.onSelectionChange(a,b,filteredData);
                 //map_vis.onContinentChange(1);
 
                 //map_vis.onSelectionChange(a, b);
