@@ -118,7 +118,14 @@ MapVis.prototype.updateVis = function(){
         .attr("cy", function(d) {
             return that.projection([d.lon, d.lat])[1];
         })
-        .on("mouseover", function(d) {   //Add tooltip on mouseover for each circle
+        // setting atributes for CSS styling
+        .attr("region", function (d) {return d.Region;})
+        .attr("source", function (d) {return d.Incompatibility;})
+        .attr("type", function (d) {return d.TypeOfConflict;})
+        .attr("intensity", function (d) {return d.IntensityLevel;})
+
+        //Add tooltip on mouseover for each circle
+        .on("mouseover", function(d) {   
 
             //Get this circle's x/y values, then augment for the tooltip
             var xPosition = d3.select(this).attr("cx");
@@ -158,8 +165,8 @@ MapVis.prototype.updateVis = function(){
             if (d.IntensityLevel==1) {return 3;}
             else return 7;
     })
-    //console.log("after enter:");
-    //console.log(that.g.selectAll("circle"));
+    console.log("after enter:");
+    console.log(that.g.selectAll("circle"));
     circles.exit().remove();
 
 
@@ -192,14 +199,20 @@ MapVis.prototype.onSelectionChange= function (selectionStart, selectionEnd, _dat
     this.data = _data;
     this.displayData = this.data.filter( function (d) {
       if (d.Year >= selectionStart && d.Year <= selectionEnd) {
-        //console.log(d);
         count++;
         return d;
     }});
-    console.log(this.displayData.length);
     this.updateVis();
 
 
+}
+
+MapVis.prototype.onFilterChange= function (_data){
+
+    var count = 0;
+    this.data = _data;
+    this.displayData = this.data;
+    this.updateVis();
 }
 
 MapVis.prototype.onContinentChange= function (continentNumber){

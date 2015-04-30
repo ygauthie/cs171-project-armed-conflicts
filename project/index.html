@@ -428,16 +428,15 @@ communication between Chart js files -->
 
 
             // Event Handler Code
+            // for brushed time period
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
-
-
                 map_vis.onSelectionChange(a,b,filteredData);
                 //map_vis.onContinentChange(1);
+            });
 
-                //map_vis.onSelectionChange(a, b);
-
-                //$('#right-1').text(a +' to ' + b);
-
+            // for other filters
+            $(MyEventHandler).bind("filtersChanged", function (event) {
+                map_vis.onFilterChange(filteredData);
             });
 
 
@@ -485,7 +484,7 @@ communication between Chart js files -->
                 }
                 /******* END Populate Country Dropdown ***************/
 
-
+                filteredData = allData;
                 initVis();
             } else {
                 console.log(error);
@@ -546,6 +545,7 @@ communication between Chart js files -->
         }
 
         filterData();
+        $(this.eventHandler).trigger("filtersChanged");
     }
 
     //Reset All Filter Variables to Null
