@@ -433,8 +433,14 @@ communication between Chart js files -->
             // for brushed time period
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
 
+
                 map_vis.onSelectionChange(a,b,filteredData);
                 map_vis.zoomOnRegion(Math.floor(Math.random()*6));  // For testing.  To be removed.
+
+                map_vis.onSelectionChange(a,b,allData);
+                timeline_vis.onSelectionChange(a,b,allData);
+                //map_vis.zoomOnContinent(1);
+
             });
 
             // for passing data after filtering

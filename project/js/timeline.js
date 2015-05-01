@@ -148,7 +148,7 @@ TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
 TimelineVis.prototype.updateVis = function(){
 
 
-
+console.log('Timeline')
 
     var that = this; // read about the this
 
@@ -166,7 +166,9 @@ TimelineVis.prototype.updateVis = function(){
         .range([0, w]);
     this.x.domain([ this.parseDate(this.timeBegin),  this.parseDate(this.timeEnd)]);
 
-
+    var start = this.parseDate(this.timeBegin);
+    console.log(start);
+    console.log(this.x(start));
 
 
 
@@ -375,9 +377,15 @@ TimelineVis.prototype.onSelectionChange= function (selectionStart, selectionEnd,
 
 var mmdd = '0101'
 
-    this.timeBegin =  start.toString() + mmdd;
-    this.timeEnd =  start.toString() + mmdd;
-    console.log(this.timeBegin);
+   // this.timeBegin =  start.toString() + mmdd;
+   // this.timeEnd =  start.toString() + mmdd;
+   // console.log(this.timeBegin);
+
+  // var myScaled =  this.x(this.timeBegin)
+
+  //  console.log(myScaled);
+
+
 
 
 }
