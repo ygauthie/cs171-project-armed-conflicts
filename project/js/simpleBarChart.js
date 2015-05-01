@@ -66,7 +66,11 @@ function simpleBar(div_container, smpl_data, curfilter, cnt ){
         })
         .attr("fill", function(d) {
             return "#d3d4d5";
-        });
+        })
+        .attr('key', function(d) {
+            return d.key
+        })
+        .attr('chart', curfilter );
 
 
     bar_svg.selectAll("text")

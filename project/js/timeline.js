@@ -77,12 +77,18 @@ TimelineVis.prototype.initVis = function(){
 /*************************************************************************/
 /*************************************************************************/
 
-TimelineVis.prototype.wrangleData= function(){
+TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
 
+    if (filter == 1) {
 
-    //  latestData = this.data;
+        latestData = filtered_Data;
 
-    latestData = this.data
+    }else{
+
+    latestData = this.data;
+
+    }
+
 
     // this is for testing only values with a string of 'NULL' are generally ongoing conflicts
     latestData = latestData.filter(function (val, i, array) {
@@ -121,6 +127,12 @@ TimelineVis.prototype.wrangleData= function(){
         this.dateKeys.push(this.metaData[i].date);
     }
 
+
+
+
+
+
+
     //console.log('dateKeys');
     //console.log(this.dateKeys);
 
@@ -148,8 +160,6 @@ TimelineVis.prototype.updateVis = function(){
         h = 500 - m[0] - m[2],
         miniHeight = this.laneLength * 12 + 50,
         mainHeight = h - miniHeight - 50;
-
-
 
     //scales
     this.x = d3.time.scale()
@@ -197,33 +207,7 @@ TimelineVis.prototype.updateVis = function(){
     this.xAxis = d3.svg.axis()
         .scale( this.x)
         .orient("top");
-//ICON *****************************************
-    /*
-     icon = this.svg_head.append("g")
-     .attr("class", "x axis")
-     .attr("transform", "translate(0,0)");
 
-
-
-
-     var path_4 = icon.append('path')
-     .attr('fill','#fff')
-     .attr('d','m 11.524596,14.485173 15.198613,15.198613 2.92281,-2.92281 -15.198612,-15.198614 z m -4.363231,-7.286041 2.901826,9.91657 7.014745,-7.014745 z')
-     .attr('transform','matrix(1,0,0,1,0,0)')
-     ;var path_5 = icon.append('path')
-     .attr('fill','#fff')
-     .attr('d','M 52.475404,14.485173 37.27679,29.683786 34.35398,26.760976 49.552593,11.562362 z m 4.363231,-7.286041 -2.901826,9.91657 -7.014744,-7.014745 z')
-     .attr('transform','matrix(1,0,0,1,0,0)')
-     ;var path_6 = icon.append('path')
-     .attr('fill','#fff')
-     .attr('d','m 11.524596,49.514827 15.198613,-15.198614 2.92281,2.92281 -15.198612,15.198614 z m -4.363231,7.286041 2.901826,-9.916571 7.014745,7.014745 z')
-     .attr('transform','matrix(1,0,0,1,0,0)')
-     ;var path_7 = icon.append('path')
-     .attr('fill','#fff')
-     .attr('d','M 52.475404,49.514827 37.27679,34.316213 l -2.92281,2.92281 15.198613,15.198614 z m 4.363231,7.286041 -2.901826,-9.916571 -7.014744,7.014745 z')
-     .attr('transform','matrix(1,0,0,1,0,0)')
-     */
-//END ICON **************************************
 
     this.svg_head.append("g")
         .attr("class", "x axis")
@@ -301,7 +285,6 @@ TimelineVis.prototype.updateVis = function(){
         })
         .attr("x", function (d) {
             var parseDate = d3.time.format("%Y%m%d").parse;
-
             return  that.x(d.start);
         })
         .attr("y", function (d) {
@@ -382,11 +365,20 @@ TimelineVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-TimelineVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+TimelineVis.prototype.onSelectionChange= function (selectionStart, selectionEnd, dataSet){
 
-    // TODO: call wrangle function
+    var start = Math.floor(selectionStart)
+     var end =  Math.floor(selectionEnd)
 
-    // do nothing -- no update when brushing
+    console.log('Floor This')
+    console.log(Math.floor(selectionStart) + ' - ' + Math.floor(selectionEnd));
+
+var mmdd = '0101'
+
+    this.timeBegin =  start.toString() + mmdd;
+    this.timeEnd =  start.toString() + mmdd;
+    console.log(this.timeBegin);
+
 
 }
 
@@ -432,3 +424,7 @@ TimelineVis.prototype.dateFormat = function(origDate){
     return parseDate(isoDate);
 }
 
+TimelineVis_UpdateVis = function(dataset){
+
+
+}

@@ -1,7 +1,7 @@
 /**
  * Created by edgonzalez on 4/23/15.
  */
-function addStats(data){
+function addStats(data, update){
     placeHolder = []
     countByCountry =[]
     countByRegion =[]
@@ -292,13 +292,27 @@ function addStats(data){
     */
 
 
-    simpleBar('#stats1_left',countByRegion, 'region', 5);
-    simpleBar('#stats1_right',countByType, 'type', 4);
-    simpleBar('#stats2_left',countBySource, 'source', 3);
-    simpleBar('#stats2_right',countByIntensity , 'intensity',2);
+    if (update == 1) {
 
-    // Call Function to add filter events *Placed here, because it needs to be called only after charts are initilized
-    addEventStuff();
+        statUpdate(countByRegion, 'region', 5);
+        statUpdate(countByType, 'type', 4);
+        statUpdate(countBySource, 'source', 3);
+        statUpdate(countByIntensity, 'intensity', 2);
+        selectCountryUpdate(countByCountry);
+
+    } else {
+        simpleBar('#stats1_left', countByRegion, 'region', 5);
+        simpleBar('#stats1_right', countByType, 'type', 4);
+        simpleBar('#stats2_left', countBySource, 'source', 3);
+        simpleBar('#stats2_right', countByIntensity, 'intensity', 2);
+// Call Function to add filter events *Placed here, because it needs to be called only after charts are initilized
+        addEventStuff();
+    }
+
+
+
+
+
 }
 
 function addEventStuff(){
@@ -308,13 +322,23 @@ function addEventStuff(){
     $('.filter').click(function () {
 
             var fltr = $(this).attr('filter');
-            var key = $(this).attr('key');
+            var key = '';
 
+            if($(this).css('fill-opacity') > 0){
+                console.log('clear')
 
-            $( "rect[filter='"+ fltr +"']" ).css('fill-opacity',0);
-            $( "rect[filter='"+ fltr +"']" ).css('stroke-opacity',0);
-            $(this).css('fill-opacity',0.365);
-            $(this).css('stroke-opacity',1);
+                key = '';
+                $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
+                $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
+            }
+            else {
+                console.log('Set')
+                $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
+                $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
+                $(this).css('fill-opacity', 0.365);
+                $(this).css('stroke-opacity', 1);
+                key = $(this).attr('key')
+            }
 
             gblFilterSet(fltr, key);
         }
@@ -332,3 +356,59 @@ function addEventStuff(){
 }
 
 
+function statUpdate(dataSet, filter, colCnt){
+
+    console.log(filter);
+    //console.log(dataSet);
+
+    if (dataSet.length > 1){
+        var maxVal = d3.max(dataSet, function(d) { return d.values; })
+        var minVal = d3.min(dataSet, function(d) { return d.values; })
+    } else{
+
+        var maxVal = d3.max(dataSet, function(d) { return d.values; })
+        var minVal = 0
+    }
+
+
+    var scale = d3.scale.linear()
+        .domain([minVal, maxVal])
+        .range([1, 35]);
+
+
+
+    $( "rect[chart='"+filter+"']").attr("height", 0)
+
+    for (var i = 0, len = dataSet.length; i < len; i++) {
+
+        var height = scale(dataSet[i].values);
+        var y = 35 - height;
+
+
+        $( "rect[chart='"+filter+"'][key='"+dataSet[i].key+"']").attr("height", height).attr("y", y);
+
+    }
+
+
+
+}
+
+
+function selectCountryUpdate(dataSet){
+    $('.cntryChk').prop('checked', false);
+
+
+    for (var i = 0, len = dataSet.length; i < len; i++) {
+
+     $( ".cntryChk[value='"+dataSet[i].key+"']").prop('checked', true);
+
+
+
+
+    }
+
+
+
+
+
+}
