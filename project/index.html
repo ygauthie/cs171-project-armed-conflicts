@@ -396,6 +396,8 @@ communication between Chart js files -->
 
 <script>
 
+
+
     //allData holds original data with georeference
     var allData = [];
     var filteredData = [];
@@ -430,13 +432,33 @@ communication between Chart js files -->
             // Event Handler Code
             // for brushed time period
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
+<<<<<<< HEAD
                 map_vis.onSelectionChange(a,b,filteredData);
                 map_vis.zoomOnRegion(Math.floor(Math.random()*6));  // For testing.  To be removed.
             });
 
             // for passing data after filtering
+=======
+                map_vis.onSelectionChange(a,b,allData);
+                //map_vis.zoomOnContinent(1);
+            });
+
+
+            // for other filters
+>>>>>>> origin/master
             $(MyEventHandler).bind("filtersChanged", function (event) {
-                map_vis.onFilterChange(filteredData);
+
+
+                map_vis.onSelectionChange(a,b,filteredData);
+               // timeline_vis.onSelectionChange(a,b,allData);
+
+                //map_vis.onContinentChange(1);
+
+                //map_vis.onSelectionChange(a, b);
+
+                //$('#right-1').text(a +' to ' + b);
+
+
             });
 
             // for zooming on region selected
@@ -515,7 +537,7 @@ communication between Chart js files -->
     });
 
 
-    //filter Functions **************************************
+    //filter Functions ****************************************************************************************
 
     //Define Global Variables to hold filters
     var byType = ''
@@ -563,6 +585,14 @@ communication between Chart js files -->
 
         $('.filter').css('fill-opacity',0);
         $('.filter').css('stroke-opacity',0);
+
+        // Select all countries
+        $('.cntryChk').each(function() { //loop through each checkbox
+            this.checked = true;  //select all checkboxes with class "checkbox1"
+        });
+
+
+
 
         filterData();
     }
@@ -623,7 +653,14 @@ communication between Chart js files -->
         /********************************************************************************************/
 
         console.log('filteredData')
-        console.log(filteredData)
+        //console.log(filteredData)
+
+        addStats(filteredData, 1)
+
+        TimelineVis_UpdateVis(filteredData);
+
+
+
 
 
     }
@@ -669,10 +706,12 @@ communication between Chart js files -->
     }
 
 
+    //TimeLine Event
     $('.laneText').mouseover(function () {
-        alert('hello');
+
     });
 
+   //Country Select Click events
     $('#cntrySelect').click(function () {
 
          $("#cntryDiv").css("border-bottom","none");
@@ -689,9 +728,9 @@ communication between Chart js files -->
 
     })
 
+    //Country SelectAll Click events
 
-
-        $('#selecctall').click(function(event) {  //on click
+    $('#selecctall').click(function(event) {  //on click
             if(this.checked) { // check select status
                 $('.cntryChk').each(function() { //loop through each checkbox
                     this.checked = true;  //select all checkboxes with class "checkbox1"
@@ -704,7 +743,7 @@ communication between Chart js files -->
         });
 
 
-
+    $('.cntryChk').checked = false
 
 
 
