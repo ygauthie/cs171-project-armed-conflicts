@@ -432,20 +432,20 @@ communication between Chart js files -->
             // Event Handler Code
             // for brushed time period
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
-<<<<<<< HEAD
+
                 map_vis.onSelectionChange(a,b,filteredData);
                 map_vis.zoomOnRegion(Math.floor(Math.random()*6));  // For testing.  To be removed.
             });
 
             // for passing data after filtering
-=======
-                map_vis.onSelectionChange(a,b,allData);
+ 
+      //      map_vis.onSelectionChange(a,b,allData);
                 //map_vis.zoomOnContinent(1);
-            });
+        //    });
 
 
             // for other filters
->>>>>>> origin/master
+
             $(MyEventHandler).bind("filtersChanged", function (event) {
 
 

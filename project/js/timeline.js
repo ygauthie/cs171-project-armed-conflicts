@@ -77,6 +77,7 @@ TimelineVis.prototype.initVis = function(){
 /*************************************************************************/
 /*************************************************************************/
 
+TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
 
     if (filter == 1) {
 
