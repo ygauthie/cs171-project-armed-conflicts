@@ -6,6 +6,11 @@ MapVis = function(_parentElement, _data, _topologyData, _eventHandler){
     this.displayData = [];
     this.g = 0;
 
+    // to remember previous zoom
+    this.shiftX = 0;
+    this.shiftY = 0;
+    this.scaling = 0;
+
     // TODO: define all "constants" here
     this.margin = {top: 0, right: 0, bottom: 0, left: 0};
     this.width = 748 - this.margin.left - this.margin.right;
@@ -132,10 +137,10 @@ MapVis.prototype.updateVis = function(){
             var yPosition = d3.select(this).attr("cy");
             var SideA, SideB, Adversaries;
                     
-            if (d.SideA2nd === "NULL") {SideA = d.SideA;}
+            if (d.SideA2nd === "0") {SideA = d.SideA;}
             else {SideA = d.SideA + " and " + d.SideA2nd;}
 
-            if (d.SideB2nd === "NULL") {SideB = d.SideB;}
+            if (d.SideB2nd === "0") {SideB = d.SideB;}
             else {SideB = d.SideB + " and " + d.SideB2nd;}
 
             Adversaries =  SideA + "<br/>vs.<br/>" + SideB;
@@ -178,6 +183,8 @@ MapVis.prototype.updateVis = function(){
                 .attr("d", that.path.projection(that.projection));
             that.g.selectAll("path")  
                 .attr("d", that.path.projection(that.projection)); 
+            console.log("transform","translate("+ 
+                d3.event.translate.join(",")+")scale("+d3.event.scale+")");
       });
 
     this.svg.call(zoom)
@@ -237,13 +244,36 @@ MapVis.prototype.onContinentChange= function (continentNumber){
 
 }
 
-MapVis.prototype.zoomOnContinent= function (continentNumber){
+MapVis.prototype.zoomOnRegion= function (regionNumber){
 
     var that = this;
 
+    var regionTransform = "";
+
+    switch (regionNumber) {
+    case 0:  // Entire world
+        regionTransform = "translate(0,0)scale(1)";
+        break;
+    case 1:  // Europe
+        regionTransform = "translate(-570,48)scale(2.3)";
+        break;
+    case 2:  // Middle East
+        regionTransform = "translate(-756,-180)scale(2.6)";
+        break;
+    case 3:  // Asia
+        regionTransform = "translate(-474,-85)scale(1.5)";
+        break;
+    case 4:  // Africa
+        regionTransform = "translate(-284,-182)scale(1.8)";
+        break;
+    case 5:  // Americas
+        regionTransform = "translate(187,-56)scale(1.2)";
+        break;
+    }
+
     that.g.transition()
-      .duration(750)
-      .attr("transform","translate(30)scale(1.5)");
+      .duration(1000)
+      .attr("transform", regionTransform)
             that.g.selectAll("circle")
                 .attr("d", that.path.projection(that.projection));
             that.g.selectAll("path")  
