@@ -471,8 +471,8 @@ communication between Chart js files -->
 
 
 
-            // ** CHANGE This event is called when filters are changed in the barcharts / or dropdown
-            // **  It will change the global filter variables filter the data then call filterschanged event handler
+            // ** E.G.  This event is called when filters are changed in the barcharts / or dropdown
+            // **  It will change the global filter variables then call filterschanged event handler
             $(MyEventHandler).bind("filterUpdate", function (event, fltr, key) {
                 filterfunction.filterUpdate(fltr, key);
             });
