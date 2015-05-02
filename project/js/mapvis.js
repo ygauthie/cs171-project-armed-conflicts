@@ -115,6 +115,12 @@ MapVis.prototype.updateVis = function(){
     //console.log("after binding:");
     //console.log(that.g.selectAll("circle"));
     var circles_enter = circles.enter()
+        .append("a")
+          .attr("xlink:href", function(d) {
+            return "http://www.google.com/search?q="+d.Location+
+            " site:www.ucdp.uu.se/gpdatabase/gpcountry.php &btnI";}
+          )
+          .attr("target","_blank")
         .append("circle")
         .attr("cx", function(d) {
             //if (d.ConflictId == "1-224") debugger;
@@ -136,7 +142,7 @@ MapVis.prototype.updateVis = function(){
             //Get this circle's x/y values, then augment for the tooltip
             var xPosition = d3.select(this).attr("cx");
             var yPosition = d3.select(this).attr("cy");
-            var SideA, SideB, Adversaries;
+            var SideA, SideB, Adversaries, Territory;
                     
             if (d.SideA2nd === "0") {SideA = d.SideA;}
             else {SideA = d.SideA + " and " + d.SideA2nd;}
@@ -145,6 +151,10 @@ MapVis.prototype.updateVis = function(){
             else {SideB = d.SideB + " and " + d.SideB2nd;}
 
             Adversaries =  SideA + "<br/>vs.<br/>" + SideB;
+    
+            if (d.TerritoryName === "NULL") {Territory = "";}
+            else {Territory = "<br/><br/>Territory disputed: "+d.TerritoryName;}
+
 
             //Update the tooltip position and value
             d3.select("#tooltip")
@@ -152,8 +162,9 @@ MapVis.prototype.updateVis = function(){
                 .style("left", (d3.event.pageX) + "px")     
                 .style("top", (d3.event.pageY - 90) + "px")
                 .select("#conflict-label")  
-                .html("<strong>" + d.Location + ", " + d.Year + "</strong>" + "<br/>" + 
-                     Adversaries);   
+                .attr("xlink:href", "http://en.wikipedia.org/wiki/")
+                .html("<strong>" + d.Location + ", " + d.Year + "</strong>" + "<br/><br/>" + 
+                     Adversaries+Territory);   
 
             //Show the tooltip
             d3.select("#tooltip").classed("hidden", false);
