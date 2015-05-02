@@ -337,6 +337,7 @@ console.log('Timeline')
 
             var start = vals[0];
             var end = vals[1];
+
             // var visItems = this.itemData.filter(function(d) {return d.start < maxExtent && d.end > minExtent;});
             $(that.eventHandler).trigger("selectionChanged", [start, end]);
             //$(that.eventHandler).trigger("selectionChanged", vals);
@@ -368,6 +369,8 @@ console.log('Timeline')
  * @param selection
  */
 TimelineVis.prototype.onSelectionChange= function (selectionStart, selectionEnd, dataSet){
+
+    console.log('***************************** HELLO **************************************')
 
     var start = Math.floor(selectionStart)
      var end =  Math.floor(selectionEnd)

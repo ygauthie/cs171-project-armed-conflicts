@@ -1,7 +1,25 @@
 /**
  * Created by edgonzalez on 4/23/15.
  */
-function addStats(data, update){
+
+
+
+
+
+
+filterCharts = function(data, _eventHandler, update){
+
+    this.eventHandler = _eventHandler;
+
+    this.addStats(data, update);
+
+}
+
+
+
+// This Whole Function basically wrangles data for 5 charts, each chart has different groupings, i.e. type, region, source, intensity, country
+
+filterCharts.prototype.addStats= function(data, update){
     placeHolder = []
     countByCountry =[]
     countByRegion =[]
@@ -269,7 +287,11 @@ function addStats(data, update){
 
 
 
-    /* Sum by Country ************************************/
+
+
+    /************************************************/
+    /************** By Country ****************/
+    /************************************************/
     var countByIntensity = d3.nest()
         .key(function(d) { return d.intensity;})
         .rollup(function(d) {
@@ -282,9 +304,10 @@ function addStats(data, update){
     var test1 = d3.max(countByRegion, function(d) { return d.values; })
 
 
-
-    /* this Sets up barCharts to use as filters
-
+    /************************************************/
+    /**    Call Function to sets up barCharts      **/
+    /************************************************/
+   /*
       Parameters  1 = DivContainer for chart
       Parameters  2 = data source for chart
       Parameters  3 = name of the filter
@@ -294,34 +317,148 @@ function addStats(data, update){
 
     if (update == 1) {
 
-        statUpdate(countByRegion, 'region', 5);
-        statUpdate(countByType, 'type', 4);
-        statUpdate(countBySource, 'source', 3);
-        statUpdate(countByIntensity, 'intensity', 2);
-        selectCountryUpdate(countByCountry);
+        this.statUpdate(countByRegion, 'region', 5);
+        this.statUpdate(countByType, 'type', 4);
+        this.statUpdate(countBySource, 'source', 3);
+        this.statUpdate(countByIntensity, 'intensity', 2);
+        this.selectCountryUpdate(countByCountry);
 
     } else {
-        simpleBar('#stats1_left', countByRegion, 'region', 5);
-        simpleBar('#stats1_right', countByType, 'type', 4);
-        simpleBar('#stats2_left', countBySource, 'source', 3);
-        simpleBar('#stats2_right', countByIntensity, 'intensity', 2);
+        this.simpleBar('#stats1_left', countByRegion, 'region', 5);
+        this.simpleBar('#stats1_right', countByType, 'type', 4);
+        this.simpleBar('#stats2_left', countBySource, 'source', 3);
+        this.simpleBar('#stats2_right', countByIntensity, 'intensity', 2);
 // Call Function to add filter events *Placed here, because it needs to be called only after charts are initilized
-        addEventStuff();
+        this.addEventStuff();
+    }
+}
+
+
+
+
+
+
+filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter, cnt ){
+
+//Sample BarChart placeholder
+
+    var w
+
+    if (smpl_data.length < 1) {
+        smpl_data = [];
+        for (var i = 0; i < cnt; i++) {
+            var newNumber = Math.random() * 30;
+            smpl_data.push(newNumber);
+        }
+        w = cnt * 20
+
+
+    }  else {
+
+        var cnt = smpl_data.length * 20;
+
+        if (cnt > 100){
+            w = 100
+        } else {
+            w = cnt
+        }
+
+
     }
 
+//var max =  d3.max(smpl_data[value])
+
+    var h=35;
+    var barPadding = 1;
+
+    var maxVal = d3.max(smpl_data, function(d) { return d.values; })
+    var minVal = d3.min(smpl_data, function(d) { return d.values; })
 
 
+    var scale = d3.scale.linear()
+        .domain([minVal, maxVal])
+        .range([1, 35]);
+
+
+
+
+    bar_svg = d3.select(div_container).append('svg')
+        .attr('width', '110')
+        .attr('height', h + 15);
+
+    bar_svg.selectAll("rect")
+        .data(smpl_data)
+        .enter()
+        .append("rect")
+        .attr("x", function(d, i) {
+            return i * (w / smpl_data.length);
+        })
+        .attr("y", function(d) {
+            return h - scale(d.values);
+        })
+        .attr("width", w / smpl_data.length - barPadding)
+        .attr("height", function(d) {
+            return scale(d.values);
+        })
+        .attr("fill", function(d) {
+            return "#d3d4d5";
+        })
+        .attr('key', function(d) {
+            return d.key
+        })
+        .attr('chart', curfilter );
+
+
+    bar_svg.selectAll("text")
+        .data(smpl_data)
+        .enter()
+        .append("text")
+        .text(function(d, i) {
+            return d.key;
+        })
+        .attr("x", function(d, i) {
+            return i * (w / smpl_data.length) + 9;
+        })
+        .attr("y", function(d) {
+            return h + 15;
+        })
+        .attr("text-anchor", "middle")
+        .attr('key', function(d) {
+            return d.key
+        })
+        .attr('class', 'xLabels');
+
+
+    bar_svg.selectAll(".rectFiltr")
+        .data(smpl_data)
+        .enter()
+        .append("rect")
+        .attr("x", function(d, i) {
+            return i * (w / smpl_data.length);
+        })
+        .attr("y", 0)
+        .attr("width", w / smpl_data.length - barPadding)
+        .attr("height", h + 15)
+        .attr('key', function(d) {
+            return d.key
+        })
+        .style("stroke", "pink")
+        .style("stroke-opacity",0.0)
+        .style("fill", "dodgerblue")
+        .style("fill-opacity", 0.0)
+        .attr('filter', curfilter )
+        .attr('class', 'filter');
 
 
 }
 
 
 
-
-function statUpdate(dataSet, filter, colCnt){
-
+filterCharts.prototype.statUpdate= function(dataSet, filter, colCnt){
+    console.log("************* statUpdate *********************");
     console.log(filter);
-    //console.log(dataSet);
+    console.log(dataSet);
+
 
     if (dataSet.length > 1){
         var maxVal = d3.max(dataSet, function(d) { return d.values; })
@@ -337,26 +474,26 @@ function statUpdate(dataSet, filter, colCnt){
         .domain([minVal, maxVal])
         .range([1, 35]);
 
-
-
     $( "rect[chart='"+filter+"']").attr("height", 0)
 
     for (var i = 0, len = dataSet.length; i < len; i++) {
 
         var height = scale(dataSet[i].values);
+
         var y = 35 - height;
 
-
+         console.log(height);
         $( "rect[chart='"+filter+"'][key='"+dataSet[i].key+"']").attr("height", height).attr("y", y);
 
     }
 
-
+    console.log("************* statUpdate End *********************");
 
 }
 
 
-function selectCountryUpdate(dataSet){
+
+filterCharts.prototype.selectCountryUpdate= function(dataSet){
     $('.cntryChk').prop('checked', false);
 
 
@@ -364,13 +501,75 @@ function selectCountryUpdate(dataSet){
 
      $( ".cntryChk[value='"+dataSet[i].key+"']").prop('checked', true);
 
-
-
-
     }
 
+}
 
 
 
 
+
+filterCharts.prototype.addEventStuff= function(){
+
+    that = this;
+
+    $('.filter').click(function () {
+
+            var key = $(this).attr('key');
+            var fltr = $(this).attr('filter');
+
+
+            if($(this).css('fill-opacity') > 0){
+                console.log('clear')
+
+                key = '';
+                $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
+                $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
+            }
+            else {
+                $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
+                $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
+                $(this).css('fill-opacity', 0.365);
+                $(this).css('stroke-opacity', 1);
+                //key = $(this).attr('key')
+            }
+
+            console.log('event Test   ' + key);
+            $(that.eventHandler).trigger("filterUpdate", fltr+'/'+ key, key);
+
+
+            //gblFilterSet(fltr, key);
+              });
+
+    //Country Select Click events
+    $('#cntrySelect').click(function () {
+
+        $("#cntryDiv").css("border-bottom","none");
+
+        $("#countryList").slideToggle( function(){
+
+            if ( $(this).css('display') == 'none' ){
+                $("#cntryDiv").css("border-bottom","solid 1px #d3d4d5");
+
+                $(that.eventHandler).trigger("filterUpdate", 'country/1', '1');
+
+            }else{ $("#cntryDiv").css("border-bottom","none");}
+        });
+
+    })
+
+
+
+
+
+    /*
+     $(".filter").mouseenter(function(){
+     $(this).css('fill-opacity',0.365);
+     $(this).css('stroke-opacity',0.75);
+     });
+     $(".filter").mouseleave(function(){
+     $(this).css('fill-opacity',0);
+     $(this).css('stroke-opacity',0);
+     });
+     */
 }

@@ -36,7 +36,9 @@
     <script src="js/mapvis.js"></script>
     <script src="js/countvis.js"></script>
     <script src="js/simpleBarChart.js"></script>
-    <script src="js/stats.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/datafilter.js"></script>
+  <!--  <script src="js/stats.js"></script> -->
 
 
     <!-- Local css -->
@@ -400,6 +402,7 @@ communication between Chart js files -->
 
     //allData holds original data with georeference
     var allData = [];
+    //Filtered Data holds data after filters applied
     var filteredData = [];
     //episodeData holds data with conflict episodes reduced to a single row with start and end dates
     var episodeData = {};
@@ -425,8 +428,11 @@ communication between Chart js files -->
             var map_vis = new MapVis(d3.select("#right-1"), allData, topologyData, MyEventHandler);
             var count_vis = new CountVis(d3.select("#left-2"), allData, MyEventHandler);
 
-            addStats(allData);
+            // ***CHANGE  Filter Charts builds the filter barcharts  removed stats.js
+            var filter_charts = new filterCharts(allData, MyEventHandler, 0 );
 
+            // **CHANGE filterfunction now contains all the filter logic moved this from the index HTML
+            var filterfunction = new newfilterData(MyEventHandler)
 
 
             // Event Handler Code
@@ -434,7 +440,7 @@ communication between Chart js files -->
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
 
 
-                map_vis.onSelectionChange(a,b,filteredData);
+                map_vis.onSelectionChange(a,b,allData);
                 map_vis.zoomOnRegion(Math.floor(Math.random()*6));  // For testing.  To be removed.
 
                 map_vis.onSelectionChange(a,b,allData);
@@ -443,19 +449,15 @@ communication between Chart js files -->
 
             });
 
-            // for passing data after filtering
- 
-      //      map_vis.onSelectionChange(a,b,allData);
-                //map_vis.zoomOnContinent(1);
-        //    });
-
 
             // for other filters
 
             $(MyEventHandler).bind("filtersChanged", function (event) {
 
+                filter_charts.addStats(filteredData, "1");
 
-                map_vis.onSelectionChange(a,b,filteredData);
+                //map_vis.onSelectionChange(a,b,filteredData);
+
                // timeline_vis.onSelectionChange(a,b,allData);
 
                 //map_vis.onContinentChange(1);
@@ -466,6 +468,16 @@ communication between Chart js files -->
 
 
             });
+
+
+
+            // ** CHANGE This event is called when filters are changed in the barcharts / or dropdown
+            // **  It will change the global filter variables filter the data then call filterschanged event handler
+            $(MyEventHandler).bind("filterUpdate", function (event, fltr, key) {
+                filterfunction.filterUpdate(fltr, key);
+            });
+
+
 
             // for zooming on region selected
             $(MyEventHandler).bind("regionChanged", function (event,regionId) {
@@ -553,124 +565,6 @@ communication between Chart js files -->
     var byCntry = ''
 
 
-    //Set Filter Variables based on the filter and key
-    function gblFilterSet(filter, key) {
-    console.log('gblFilterSet')
-        switch (filter) {
-            case 'type':
-                byType = key;
-                break;
-            case 'source':
-                bySource = key;
-                break;
-            case 'region':
-                byRegion = key;
-                break;
-            case 'intensity':
-                byIntensity = key;
-                break;
-            case 'country':
-                byCntry = $('.cntryChk:checkbox:checked').map(function() {
-                    return this.value;
-                }).get();
-
-                break;
-        }
-
-        filterData();
-        $(this.eventHandler).trigger("filtersChanged");
-    }
-
-    //Reset All Filter Variables to Null
-    function gblFilterReset(){
-        byType = ''
-       byRegion = ''
-         bySource = ''
-        byIntensity = ''
-         byCntry = ''
-
-        $('.filter').css('fill-opacity',0);
-        $('.filter').css('stroke-opacity',0);
-
-        // Select all countries
-        $('.cntryChk').each(function() { //loop through each checkbox
-            this.checked = true;  //select all checkboxes with class "checkbox1"
-        });
-
-
-
-
-        filterData();
-    }
-
-
-    //Filter the data based on Filter Variables
-    function filterData(){
-        console.log('filterData')
-        //Check Filters one by one
-
-        filteredData = allData;
-
-
-        if (byType != ''){
-
-            filteredData = filteredData.filter(function (val, i, array) {
-                if( val.TypeOfConflict == byType ) {
-                    return val;
-                }
-            });
-        }
-
-        if (byRegion != ''){
-            filteredData = filteredData.filter(function (val, i, array) {
-                if( val.Region == byRegion ) {
-                    return val;
-                }
-            });
-        }
-        if (bySource != ''){
-            filteredData = filteredData.filter(function (val, i, array) {
-                if( val.Incompatibility == bySource ) {
-                    return val;
-                }
-            });
-        }
-
-        if (byIntensity != ''){
-            filteredData = filteredData.filter(function (val, i, array) {
-                if( val.IntensityLevel == byIntensity ) {
-                    return val;
-                }
-            });
-        }
-        if (byCntry!= ''){
-            filteredData = filteredData.filter(function (val, index, array) {
-
-                if (byCntry.indexOf(val.Location) >= 0) {
-                    return val;
-                }
-            });
-        }
-
-        console.log(filteredData)
-
-        /********************************************************************************************/
-        /****************** Call Update Functions and pass Filtered Data Set here ******************/
-        /********************************************************************************************/
-
-        console.log('filteredData')
-        //console.log(filteredData)
-
-        addStats(filteredData, 1)
-
-        TimelineVis_UpdateVis(filteredData);
-
-
-
-
-
-    }
-
 
 
 
@@ -717,22 +611,7 @@ communication between Chart js files -->
 
     });
 
-   //Country Select Click events
-    $('#cntrySelect').click(function () {
 
-         $("#cntryDiv").css("border-bottom","none");
-
-        $("#countryList").slideToggle( function(){
-
-            if ( $(this).css('display') == 'none' ){
-                $("#cntryDiv").css("border-bottom","solid 1px #d3d4d5");
-
-                gblFilterSet('country', 1);
-
-            }else{ $("#cntryDiv").css("border-bottom","none");}
-        });
-
-    })
 
     //Country SelectAll Click events
 
