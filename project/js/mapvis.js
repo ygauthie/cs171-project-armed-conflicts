@@ -251,7 +251,7 @@ MapVis.prototype.zoomOnRegion= function (regionNumber){
     var regionTransform = "";
 
     switch (regionNumber) {
-    case 0:  // Entire world
+    case "":  // Entire world
         regionTransform = "translate(0,0)scale(1)";
         break;
     case 1:  // Europe
@@ -281,30 +281,6 @@ MapVis.prototype.zoomOnRegion= function (regionNumber){
 
 }
 
-// Derived from from https://gist.github.com/mbostock/3711652
-function projectionTween(projection0, projection1, width, height) {
 
-  return function(d) {
-    var t = 0;
-
-    var projection = d3.geo.projection(project)
-        .scale(1)
-        .translate([width / 2, height/ 2]);
-
-    var path = d3.geo.path()
-        .projection(projection);
-
-    function project(λ, φ) {
-      λ *= 180 / Math.PI, φ *= 180 / Math.PI;
-      var p0 = projection0([λ, φ]), p1 = projection1([λ, φ]);
-      return [(1 - t) * p0[0] + t * p1[0], (1 - t) * -p0[1] + t * -p1[1]];
-    }
-
-    return function(_) {
-      t = _;
-      return path(d);
-    };
-  };
-}
 
 

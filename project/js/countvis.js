@@ -4,6 +4,7 @@ CountVis = function(_parentElement, _data, _eventHandler){
     this.data = _data;
     this.eventHandler = _eventHandler;
     this.displayData = [];
+    this.countData = [];
 
     // TODO: define all "constants" here
     this.margin = {top: 20, right: 10, bottom: 20, left: 40};
@@ -24,66 +25,62 @@ CountVis.prototype.initVis = function(){
 
     this.svg = this.parentElement.append("svg")
         .attr("width", this.width + this.margin.left + this.margin.right)
-        .attr("height", this.height + this.margin.top + this.margin.bottom);
+        .attr("height", this.height + this.margin.top + this.margin.bottom);            
 
+    this.countData  = this.wrangleData();
 
-    
-            
-
-    var countData  = this.wrangleData();
-
-    var x = d3.scale.linear()
+    this.x = d3.scale.linear()
             .domain([1946,2014])
             .range([0, this.width]);
 
-    var y = d3.scale.linear()
+    this.y = d3.scale.linear()
             .domain([0, 50])
             .range([this.height, 0]);
     
-    var xAxis = d3.svg.axis().scale(x)
+    this.xAxis = d3.svg.axis().scale(this.x)
                    .orient("bottom")
                    .tickFormat(d3.format(".0f"));
-    var yAxis = d3.svg.axis().scale(y)
+    this.yAxis = d3.svg.axis().scale(this.y)
                     .ticks(4)
                     .orient("left");
 
-    var area = d3.svg.area()
+    this.area = d3.svg.area()
         .interpolate("monotone")
-        .x(function(d,i) { return x(i+1946); })
+        .x(function(d,i) { return that.x(i+1946); })
         .y0(this.height)
-        .y1(function(d) { return y(d); });
+        .y1(function(d) { return that.y(d); });
 
 
 
-    var context = this.svg.append("g")
+    this.context = this.svg.append("g")
         .attr("class", "context")
         .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-    var brush = d3.svg.brush()
-        .x(x)
+    this.brush = d3.svg.brush()
+        .x(this.x)
         .on("brush", brushed);
 
-    context.append("path")
-      .datum(countData)
+    this.context.append("path")
+      .datum(this.countData)
       .attr("class", "area")
-      .attr("d", area);
+      .attr("d", this.area);
 
-    context.append("g")
+    this.context.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + this.height + ")")
-      .call(xAxis);
+      .call(this.xAxis);
 
-    context.append("g")
+    this.context.append("g")
       .attr("class", "y axis")
-      .call(yAxis);
+      .call(this.yAxis);
 
-    context.append("g")
-        .attr("class", "brush").call(brush)
+    this.context.append("g")
+        .attr("class", "brush").call(this.brush)
             .selectAll("rect").attr({
             height: this.height
         });
 
-     context.append("g")
+     this.context.append("g")
         .attr("class", "y axis")
       .append("text")
         .attr("transform", "rotate(-90)")
@@ -95,20 +92,20 @@ CountVis.prototype.initVis = function(){
     initBrush();
     // Set default brush value
     function initBrush() {
-        brush.extent([1960, 1975]);
-        brush(d3.select(".brush").transition());
-        brush.event(d3.select(".brush").transition().delay(10));
+        that.brush.extent([1960, 1975]);
+        that.brush(d3.select(".brush").transition());
+        that.brush.event(d3.select(".brush").transition().delay(10));
     }
     // call the update method
     //this.updateVis();
 
     function brushed() {
 
-        console.log(brush.extent());
+        //console.log(brush.extent());
 
-        $(that.eventHandler).trigger("selectionChanged",brush.extent());
+        $(that.eventHandler).trigger("selectionChanged",that.brush.extent());
         d3.select("#brushInfo")
-           .text(d3.round(brush.extent()[0])+" to "+d3.round(brush.extent()[1]));
+           .text(d3.round(that.brush.extent()[0])+" to "+d3.round(that.brush.extent()[1]));
     }
 }
 
@@ -156,8 +153,36 @@ CountVis.prototype.wrangleData= function(_filter){
  */
 CountVis.prototype.updateVis = function(){
 
-    // TODO: implement update graphs (D3: update, enter, exit)
+    // Dear JS hipster,
+    // you might be able to pass some options as parameter _option
+    // But it's not needed to solve the task.
+    // var options = _options || {};
+       // Add click interactivity
 
+    var that = this;
+
+    this.y.domain([0, d3.max(that.countData.map(function(d) { return d; }))]);
+
+    //this.svg.select(".x.axis")
+    //    .call(this.xAxis);
+
+    this.svg.select(".y.axis")
+        .call(this.yAxis)
+
+
+    var context = this.svg.selectAll(".area")
+                        .data([this.countData]);
+
+    context.enter()
+      .append("path")
+      .attr("class", "area");
+      
+    context
+      .transition()
+      .attr("d", this.area);
+
+    context.exit()
+      .remove();
 
 }
 
@@ -167,13 +192,11 @@ CountVis.prototype.updateVis = function(){
  * be defined here.
  * @param selection
  */
-CountVis.prototype.onSelectionChange= function (selectionStart, selectionEnd){
+CountVis.prototype.onFilterChange= function (_data){
 
-    // TODO: call wrangle function
-    console.log("allo");
-    // do nothing -- no update when brushing
-
-
+    this.data = _data;
+    this.countData  = this.wrangleData();
+    this.updateVis();
 }
 
 

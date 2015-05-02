@@ -407,7 +407,8 @@ communication between Chart js files -->
     //episodeData holds data with conflict episodes reduced to a single row with start and end dates
     var episodeData = {};
 
-
+    // to keep record of brushed area in CountVis
+    var timeMin, timeMax;  
 
     $(function () { // this function is called after the HTML document is fully loaded
 
@@ -439,12 +440,12 @@ communication between Chart js files -->
             // for brushed time period
             $(MyEventHandler).bind("selectionChanged", function (event, a, b) {
 
+                timeMin = a;
+                timeMax = b;
+                map_vis.onSelectionChange(a,b,filteredData);
 
-                map_vis.onSelectionChange(a,b,allData);
-                map_vis.zoomOnRegion(Math.floor(Math.random()*6));  // For testing.  To be removed.
-
-                map_vis.onSelectionChange(a,b,allData);
-                timeline_vis.onSelectionChange(a,b,allData);
+                //map_vis.onSelectionChange(a,b,allData);
+                timeline_vis.onSelectionChange(a,b,filteredData);
                 //map_vis.zoomOnContinent(1);
 
             });
@@ -454,15 +455,18 @@ communication between Chart js files -->
 
             $(MyEventHandler).bind("filtersChanged", function (event) {
 
+                //filteredData = _dataFiltered;
                 filter_charts.addStats(filteredData, "1");
 
-                //map_vis.onSelectionChange(a,b,filteredData);
+               // map_vis.onFilterChange(filteredData);
 
                // timeline_vis.onSelectionChange(a,b,allData);
 
                 //map_vis.onContinentChange(1);
 
-                //map_vis.onSelectionChange(a, b);
+                map_vis.onSelectionChange(timeMin, timeMax, filteredData);
+                map_vis.zoomOnRegion(parseInt(byRegion*1));
+                count_vis.onFilterChange(filteredData);
 
                 //$('#right-1').text(a +' to ' + b);
 
