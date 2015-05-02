@@ -165,7 +165,8 @@ MapVis.prototype.updateVis = function(){
                 
          });
     
-    circles.transition().duration(500)
+    circles.transition()
+        .duration(1000)
         .attr("r", function(d) {
             if (d.IntensityLevel==1) {return 3;}
             else return 7;

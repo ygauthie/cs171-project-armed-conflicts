@@ -167,7 +167,8 @@ CountVis.prototype.updateVis = function(){
     //    .call(this.xAxis);
 
     this.svg.select(".y.axis")
-        .call(this.yAxis)
+        .transition().duration(1000).ease("cubic-in-out")
+        .call(this.yAxis);
 
 
     var context = this.svg.selectAll(".area")
@@ -178,7 +179,7 @@ CountVis.prototype.updateVis = function(){
       .attr("class", "area");
       
     context
-      .transition()
+      .transition().duration(1000).ease("cubic-in-out")
       .attr("d", this.area);
 
     context.exit()
