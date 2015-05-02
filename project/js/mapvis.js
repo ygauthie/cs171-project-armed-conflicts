@@ -123,6 +123,7 @@ MapVis.prototype.updateVis = function(){
         .attr("cy", function(d) {
             return that.projection([d.lon, d.lat])[1];
         })
+        .attr("r", 0)
         // setting atributes for CSS styling
         .attr("region", function (d) {return d.Region;})
         .attr("source", function (d) {return d.Incompatibility;})
@@ -163,16 +164,16 @@ MapVis.prototype.updateVis = function(){
             //Hide the tooltip
             d3.select("#tooltip").classed("hidden", true);
                 
-         });
-    
-    circles.transition()
-        .duration(1000)
-        .attr("r", function(d) {
+         })
+        .transition().duration(200).attr("r", function(d) {
             if (d.IntensityLevel==1) {return 3;}
             else return 7;
-    })
+        });
+    
+    //circles.transition()
+      //  .duration(1000);
 
-    circles.exit().remove();
+    circles.exit().transition().duration(200).attr("r", 0).remove();
 
 
     // zoom and pan
@@ -184,8 +185,8 @@ MapVis.prototype.updateVis = function(){
                 .attr("d", that.path.projection(that.projection));
             that.g.selectAll("path")  
                 .attr("d", that.path.projection(that.projection)); 
-            console.log("transform","translate("+ 
-                d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+            //console.log("transform","translate("+ 
+            //    d3.event.translate.join(",")+")scale("+d3.event.scale+")");
       });
 
     this.svg.call(zoom)
