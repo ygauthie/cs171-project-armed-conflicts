@@ -357,7 +357,10 @@ console.log('Timeline')
 
 
 
+TimelineVis.prototype.filtersChanged= function (dataSet){
+    var dataset = dataSet;
 
+}
 
 
 
