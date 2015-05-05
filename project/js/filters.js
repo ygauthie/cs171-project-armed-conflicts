@@ -371,7 +371,7 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
 
 
     var chart,
-        width = 75,
+        width = 80,
         bar_height = 15,
         height = bar_height * key.length;
 
@@ -392,8 +392,9 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
         .rangeRoundBands([0, height], .1, 0);
 
 
+    var left_width = 95;
 
-    var left_width = 90;
+    console.log('o');
 
     chart = d3.select($(div_container)[0])
         .append('svg')
@@ -449,7 +450,7 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
         .attr("x", 5)
         .attr("y", function (d, i) {
             return y(d.key);
-            console.log('hello')
+
         })
         .attr("width",165)
         .attr("height", y.rangeBand())
@@ -576,16 +577,20 @@ filterCharts.prototype.addEventStuff= function(){
 
 
 
-    /*
+
      $(".filter").mouseenter(function(){
-     $(this).css('fill-opacity',0.365);
-     $(this).css('stroke-opacity',0.75);
+     var filter = $(this).attr('filter');
+     var key = $(this).attr('key');
+
+         $("circle["+filter +"='" + key + "']").css('fill','dodgerblue');
+
      });
      $(".filter").mouseleave(function(){
-     $(this).css('fill-opacity',0);
-     $(this).css('stroke-opacity',0);
+         var filter = $(this).attr('filter');
+         var key = $(this).attr('key');
+         $("circle["+filter +"='" + key + "']").css('fill','white');
      });
-     */
+
 }
 
 
@@ -629,7 +634,7 @@ var x_label;
                 x_label = "Internal";
                 break;
             case '4':
-                x_label = "Internationalized";
+                x_label = "International";
                 break;
         }
     }

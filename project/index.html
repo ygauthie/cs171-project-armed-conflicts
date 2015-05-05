@@ -159,7 +159,8 @@
             background-color: #272b30;
             z-index: 1;
             display: none;
-            top: 115px;
+            top: 131px;
+
             width: 1150px;
             border: solid 1px #d3d4d5
 
@@ -169,7 +170,7 @@
             position: absolute;
             background-color: #272b30;
             z-index: 2;
-            margin-left:10px;
+            margin-left:13px;
         }
         #country{
             margin-bottom:30px;
@@ -320,13 +321,13 @@
 
                 <div id="stats1" class="row">
 
-                    <div id="stats1_left" class="col-xs-6 stat" style="margin-right:-10px"><h5>Region</h5></div>
+                    <div id="stats1_left" class="col-xs-6 stat" style="margin-right:-15px"><h5>Region</h5></div>
                     <div id="stats1_right" class="col-xs-6 stat" style="margin-left:50px"><h5>Type</h5></div>
 
                 </div>
                 <div id="stats2" class="row">
 
-                    <div id="stats2_left" class="col-xs-3 stat" style="margin-right:-10px"><h5>Source</h5></div>
+                    <div id="stats2_left" class="col-xs-3 stat" style="margin-right:-15px"><h5>Source</h5></div>
                     <div id="stats2_right" class="col-xs-6 stat" style="margin-left:50px"><h5>Intensity</h5></div>
                 </div>
 
@@ -450,12 +451,25 @@ communication between Chart js files -->
                 map_vis.onSelectionChange(a,b,filteredData);
                 //map_vis.onSelectionChange(a,b,allData);
 
-                filter_charts.addStats(filteredData, "1");
+
 
                 timeline_vis.onSelectionChange(a,b,filteredData);
-                filter_charts.addStats(filteredData, "1");
+                //filter_charts.addStats(filteredData, "1");
 
+
+                var barData =  filteredData.filter( function (d) {
+                    if (d.Year >= a && d.Year <= b) {
+                        return d;
+                    }});
+
+                console.log(barData)
+
+                filter_charts.addStats(barData, "1");
                 //map_vis.zoomOnContinent(1);
+
+
+
+
 
             });
 
@@ -518,6 +532,13 @@ communication between Chart js files -->
                         .entries(episodeData);
 
                 /******* Populate Country Dropdown ***************/
+
+
+                //sort Country list
+
+                //byLoc
+
+             byLoc = byLoc.sort(function (a,b) {return d3.ascending(a.key, b.key);});
 
                 for (var i = 0, len = byLoc.length; i < len; i++) {
 

@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2693e79c-0958-4ba9-943e-73a04743f687" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/js/datafilter.js" afterPath="$PROJECT_DIR$/project/js/datafilter.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/js/filters.js" afterPath="$PROJECT_DIR$/project/js/filters.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/index.html" afterPath="$PROJECT_DIR$/project/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/js/stats.js" afterPath="$PROJECT_DIR$/project/js/stats.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/js/timeline.js" afterPath="$PROJECT_DIR$/project/js/timeline.js" />
     </list>
     <ignored path="cs171-project-armed-conflicts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,17 +30,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="filters.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="filters.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/js/filters.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5" vertical-offset="570" max-vertical-offset="7725">
-              <caret line="70" column="2" selection-start-line="70" selection-start-column="2" selection-end-line="70" selection-end-column="2" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1611" max-vertical-offset="5445">
+              <caret line="589" column="39" selection-start-line="589" selection-start-column="39" selection-end-line="589" selection-end-column="39" />
               <folding>
-                <element signature="e#10406#12964#0" expanded="false" />
-                <element signature="e#13037#13922#0" expanded="false" />
-                <element signature="e#13987#14174#0" expanded="false" />
-                <element signature="e#14228#15888#0" expanded="false" />
-                <element signature="e#15953#17454#0" expanded="false" />
+                <element signature="e#452#10315#0" expanded="false" />
+                <element signature="e#13027#13912#0" expanded="false" />
+                <element signature="e#13977#14164#0" expanded="false" />
+                <element signature="e#16084#17581#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -53,17 +49,17 @@
         <entry file="file://$PROJECT_DIR$/project/js/mapvis.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="2715" max-vertical-offset="4575">
-              <caret line="220" column="16" selection-start-line="218" selection-start-column="32" selection-end-line="222" selection-end-column="8" />
+              <caret line="221" column="17" selection-start-line="218" selection-start-column="4" selection-end-line="222" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.75" vertical-offset="6135" max-vertical-offset="9915">
-              <caret line="415" column="22" selection-start-line="415" selection-start-column="8" selection-end-line="415" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.6967341" vertical-offset="7907" max-vertical-offset="10230">
+              <caret line="557" column="21" selection-start-line="557" selection-start-column="21" selection-end-line="557" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -72,6 +68,19 @@
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stats.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/js/stats.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="5085">
+              <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+              <folding>
+                <element signature="n#!!block;n#statUpdate#0" expanded="false" />
+                <element signature="n#!!block;n#selectCountryUpdate#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -105,8 +114,8 @@
         <option value="$PROJECT_DIR$/project/js/stats.js" />
         <option value="$PROJECT_DIR$/project/js/test.html" />
         <option value="$PROJECT_DIR$/project/test.html" />
-        <option value="$PROJECT_DIR$/project/index.html" />
         <option value="$PROJECT_DIR$/project/js/filters.js" />
+        <option value="$PROJECT_DIR$/project/index.html" />
       </list>
     </option>
   </component>
@@ -115,8 +124,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1916" />
-    <option name="height" value="1057" />
+    <option name="width" value="1768" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -251,7 +260,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1916" height="1057" extended-state="6" />
+    <frame x="0" y="23" width="1768" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -259,7 +268,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26096034" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28280544" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -518,20 +527,8 @@
         <state vertical-scroll-proportion="-10.407408" vertical-offset="2269" max-vertical-offset="6990">
           <caret line="170" column="0" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
             <element signature="e#11839#12330#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/js/stats.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-          <folding>
-            <element signature="n#!!block;n#addStats#0" expanded="false" />
-            <element signature="n#!!block;n#statUpdate#0" expanded="false" />
-            <element signature="n#!!block;n#selectCountryUpdate#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -551,15 +548,39 @@
     <entry file="file://$PROJECT_DIR$/project/js/mapvis.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2715" max-vertical-offset="4575">
-          <caret line="220" column="16" selection-start-line="218" selection-start-column="32" selection-end-line="222" selection-end-column="8" />
+          <caret line="221" column="17" selection-start-line="218" selection-start-column="4" selection-end-line="222" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/js/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2811" max-vertical-offset="5445">
+          <caret line="589" column="39" selection-start-line="589" selection-start-column="39" selection-end-line="589" selection-end-column="39" />
+          <folding>
+            <element signature="e#452#10315#0" expanded="false" />
+            <element signature="e#13027#13912#0" expanded="false" />
+            <element signature="e#13977#14164#0" expanded="false" />
+            <element signature="e#16084#17581#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/js/stats.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="5085">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <folding>
+            <element signature="n#!!block;n#statUpdate#0" expanded="false" />
+            <element signature="n#!!block;n#selectCountryUpdate#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.75" vertical-offset="6135" max-vertical-offset="9915">
-          <caret line="415" column="22" selection-start-line="415" selection-start-column="8" selection-end-line="415" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.6967341" vertical-offset="7907" max-vertical-offset="10230">
+          <caret line="557" column="21" selection-start-line="557" selection-start-column="21" selection-end-line="557" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h5#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -568,20 +589,6 @@
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/js/filters.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5" vertical-offset="570" max-vertical-offset="7725">
-          <caret line="70" column="2" selection-start-line="70" selection-start-column="2" selection-end-line="70" selection-end-column="2" />
-          <folding>
-            <element signature="e#10406#12964#0" expanded="false" />
-            <element signature="e#13037#13922#0" expanded="false" />
-            <element signature="e#13987#14174#0" expanded="false" />
-            <element signature="e#14228#15888#0" expanded="false" />
-            <element signature="e#15953#17454#0" expanded="false" />
           </folding>
         </state>
       </provider>
