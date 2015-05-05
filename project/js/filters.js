@@ -16,10 +16,19 @@ filterCharts = function(data, _eventHandler, update){
 }
 
 
+console.log('****** StatCharts *********')
+
+console.log('hello')
+
+
+
 
 // This Whole Function basically wrangles data for 5 charts, each chart has different groupings, i.e. type, region, source, intensity, country
 
 filterCharts.prototype.addStats= function(data, update){
+
+    //Apply Any Time Filters before processing:
+
     placeHolder = []
     countByCountry =[]
     countByRegion =[]
@@ -29,7 +38,10 @@ filterCharts.prototype.addStats= function(data, update){
     countBySource =[]
 
 
-   var trimmed_org  = data.map(function (d) {
+
+
+
+    var trimmed_org  = data.map(function (d) {
        return {
            "id": d["ConflictId"],
            "country": d["Location"],
@@ -37,9 +49,19 @@ filterCharts.prototype.addStats= function(data, update){
            "region": d["Region"],
            "intensity": d["IntensityLevel"],
            "type": d["TypeOfConflict"],
-           "source": d["Incompatibility"]
+           "source": d["Incompatibility"],
+           "year": d["Year"]
        };
    });
+
+
+  /*
+    trimmed =  trimmed_org.filter( function (d) {
+         if (d.year >= timeMin && d.Year <= timeMax) {
+             return d;
+        }});
+
+  */
 /*
     trimmed = trimmed_org.filter(function (val, i, array) {
         if( val.country == 'Philippines' ) {
@@ -48,7 +70,7 @@ filterCharts.prototype.addStats= function(data, update){
     });
 */
 
-    trimmed = trimmed_org
+   trimmed = trimmed_org
 /************************************************/
 /************** By Country Count ****************/
 /************************************************/
@@ -335,73 +357,65 @@ filterCharts.prototype.addStats= function(data, update){
 
 
 
-
-
-
 filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter, cnt ){
 
-//Sample BarChart placeholder
 
-    var w
-
-    if (smpl_data.length < 1) {
-        smpl_data = [];
-        for (var i = 0; i < cnt; i++) {
-            var newNumber = Math.random() * 30;
-            smpl_data.push(newNumber);
-        }
-        w = cnt * 20
+    that = this;
+    console.log('hello');
 
 
-    }  else {
-
-        var cnt = smpl_data.length * 20;
-
-        if (cnt > 100){
-            w = 100
-        } else {
-            w = cnt
-        }
+    var key = smpl_data.map(function (d) {
+        return d.key;
+    })
 
 
-    }
 
-//var max =  d3.max(smpl_data[value])
+    var chart,
+        width = 75,
+        bar_height = 15,
+        height = bar_height * key.length;
 
-    var h=35;
-    var barPadding = 1;
+
+    var x, y;
 
     var maxVal = d3.max(smpl_data, function(d) { return d.values; })
     var minVal = d3.min(smpl_data, function(d) { return d.values; })
 
-
-    var scale = d3.scale.linear()
+    x = d3.scale.linear()
         .domain([minVal, maxVal])
-        .range([1, 35]);
+        .range([2, width]);
+
+    y = d3.scale.ordinal()
+        .domain(smpl_data.map(function (d) {
+            return d.key;
+        }))
+        .rangeRoundBands([0, height], .1, 0);
 
 
 
+    var left_width = 90;
 
-    bar_svg = d3.select(div_container).append('svg')
-        .attr('width', '110')
-        .attr('height', h + 15);
+    chart = d3.select($(div_container)[0])
+        .append('svg')
+        .attr('class', 'chart')
+        .attr('width', left_width + width)
+        .attr('height', height);
 
-    bar_svg.selectAll("rect")
+    chart.selectAll("rect")
         .data(smpl_data)
-        .enter()
-        .append("rect")
-        .attr("x", function(d, i) {
-            return i * (w / smpl_data.length);
+        .enter().append("rect")
+        .attr("x", left_width)
+        .attr("y", function (d, i) {
+            return y(d.key);
         })
-        .attr("y", function(d) {
-            return h - scale(d.values);
+        .attr("width",function(d) {
+            return x(d.values);
         })
-        .attr("width", w / smpl_data.length - barPadding)
-        .attr("height", function(d) {
-            return scale(d.values);
-        })
+        .attr("height", y.rangeBand())
         .attr("fill", function(d) {
             return "#d3d4d5";
+        }).attr("stroke", function(d) {
+            return "#272b30";
         })
         .attr('key', function(d) {
             return d.key
@@ -409,55 +423,56 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
         .attr('chart', curfilter );
 
 
-    bar_svg.selectAll("text")
+    chart.selectAll("text.name")
         .data(smpl_data)
-        .enter()
-        .append("text")
-        .text(function(d, i) {
-            return d.key;
+        .enter().append("text")
+        .attr("x", 85)
+        .attr("y", function (d, i) {
+            return y(d.key) + 9;
         })
-        .attr("x", function(d, i) {
-            return i * (w / smpl_data.length) + 9;
+        .attr("text-anchor", "end")
+        .attr('class', 'name')
+        .text(function(d,i){
+            var label = that.label_lookup(key[i], curfilter )
+            return label;
         })
-        .attr("y", function(d) {
-            return h + 15;
-        })
-        .attr("text-anchor", "middle")
         .attr('key', function(d) {
             return d.key
         })
-        .attr('class', 'xLabels');
+        .attr('class', function(d) {
+            return 'xLabels   ' + curfilter +'_labels_' +d.key
+        });
 
-
-    bar_svg.selectAll(".rectFiltr")
+    chart.selectAll(".rectFiltr")
         .data(smpl_data)
-        .enter()
-        .append("rect")
-        .attr("x", function(d, i) {
-            return i * (w / smpl_data.length);
+        .enter().append("rect")
+        .attr("x", 5)
+        .attr("y", function (d, i) {
+            return y(d.key);
+            console.log('hello')
         })
-        .attr("y", 0)
-        .attr("width", w / smpl_data.length - barPadding)
-        .attr("height", h + 15)
+        .attr("width",165)
+        .attr("height", y.rangeBand())
+        .attr("fill", function(d) {
+            return "#d3d4d5";
+        })
         .attr('key', function(d) {
             return d.key
         })
-        .style("stroke", "pink")
-        .style("stroke-opacity",0.0)
         .style("fill", "dodgerblue")
         .style("fill-opacity", 0.0)
         .attr('filter', curfilter )
         .attr('class', 'filter');
-
-
+    ;
 }
+
 
 
 
 filterCharts.prototype.statUpdate= function(dataSet, filter, colCnt){
     console.log("************* statUpdate *********************");
     console.log(filter);
-    console.log(dataSet);
+   // console.log(dataSet);
 
 
     if (dataSet.length > 1){
@@ -472,22 +487,20 @@ filterCharts.prototype.statUpdate= function(dataSet, filter, colCnt){
 
     var scale = d3.scale.linear()
         .domain([minVal, maxVal])
-        .range([1, 35]);
+        .range([2, 75]);
 
-    $( "rect[chart='"+filter+"']").attr("height", 0)
+    $( "rect[chart='"+filter+"']").attr("width", 0)
 
     for (var i = 0, len = dataSet.length; i < len; i++) {
 
-        var height = scale(dataSet[i].values);
+        var width = scale(dataSet[i].values);
 
-        var y = 35 - height;
-
-         console.log(height);
-        $( "rect[chart='"+filter+"'][key='"+dataSet[i].key+"']").attr("height", height).attr("y", y);
+       //        console.log(height);
+        $( "rect[chart='"+filter+"'][key='"+dataSet[i].key+"']").attr("width", width).attr("x", 90);
 
     }
 
-    console.log("************* statUpdate End *********************");
+//    console.log("************* statUpdate End *********************");
 
 }
 
@@ -519,22 +532,23 @@ filterCharts.prototype.addEventStuff= function(){
             var fltr = $(this).attr('filter');
 
 
-            if($(this).css('fill-opacity') > 0){
-                console.log('clear')
+        if ($(this).css('fill-opacity') <= 0) {
+            $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
+            $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
+            $(this).css('fill-opacity', 0.365);
+            $(this).css('stroke-opacity', 1);
+            //key = $(this).attr('key')
+        } else {
+            console.log('clear')
 
-                key = '';
-                $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
-                $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
-            }
-            else {
-                $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
-                $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
-                $(this).css('fill-opacity', 0.365);
-                $(this).css('stroke-opacity', 1);
-                //key = $(this).attr('key')
-            }
+            key = '';
+            $("rect[filter='" + fltr + "']").css('fill-opacity', 0);
+            $("rect[filter='" + fltr + "']").css('stroke-opacity', 0);
+            byCntry='';
 
-            console.log('event Test   ' + key);
+        }
+
+   //         console.log('event Test   ' + key);
             $(that.eventHandler).trigger("filterUpdate", fltr+'/'+ key, key);
 
 
@@ -573,3 +587,212 @@ filterCharts.prototype.addEventStuff= function(){
      });
      */
 }
+
+
+filterCharts.prototype.label_lookup= function(key, currFilter){
+
+var x_label;
+
+
+
+    if (currFilter == 'region') {
+
+        switch (key) {
+            case '1':
+                x_label = "Europe";
+                break;
+            case '2':
+                x_label = "MidEast";
+                break;
+            case '3':
+                x_label = "Asia";
+                break;
+            case '4':
+                x_label = "Africa";
+                break;
+            case '5':
+                x_label = "Americas";
+                break;
+        }
+    }
+
+    if (currFilter == 'type') {
+
+        switch (key) {
+            case '1':
+                x_label = "Extrasystemic";
+                break;
+            case '2':
+                x_label = "Interstate";
+                break;
+            case '3':
+                x_label = "Internal";
+                break;
+            case '4':
+                x_label = "Internationalized";
+                break;
+        }
+    }
+
+    if (currFilter == 'source') {
+
+        switch (key) {
+            case '1':
+                x_label = "Territory";
+                break;
+            case '2':
+                x_label = "Government";
+                break;
+            case '3':
+                x_label = "Both";
+                break;
+        }
+    }
+
+    if (currFilter == 'intensity') {
+
+        switch (key) {
+            case '1':
+                x_label = "Low";
+                break;
+            case '2':
+                x_label = "High";
+                break;
+        }
+    }
+
+    return x_label;
+
+}
+
+
+
+
+
+
+
+/* *****************  Backup **********************
+
+ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter, cnt ){
+
+ console.log('hello');
+
+
+ //Sample BarChart placeholder
+
+ var w
+
+ if (smpl_data.length < 1) {
+ smpl_data = [];
+ for (var i = 0; i < cnt; i++) {
+ var newNumber = Math.random() * 30;
+ smpl_data.push(newNumber);
+ }
+ w = cnt * 20
+
+
+ }  else {
+
+ var cnt = smpl_data.length * 20;
+
+ if (cnt > 100){
+ w = 100
+ } else {
+ w = cnt
+ }
+
+
+ }
+
+ //var max =  d3.max(smpl_data[value])
+
+ var h=35;
+ var barPadding = 1;
+
+ var maxVal = d3.max(smpl_data, function(d) { return d.values; })
+ var minVal = d3.min(smpl_data, function(d) { return d.values; })
+
+
+ var scale = d3.scale.linear()
+ .domain([minVal, maxVal])
+ .range([1, 35]);
+
+
+
+
+ bar_svg = d3.select(div_container).append('svg')
+ .attr('width', '110')
+ .attr('height', h + 15);
+
+
+
+
+ bar_svg.selectAll("rect")
+ .data(smpl_data)
+ .enter()
+ .append("rect")
+ .attr("x", function(d, i) {
+ return i * (w / smpl_data.length);
+ })
+ .attr("y", function(d) {
+ return h - scale(d.values);
+ })
+ .attr("width", w / smpl_data.length - barPadding)
+ .attr("height", function(d) {
+ return scale(d.values);
+ })
+ .attr("fill", function(d) {
+ return "#d3d4d5";
+ })
+ .attr('key', function(d) {
+ return d.key
+ })
+ .attr('chart', curfilter );
+
+
+ bar_svg.selectAll("text")
+ .data(smpl_data)
+ .enter()
+ .append("text")
+ .text(function(d, i) {
+ return d.key;
+ })
+ .attr("x", function(d, i) {
+ return i * (w / smpl_data.length) + 9;
+ })
+ .attr("y", function(d) {
+ return h + 15;
+ })
+ .attr("text-anchor", "middle")
+ .attr('key', function(d) {
+ return d.key
+ })
+ .attr('class', function(d) {
+ return 'xLabels   ' + curfilter +'_labels_' +d.key
+ });
+
+
+ bar_svg.selectAll(".rectFiltr")
+ .data(smpl_data)
+ .enter()
+ .append("rect")
+ .attr("x", function(d, i) {
+ return i * (w / smpl_data.length);
+ })
+ .attr("y", 0)
+ .attr("width", w / smpl_data.length - barPadding)
+ .attr("height", h + 15)
+ .attr('key', function(d) {
+ return d.key
+ })
+ .style("stroke", "pink")
+ .style("stroke-opacity",0.0)
+ .style("fill", "dodgerblue")
+ .style("fill-opacity", 0.0)
+ .attr('filter', curfilter )
+ .attr('class', 'filter');
+
+
+ }
+
+ */

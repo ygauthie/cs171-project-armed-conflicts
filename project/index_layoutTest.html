@@ -110,9 +110,6 @@
             margin-bottom: 15px;
 
         }
-        #stats1_left{
-            height: 90px;
-        }
         .stat h5{
             margin-top: 0px;
         }
@@ -143,8 +140,7 @@
         }
 
         #colLeft {
-            border-right: dashed 1px #42484f;
-            height: 475px;
+            border-right: dashed 1px #42484f
         }
 
         li {
@@ -169,7 +165,6 @@
             position: absolute;
             background-color: #272b30;
             z-index: 2;
-            margin-left:10px;
         }
         #country{
             margin-bottom:30px;
@@ -243,10 +238,8 @@
         /* Stat BarChart Labels */
 
         .xLabels {
-
             fill: #d3d4d5;
-            font: 11px Arial;
-            letter-spacing: 1px;
+
         }
 
         #tooltip {
@@ -304,30 +297,34 @@
 
     </div>
 
+<div id="country" class="row">
+                    <div class="col-xs-3 ">
+                        <div id="cntryDiv" class="flex border"> <h5 style="display:inline"> &nbsp; Select Country &nbsp; </h5> <span id='cntrySelect'
+                                                                                                       class="glyphicon glyphicon-triangle-bottom"
+                                                                                                       style="font-size: 14px; color: #d3d4d5; display:inline">&nbsp;</span>
+                        </div>
 
+                    </div>
+                    <div id="stats0_right" class="col-xs-9"> <a href="#" onclick="gblFilterReset();">Reset</a></div>
 
+                </div>
 
     <div id="midRow" class="row">
 
         <div id="colLeft" class="col-xs-4 ">
             <div id="left-1">
-                <div id="stats0" class="row" style="height:50px" >
-                    <div id="cntryDiv" class="flex border"> <h5 style="display:inline"> &nbsp; Location &nbsp; </h5> <span id='cntrySelect'
-                                                                                                                           class="glyphicon glyphicon-triangle-bottom"
-                                                                                                                           style="font-size: 14px; color: #d3d4d5; display:inline">&nbsp;</span>
-                    </div>
-                </div>
+
 
                 <div id="stats1" class="row">
 
-                    <div id="stats1_left" class="col-xs-6 stat" style="margin-right:-10px"><h5>Region</h5></div>
-                    <div id="stats1_right" class="col-xs-6 stat" style="margin-left:50px"><h5>Type</h5></div>
+                    <div id="stats1_left" class="col-xs-4 stat"><h5>Region</h5></div>
+                    <div id="stats1_right" class="col-xs-4 stat"><h5>Conflict Type</h5></div>
 
                 </div>
                 <div id="stats2" class="row">
 
-                    <div id="stats2_left" class="col-xs-3 stat" style="margin-right:-10px"><h5>Source</h5></div>
-                    <div id="stats2_right" class="col-xs-6 stat" style="margin-left:50px"><h5>Intensity</h5></div>
+                    <div id="stats2_left" class="col-xs-5 stat"><h5>Source</h5></div>
+                    <div id="stats2_right" class="col-xs-5 stat"><h5>Intensity</h5></div>
                 </div>
 
 
@@ -453,9 +450,11 @@ communication between Chart js files -->
                 filter_charts.addStats(filteredData, "1");
 
                 timeline_vis.onSelectionChange(a,b,filteredData);
-                filter_charts.addStats(filteredData, "1");
-
                 //map_vis.zoomOnContinent(1);
+
+
+
+
 
             });
 

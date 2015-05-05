@@ -10,6 +10,16 @@ function addStats(data, update){
     countByType =[]
     countBySource =[]
 
+   console.log('update Filters');
+    console.log(data);
+
+    data = data.filter(function (d) {
+        if (d.Year >= timeMin && d.Year <= timeMax) {
+            return d;
+        }
+    });
+
+
 
    var trimmed_org  = data.map(function (d) {
        return {

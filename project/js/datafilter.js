@@ -19,6 +19,9 @@ newfilterData.prototype.init = function(){
 //Set Filter Variables based on the filter and key
 newfilterData.prototype.filterUpdate = function(fltr){
 
+
+
+
     console.log('************** FILTERS !!!!!!!! *******************')
     console.log(fltr);
 
@@ -28,6 +31,7 @@ newfilterData.prototype.filterUpdate = function(fltr){
     var filter = vals[0];
     var key = vals[1];
 
+    console.log(key);
 
     console.log('gblFilterSet')
     switch (filter) {
@@ -50,6 +54,8 @@ newfilterData.prototype.filterUpdate = function(fltr){
 
             break;
     }
+
+    console.log(byRegion);
 
    this.filterData();
 
@@ -77,10 +83,17 @@ newfilterData.prototype.gblFilterReset = function(){
 
 //Filter the data based on Filter Variables
 newfilterData.prototype.filterData = function(){
-    console.log('filterData')
+    console.log('******** filter Data **********')
     //Check Filters one by one
-
     filteredData = allData;
+
+    console.log('Original Data')
+    console.log(filteredData);
+
+
+
+    console.log('Test Prompt Region')
+    console.log(byRegion);
 
 
     if (byType != ''){
@@ -90,22 +103,39 @@ newfilterData.prototype.filterData = function(){
                 return val;
             }
         });
+
+
     }
 
+
+    console.log('Data 1')
+    console.log(filteredData.length);
+
+
     if (byRegion != ''){
+        console.log('region filter  '  +  byRegion)
         filteredData = filteredData.filter(function (val, i, array) {
             if( val.Region == byRegion ) {
                 return val;
             }
         });
+
     }
+
+    console.log('Data 2')
+    console.log(filteredData.length);
+
     if (bySource != ''){
         filteredData = filteredData.filter(function (val, i, array) {
             if( val.Incompatibility == bySource ) {
                 return val;
             }
         });
+
+
     }
+    console.log('Data 3')
+    console.log(filteredData.length);
 
     if (byIntensity != ''){
         filteredData = filteredData.filter(function (val, i, array) {
@@ -113,7 +143,16 @@ newfilterData.prototype.filterData = function(){
                 return val;
             }
         });
+
+
     }
+
+    console.log('Data 4')
+    console.log(filteredData.length);
+
+
+    console.log(byCntry);
+
     if (byCntry!= ''){
         filteredData = filteredData.filter(function (val, index, array) {
 
@@ -121,6 +160,7 @@ newfilterData.prototype.filterData = function(){
                 return val;
             }
         });
+
     }
 
 
@@ -130,7 +170,11 @@ newfilterData.prototype.filterData = function(){
     /****************** Call Update Functions and pass Filtered Data Set here ******************/
     /********************************************************************************************/
 
-    console.log('filteredData')
+
+    console.log('Data final')
+    console.log(filteredData.length);
+
+    console.log('filtered Data')
     console.log(filteredData)
 
     $(that.eventHandler).trigger("filtersChanged");

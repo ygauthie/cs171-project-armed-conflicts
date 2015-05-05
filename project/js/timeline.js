@@ -7,6 +7,10 @@
  * Created by edgonzalez on 4/16/15.
  */
 
+/*
+
+}
+*/
 
 
 
@@ -37,7 +41,7 @@ TimelineVis = function(_parentElement, _data, _eventHandler){
     this.dateKeys = [];
     this.laneLength = 0;
     this.timeBegin = '19460101';
-    this.timeEnd = '20161231';
+    this.timeEnd = '20151231';
     this.parseDate = d3.time.format("%Y%m%d").parse;
 
     // TODO: define all "constants" here
@@ -59,15 +63,100 @@ TimelineVis.prototype.initVis = function(){
     var that = this; // read about the this
     /*****************************************************/
 
+   this.m = [20, 15, 15, 150], //top right bottom left
+        this.w = 1130 - this.m[1] - this.m[3],
+        this.h = 500 - this.m[0] - this.m[2],
+        this.miniHeight = 600,
+        this.mainHeight = this.h - this.miniHeight - 50;
+
+    //Set Scales
+
+    this.xb = d3.time.scale()
+        .range([0, this.w]);
+
+    this.x = d3.time.scale()
+        .range([0, this.w]).clamp(1);
+
+    this.y2 = d3.scale.linear()
+
+  //Set Chart
+    this.chart = d3.select("#timeLn")
+        .append("svg")
+        .attr("width", this.w + this.m[1] + this.m[3])
+        .attr("class", "chart");
 
 
-    /*****************************************************/
+    this.chart.append("defs").append("clipPath")
+        .attr("id", "clip")
+        .append("rect")
+        .attr("width", this.w)
+        .attr("height", 10);
+
+    //Set Chart
+    this.mini =  this.chart.append("g")
+        .attr("transform", "translate(" + 150 + "," + 0 + ")")
+        .attr("width", this.w)
+        .attr("class", "mini");
+
+    /****** Top X Axis *************/
+    this.svg_head = d3.select("#xAxisTop").append("svg")
+        .attr("id", "d3ChartHead");
+    this.svg_head.attr("width",1150)
+        .attr("height", 35);
+
+
+    this.svg_head.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate("+ this.m[3] +",35)");
+
+    this.xAxis = d3.svg.axis()
+        .scale( this.x)
+        .orient("top");
+
+    this.svg_head.select(".x")
+        .call( this.xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-5px")
+        .attr("dy", "-1px")
+        .attr("transform", "rotate(45)" );
+
+
+    /* ***** Bottom X Axis ***********
+    this.xAxis2 = d3.svg.axis()
+        .scale( this.x)
+        .orient("botttom");
+
+    this.chart.append("g")
+        .attr("class", "x2 axis")
+        .attr("transform", "translate("+ this.m[3] +","+  this.miniHeight +")");
+
+    this.chart.select(".x2")
+        .call( this.xAxis2)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", "-.55em")
+        .attr("transform", "rotate(-45)" );
+     ************************************************* */
+
+    //Setup chart groups
+
+    this.laneLine = this.mini.append("g").attr('class','chartLines');
+    this.laneText = this.mini.append("g").attr('class','laneText');
+    this.laneRect = this.mini.append("g").attr('class','laneRect');
+    this.laneLabels = this.mini.append("g").attr('class','laneLabels');
+
+
+
+
+
 
     // filter, aggregate, modify data
     this.wrangleData();
 
-    // call the update method
-    this.updateVis();
+
+
 }
 
 
@@ -79,9 +168,23 @@ TimelineVis.prototype.initVis = function(){
 
 TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
 
+
+
     if (filter == 1) {
 
-        latestData = filtered_Data;
+
+        byCntry = $('.cntryChk:checkbox:checked').map(function() {
+            return this.value;
+        }).get();
+
+        latestData = filtered_Data.filter(function (val, index, array) {
+
+            if (byCntry.indexOf(val.Location) >= 0) {
+                return val;
+            }
+        });
+
+
 
     }else{
 
@@ -89,6 +192,8 @@ TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
 
     }
 
+    this.itemData =[];
+    this.laneData.length = 0;
 
     // this is for testing only values with a string of 'NULL' are generally ongoing conflicts
     latestData = latestData.filter(function (val, i, array) {
@@ -121,8 +226,6 @@ TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
     }
     this.laneLength = this.laneData.length;
 
-
-
     for (var i = 0, len = this.metaData.length; i < len; i++) {
         this.dateKeys.push(this.metaData[i].date);
     }
@@ -131,7 +234,8 @@ TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
 
 
 
-
+// call the update method
+    this.updateVis();
 
     //console.log('dateKeys');
     //console.log(this.dateKeys);
@@ -148,105 +252,53 @@ TimelineVis.prototype.wrangleData= function(filtered_Data, filter) {
 TimelineVis.prototype.updateVis = function(){
 
 
-console.log('Timeline')
+//console.log('**************  Update Timeline **********************')
 
     var that = this; // read about the this
 
 
-
-    // var parseDate = d3.time.format("%Y%m%d").parse;
     var m = [20, 15, 15, 150], //top right bottom left
         w = 1130 - m[1] - m[3],
         h = 500 - m[0] - m[2],
         miniHeight = this.laneLength * 12 + 50,
         mainHeight = h - miniHeight - 50;
 
-    //scales
-    this.x = d3.time.scale()
-        .range([0, w]);
+    //Reset Height based on how many countries
+    this.miniHeight = this.laneLength * 12 + 50
+
+    // Set Scale Domain
     this.x.domain([ this.parseDate(this.timeBegin),  this.parseDate(this.timeEnd)]);
-
-    var start = this.parseDate(this.timeBegin);
-    console.log(start);
-    console.log(this.x(start));
+    this.y2.range([0,  this.miniHeight]);
+    this.y2.domain([0, this.laneLength])
 
 
-
-    this.x1 = d3.scale.linear()
-        .range([0, w]);
-    this.y1 = d3.scale.linear()
-        .domain([0, this.laneLength])
-        .range([0, mainHeight]);
-    this.y2 = d3.scale.linear()
-        .domain([0, this.laneLength])
-        .range([0,  miniHeight]);
-
-    this.chart = d3.select("#timeLn")
-        .append("svg")
-        .attr("width", w + m[1] + m[3])
-        .attr("height", miniHeight + m[0] + m[2])
-        .attr("class", "chart");
-
-    this.chart.append("defs").append("clipPath")
-        .attr("id", "clip")
-        .append("rect")
-        .attr("width", w)
-        .attr("height", 10);
-
-    this.mini =  this.chart.append("g")
-        .attr("transform", "translate(" + 150 + "," + 0 + ")")
-        .attr("width", w)
-        .attr("height", miniHeight)
-        .attr("class", "mini");
+    // Test Axis
+/*
+    this.xb.domain([ this.parseDate(this.timeBegin),  this.parseDate(this.timeEnd)]);
+    this.testAxis.select("g").call(this.xAxisb);
+*/
 
 
-    /****** Top X Axis *************/
-    this.svg_head = d3.select("#xAxisTop").append("svg")
-        .attr("id", "d3ChartHead");
-    this.svg_head.attr("width",1150)
-        .attr("height", 35);
+    //Rest chart to updated height
+    this.chart.attr("height", this.miniHeight + this.m[0] + this.m[2])
 
-    this.xAxis = d3.svg.axis()
-        .scale( this.x)
-        .orient("top");
-
-
-    this.svg_head.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate("+ m[3] +",35)");
-
-    this.svg_head.select(".x")
-        .call( this.xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-5px")
-        .attr("dy", "-1px")
-        .attr("transform", "rotate(45)" );
-
-    /****** Bottom X Axis *************/
-    this.xAxis2 = d3.svg.axis()
-        .scale( this.x)
-        .orient("botttom");
-
-    this.chart.append("g")
-        .attr("class", "x2 axis")
-        .attr("transform", "translate("+ m[3] +","+  miniHeight +")");
-
-    this.chart.select(".x2")
-        .call( this.xAxis2)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", "-.55em")
-        .attr("transform", "rotate(-45)" );
+    this.mini.attr("height", this.miniHeight)
 
 
 
-    /***********************************************/
+     //Update X Axis Top/Bottom
+
+    this.xAxis.scale( this.x);
+    this.svg_head.select(".x").call( this.xAxis);
+
+//    this.xAxis2.scale( this.x);
+//    this.chart.select(".x2").call( this.xAxis2);
 
 
-    //mini lanes and texts
-    this.mini.append("g").selectAll(".laneLines")
+
+    //lanes lines
+    this.laneLine.selectAll("*").remove();
+    this.laneLine.selectAll(".laneLines")
         .data(this.itemData)
         .enter().append("line")
         .attr("x1", m[1])
@@ -259,7 +311,9 @@ console.log('Timeline')
         })
        .attr("class", "laneLines");
 
-    this.mini.append("g").selectAll(".laneText")
+    //lanes Text / YAxis Labes
+    d3.select('.laneText').selectAll("*").remove();
+    this.laneText.selectAll(".laneText")
         .data(this.laneData)
         .enter().append("text")
         .text(function (d) {
@@ -278,11 +332,15 @@ console.log('Timeline')
         });
 
     //mini item rects
-    this.mini.append("g").selectAll("miniItems")
-        .data(this.itemData)
-        .enter().append("rect")
+
+    this.laneRect.selectAll("*").remove();
+    var rect = this.laneRect.selectAll("miniItems")
+        .data(this.itemData);
+
+    rect.enter().append("rect")
         .attr("class", function (d) {
             var lane = "miniItem" + d.lane
+
             return "laneRect" + " " + "miniItem" + d.lane;
         })
         .attr("x", function (d) {
@@ -308,8 +366,13 @@ console.log('Timeline')
             return d.id;
         });
 
-    //mini labels
-    this.mini.append("g").selectAll(".miniLabels")
+
+rect.exit().remove();
+
+
+    //mini labels  currently hidden may expose later
+    this.laneLabels.selectAll("*").remove();
+    this.laneLabels.selectAll(".miniLabels")
         .data(this.itemData)
         .enter().append("text")
         .text(function (d) {
@@ -326,7 +389,7 @@ console.log('Timeline')
         .attr("class","miniLabels")
         .style("display","none");
 
-
+/*
     //brush
     this.brush = d3.svg.brush()
         .x(this.x)
@@ -349,12 +412,10 @@ console.log('Timeline')
         .selectAll("rect")
         .attr("y", 1)
         .attr("height", miniHeight - 1);
-
+*/
 
 
 }
-
-
 
 
 TimelineVis.prototype.filtersChanged= function (dataSet){
@@ -363,36 +424,21 @@ TimelineVis.prototype.filtersChanged= function (dataSet){
 }
 
 
-
-
-/**
- * Gets called by event handler and should create new aggregated data
- * aggregation is done by the function "aggregate(filter)". Filter has to
- * be defined here.
- * @param selection
- */
 TimelineVis.prototype.onSelectionChange= function (selectionStart, selectionEnd, dataSet){
 
-    console.log('***************************** HELLO **************************************')
 
     var start = Math.floor(selectionStart)
      var end =  Math.floor(selectionEnd)
 
-    console.log('Floor This')
-    console.log(Math.floor(selectionStart) + ' - ' + Math.floor(selectionEnd));
-
-var mmdd = '0101'
-
-   // this.timeBegin =  start.toString() + mmdd;
-   // this.timeEnd =  start.toString() + mmdd;
-   // console.log(this.timeBegin);
-
-  // var myScaled =  this.x(this.timeBegin)
-
-  //  console.log(myScaled);
 
 
+    var mmdd = '0101'
 
+    this.timeBegin =  start.toString() + mmdd;
+    this.timeEnd =  end.toString() + mmdd;
+
+
+    this.updateVis();
 
 }
 
@@ -405,18 +451,7 @@ var mmdd = '0101'
 /*************************************************************************/
 /*************************************************************************/
 
-TimelineVis.prototype.display = function() {
-    var rects, labels,
-        minExtent = brush.extent()[0],
-        maxExtent = brush.extent()[1],
-        visItems = this.itemData.filter(function(d) {return d.start < maxExtent && d.end > minExtent;});
 
-
-    mini.select(".brush")
-        .call(brush.extent([minExtent, maxExtent]));
-
-    x1.domain([minExtent, maxExtent]);
-}
 
 TimelineVis.prototype.dateFormat = function(origDate){
     var isoDate = '';
