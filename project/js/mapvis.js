@@ -60,7 +60,7 @@ MapVis.prototype.initVis = function(){
     this.svg.append("text")
           .attr("x", this.width-101)
           .attr("y", 33)
-          .text("Conflict")
+          .text("Minor conflict")
           .attr("style","font-size:10px;")
           .style("stroke","#ffffff"); 
 

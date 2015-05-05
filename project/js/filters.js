@@ -653,10 +653,10 @@ var x_label;
 
         switch (key) {
             case '1':
-                x_label = "Low";
+                x_label = "Minor conflict";
                 break;
             case '2':
-                x_label = "High";
+                x_label = "War";
                 break;
         }
     }
