@@ -16,9 +16,6 @@ filterCharts = function(data, _eventHandler, update){
 }
 
 
-console.log('****** StatCharts *********')
-
-console.log('hello')
 
 
 
@@ -361,8 +358,6 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
 
 
     that = this;
-    console.log('hello');
-
 
     var key = smpl_data.map(function (d) {
         return d.key;
@@ -394,7 +389,6 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
 
     var left_width = 95;
 
-    console.log('o');
 
     chart = d3.select($(div_container)[0])
         .append('svg')
@@ -471,9 +465,9 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
 
 
 filterCharts.prototype.statUpdate= function(dataSet, filter, colCnt){
-    console.log("************* statUpdate *********************");
-    console.log(filter);
-   // console.log(dataSet);
+
+
+
 
 
     if (dataSet.length > 1){

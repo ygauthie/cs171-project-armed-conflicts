@@ -11,7 +11,7 @@ newfilterData = function(_eventHandler){
 
 newfilterData.prototype.init = function(){
 
-    console.log('filter init')
+    //console.log('filter init')
   }
 
 
@@ -22,8 +22,8 @@ newfilterData.prototype.filterUpdate = function(fltr){
 
 
 
-    console.log('************** FILTERS !!!!!!!! *******************')
-    console.log(fltr);
+    //console.log('************** FILTERS !!!!!!!! *******************')
+    //console.log(fltr);
 
 
     vals = fltr.split('/');
@@ -31,9 +31,9 @@ newfilterData.prototype.filterUpdate = function(fltr){
     var filter = vals[0];
     var key = vals[1];
 
-    console.log(key);
+    //console.log(key);
 
-    console.log('gblFilterSet')
+    //console.log('gblFilterSet')
     switch (filter) {
         case 'type':
             byType = key;
@@ -55,7 +55,7 @@ newfilterData.prototype.filterUpdate = function(fltr){
             break;
     }
 
-    console.log(byRegion);
+    //console.log(byRegion);
 
    this.filterData();
 
@@ -83,17 +83,15 @@ newfilterData.prototype.gblFilterReset = function(){
 
 //Filter the data based on Filter Variables
 newfilterData.prototype.filterData = function(){
-    console.log('******** filter Data **********')
+   
     //Check Filters one by one
     filteredData = allData;
 
-    console.log('Original Data')
-    console.log(filteredData);
+   
 
 
-
-    console.log('Test Prompt Region')
-    console.log(byRegion);
+   // //console.log('Test Prompt Region')
+   // //console.log(byRegion);
 
 
     if (byType != ''){
@@ -108,12 +106,12 @@ newfilterData.prototype.filterData = function(){
     }
 
 
-    console.log('Data 1')
-    console.log(filteredData.length);
+//    //console.log('Data 1')
+//    //console.log(filteredData.length);
 
 
     if (byRegion != ''){
-        console.log('region filter  '  +  byRegion)
+//        //console.log('region filter  '  +  byRegion)
         filteredData = filteredData.filter(function (val, i, array) {
             if( val.Region == byRegion ) {
                 return val;
@@ -122,8 +120,8 @@ newfilterData.prototype.filterData = function(){
 
     }
 
-    console.log('Data 2')
-    console.log(filteredData.length);
+  //  //console.log('Data 2')
+  //  //console.log(filteredData.length);
 
     if (bySource != ''){
         filteredData = filteredData.filter(function (val, i, array) {
@@ -134,8 +132,8 @@ newfilterData.prototype.filterData = function(){
 
 
     }
-    console.log('Data 3')
-    console.log(filteredData.length);
+    //console.log('Data 3')
+    //console.log(filteredData.length);
 
     if (byIntensity != ''){
         filteredData = filteredData.filter(function (val, i, array) {
@@ -147,11 +145,11 @@ newfilterData.prototype.filterData = function(){
 
     }
 
-    console.log('Data 4')
-    console.log(filteredData.length);
+    //console.log('Data 4')
+    //console.log(filteredData.length);
 
 
-    console.log(byCntry);
+    //console.log(byCntry);
 
     if (byCntry!= ''){
         filteredData = filteredData.filter(function (val, index, array) {
@@ -171,11 +169,11 @@ newfilterData.prototype.filterData = function(){
     /********************************************************************************************/
 
 
-    console.log('Data final')
-    console.log(filteredData.length);
+    //console.log('Data final')
+    //console.log(filteredData.length);
 
-    console.log('filtered Data')
-    console.log(filteredData)
+    //console.log('filtered Data')
+    //console.log(filteredData)
 
     $(that.eventHandler).trigger("filtersChanged");
 

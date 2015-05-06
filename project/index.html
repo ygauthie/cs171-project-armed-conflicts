@@ -462,17 +462,16 @@ communication between Chart js files -->
                         return d;
                     }});
 
-                console.log(barData)
+
 
                 filter_charts.addStats(barData, "1");
                 //map_vis.zoomOnContinent(1);
 
-
+                timeline_vis.onSelectionChange(a,b,filteredData);
 
 
 
             });
-
 
             // for other filters
 
