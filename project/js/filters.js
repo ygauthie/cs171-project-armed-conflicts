@@ -634,7 +634,7 @@ var x_label;
                 x_label = "Internal";
                 break;
             case '4':
-                x_label = "International";
+                x_label = "Internationlzd";
                 break;
         }
     }
