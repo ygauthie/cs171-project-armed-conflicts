@@ -7,3 +7,5 @@ This repository is structured as follows:
 * The **Process book** folder contains our process book.
 
 * The **Prototype** folder contains some prototype visualizations.  They may not work anymore due to changes in the file structure.
+
+* The **Screencast** folder contains our screencast.
