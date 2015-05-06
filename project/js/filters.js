@@ -415,7 +415,10 @@ filterCharts.prototype.simpleBar = function (div_container, smpl_data, curfilter
         .attr('key', function(d) {
             return d.key
         })
-        .attr('chart', curfilter );
+        .attr('chart', curfilter ).attr('class', function(d) {
+            return curfilter +'_labels_' +d.key
+        });
+
 
 
     chart.selectAll("text.name")
@@ -576,13 +579,18 @@ filterCharts.prototype.addEventStuff= function(){
      var filter = $(this).attr('filter');
      var key = $(this).attr('key');
 
-         $("circle["+filter +"='" + key + "']").css('fill','dodgerblue');
+         $("circle["+filter +"='" + key + "']").css('fill','#8d1eff');
+         $("."+ filter +"_labels_" + key ).css('fill','#8d1eff');
 
      });
+
      $(".filter").mouseleave(function(){
          var filter = $(this).attr('filter');
          var key = $(this).attr('key');
          $("circle["+filter +"='" + key + "']").css('fill','white');
+         $("."+ filter +"_labels_" + key ).css('fill','#d3d4d5');
+
+
      });
 
 }
